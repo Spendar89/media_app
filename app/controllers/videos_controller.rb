@@ -19,7 +19,8 @@ class VideosController < ApplicationController
   def index 
     @auth = request.env["omniauth.auth"]
     @video = Video.new
-    @videos = Video.all_redis[0..8]
+    @videos = []
+    @videos = Video.all_redis[0..8] unless Video.all_redis.nil?
   end
   
   def shows
