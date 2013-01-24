@@ -1,0 +1,59 @@
+<% unless @scroll_videos.empty? %>
+	<% @new_videos = @scroll_videos[0..5] %>
+	$(".videos_div").append("<%=j render(:partial => 'poll_redis', :locals => {:new_videos => @new_videos})%>");
+	$('#masonry-container').masonry('reload');
+<% else %>
+	<% @new_videos = @updated_videos[0..5] %>
+	<% unless @new_videos.empty? %>
+		$(".videos_div").prepend("<%=j render(:partial => 'poll_redis', :locals => {:new_videos => @new_videos})%>");
+			$('#masonry-container').masonry('reload');
+	<% end %>
+<% end %>
+
+$(document).ajaxComplete(function(){
+	var players = {};
+	YT_ready(function() {
+		$(".poll-redis").each(function() {
+			var identifier = this.id;
+			$(this).removeClass('poll-redis');
+			var frameID = getFrameID(identifier);
+			if (frameID) { //If the frame exists
+				players[frameID] = new YT.Player(frameID, {
+					events: {
+						"onReady": createYTEvent(frameID, identifier),
+						"onStateChange": onytplayerStateChange($(this))
+					}
+				});
+			}
+		});
+	});
+
+	function createYTEvent(frameID, identifier) {
+		return function (event) {
+			var parent_div = $('#'+identifier).parent('.yt_parent');
+			var player = players[frameID];
+			player.mute();		
+			$(parent_div).hover(function(){
+				player.unMute();
+				player.playVideo();	
+			}, function(){
+				player.pauseVideo();
+			});
+		}
+	}
+	
+	function onytplayerStateChange(identifier) {
+		return function(event) {
+			var iframe = identifier
+			var parent_div = iframe.parent('.yt_parent');
+			if( event.data == YT.PlayerState.PLAYING && parent_div.hasClass('loading')){
+				event.target.pauseVideo();
+				setTimeout(function(){
+					parent_div.children('.overlay').fadeOut();
+					parent_div.removeClass('loading');
+				}, 2000);	
+			}
+		}	
+	}
+});
+

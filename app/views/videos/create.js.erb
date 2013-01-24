@@ -1,0 +1,28 @@
+$('.videos_div').prepend("<%=j render(:partial => 'show', :locals => {:video => @video})%>");
+$('#masonry-container').masonry('reload');
+
+
+var newVideo;
+newVideo = new YT.Player("<%= @video['yt_id'] %>", {
+	videoId: "<%= @video['yt_id']  %>",
+	events: {
+		'onReady': onPlayerReady,
+	}
+});
+function onPlayerReady(event) {
+	var parent_div = $('#'+"<%= @video['yt_id']  %>").parent('.yt_parent');
+	var player = event.target // Set player reference
+	player.setPlaybackQuality('small');
+	player.mute();
+	player.playVideo();
+	player.pauseVideo();
+	setTimeout(function(){
+		parent_div.children('.overlay').fadeOut()
+	}, 2000);
+	$(parent_div).hover(function(){
+		player.unMute();
+		player.playVideo();	
+	}, function(){
+		player.pauseVideo();
+	});
+}
