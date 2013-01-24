@@ -64,4 +64,5 @@ YoutubeApp::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  ENV["REDISCLOUD_URL"] = 'redis://rediscloud:jKtTH4kVEOVJg9S1@redis-17808.us-east-1-4.3.ec2.garantiadata.com:17808'
 end
