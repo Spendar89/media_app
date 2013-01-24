@@ -11,7 +11,83 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123053625) do
+ActiveRecord::Schema.define(:version => 20130123200939) do
+
+  create_table "games", :force => true do |t|
+    t.integer  "team_id"
+    t.string   "opponent"
+    t.integer  "average_price"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "game_rating"
+    t.date     "date"
+  end
+
+  create_table "searches", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sections", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "average_price"
+    t.integer  "std_dev"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "name"
+    t.string   "seat_view_url"
+  end
+
+  add_index "sections", ["name"], :name => "index_sections_on_name"
+
+  create_table "sounds", :force => true do |t|
+    t.integer  "rating"
+    t.string   "url"
+    t.integer  "start"
+    t.string   "title"
+    t.integer  "uploaded"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "stars", :force => true do |t|
+    t.string   "name"
+    t.decimal  "rating"
+    t.integer  "team_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "home_average_popularity"
+    t.integer  "away_price_standard_deviation"
+    t.string   "url"
+    t.text     "section_standard_deviations"
+    t.string   "conference"
+    t.string   "record"
+    t.string   "venue_name"
+    t.string   "venue_address"
+    t.string   "division"
+    t.string   "last_5"
+  end
+
+  create_table "tickets", :force => true do |t|
+    t.integer  "game_id"
+    t.string   "url"
+    t.integer  "stubhub_id"
+    t.integer  "price"
+    t.string   "row"
+    t.integer  "quantity"
+    t.integer  "section_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.decimal  "z_score"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "provider"

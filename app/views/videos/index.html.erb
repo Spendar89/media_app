@@ -11,7 +11,7 @@
 </div>
 
 
-
+<% unless current_user.nil? %>
 <div id="masonry-container" class="centered clearfix masonry videos_div">
 <% @videos.each_with_index do |video, i| %>
 	<% unless video["type"].nil? %>
@@ -59,3 +59,4 @@
 <% end %>
 <% end %>
 </div>
+<%end%>
