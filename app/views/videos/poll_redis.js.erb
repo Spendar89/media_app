@@ -35,6 +35,7 @@ $(document).ajaxComplete(function(){
 			player.mute();
 			player.playVideo();		
 			$(parent_div).hover(function(){
+				player.seekTo(parent_div.data("start"), 'false');
 				player.unMute();
 				player.playVideo();	
 			}, function(){

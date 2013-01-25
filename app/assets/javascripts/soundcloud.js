@@ -11,6 +11,7 @@ $(document).ready(function() {
 	  }, 1);
 	  
 	  $("#"+mediaId).parents('.sc_parent').hover(function() {
+			event.target.api_seekTo($("#"+mediaId).data("start"));
 			event.target.api_play();
 		}, function(){
 			event.target.api_pause();

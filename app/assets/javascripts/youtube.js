@@ -55,6 +55,8 @@
 			})();
 			
 			var loading = true
+			
+			$(document).ready(function(){
 
 				var players = {}; //Define a player storage object, to expose methods,
 				//  without having to create a new class instance again.
@@ -73,23 +75,17 @@
 					});
 				});
 				
-				function isScrolledIntoView(elem)
-				{
-				    var docViewTop = $(window).scrollTop();
-				    var docViewBottom = docViewTop + $(window).height();
-				    var elemTop = $(elem).offset().top;
-				    var elemBottom = elemTop + $(elem).height();
-				    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-				}
 				
 
 				// Returns a function to enable multiple events
 				function createYTEvent(frameID, identifier) {
 					return function (event) {
-						var parent_div = $('#'+identifier).parent('.yt_parent');
+						var parent_div = $('#'+identifier).parent('.yt_parent');	
 						var player = players[frameID]; // Set player reference
+						player.mute();
 						player.playVideo();
 						$(parent_div).hover(function(){
+							player.seekTo(parent_div.data("start"), 'false');
 							player.unMute();
 							player.playVideo();	
 						}, function(){
@@ -111,6 +107,7 @@
 						}
 					}	
 				}
+			});
 				
 
 	

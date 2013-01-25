@@ -21,6 +21,7 @@
 			parent_div.children('.overlay').fadeOut()
 		}, 2000);
 		$(parent_div).hover(function(){
+			player.seekTo(parent_div.data("start"), 'false');
 			player.unMute();
 			player.playVideo();	
 		}, function(){
