@@ -13,6 +13,10 @@ class Video < ActiveRecord::Base
     yt_ids
   end
   
+  def self.flush_db
+    $redis.flushdb
+  end
+  
   def yt_id
     self.url.split('v=')[-1]
   end
@@ -27,7 +31,6 @@ class Video < ActiveRecord::Base
   end
   
   def yt_description
-    
     JSON.parse(open("https://gdata.youtube.com/feeds/api/videos/#{yt_id}?alt=json").read)["entry"]["content"]["$t"].split(/\r?\n/)[0]
   end
   

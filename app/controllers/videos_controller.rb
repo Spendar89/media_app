@@ -28,6 +28,11 @@ class VideosController < ApplicationController
     @videos = Video.all_redis[0..8] unless Video.all_redis.nil?
   end
   
+  def flush_db
+    Video.flush_db if params[:password] == "guccimane"
+    redirect_to :root 
+  end
+  
   def shows
   end
   

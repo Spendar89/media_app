@@ -6,6 +6,16 @@
 	  <%= link_to "Sign in with Facebook", "/auth/facebook" %>
 	<% end %>
 </div>
+<% unless current_user.nil? %>
+	<% if current_user.id == 1 || current_user.id == 2 %>
+		<div class="flush-db-button">
+			<%= form_tag "videos/flush_db" do %>
+				<%= password_field_tag :password %>
+				<%= submit_tag "clear db" %>
+			<% end %>
+		</div>
+	<% end %>
+<% end %>
 <div class = "search_form">
 	<%= render :partial => 'video_form' %>
 </div>

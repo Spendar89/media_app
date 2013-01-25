@@ -6,6 +6,7 @@ YoutubeApp::Application.routes.draw do
   resources :videos do
     collection do
       get :poll_redis
+      post :flush_db
     end
   end
 
