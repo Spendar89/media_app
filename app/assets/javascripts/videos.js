@@ -14,7 +14,6 @@ setTimeout(function(){
 
 function scrollLoad(){
 	$(window).scroll(function(e) {
-		e.preventDefault();
 	   if($(window).scrollTop() + $(window).height() == $(document).height()) {
 		 var before = $(".box").last().data("uploaded");
 		 $.getScript("/videos/poll_redis.js?after=none&before=" + before);

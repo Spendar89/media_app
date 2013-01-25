@@ -2,6 +2,7 @@
 	$('.videos_div').prepend("<%=j render(:partial => 'show', :locals => {:video => @video})%>");
 	$('#masonry-container').masonry('reload');
 	
+	$(document).ajaxComplete(function(){
 	var newVideo;
 	newVideo = new YT.Player("<%= @video['yt_id'] %>", {
 		videoId: "<%= @video['yt_id']  %>",
@@ -15,8 +16,8 @@
 		player.setPlaybackQuality('small');
 		player.mute();
 		player.playVideo();
-		player.pauseVideo();
 		setTimeout(function(){
+			player.pauseVideo();
 			parent_div.children('.overlay').fadeOut()
 		}, 2000);
 		$(parent_div).hover(function(){
@@ -27,6 +28,7 @@
 			player.pauseVideo();
 		});
 	}
+	});
 <% else %>
 	alert("<%= @error %>");
 <%end%>
