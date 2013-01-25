@@ -24,6 +24,10 @@ function scrollLoad(){
 }
 
 $(document).ready(function(){
+	$('#myButton').click(function(e) {
+      e.preventDefault();
+      $('#myModal').reveal();
+ 	});
   	$(function(){  
 	  $('#masonry-container').masonry({
 	    itemSelector: '.box',

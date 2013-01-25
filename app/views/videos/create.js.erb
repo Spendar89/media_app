@@ -1,8 +1,7 @@
 <% if @error.nil? %>
-	$('.videos_div').prepend("<%=j render(:partial => 'show', :locals => {:video => @video})%>");
+	$('.videos_div').first().prepend("<%=j render(:partial => 'show', :locals => {:video => @video})%>");
 	$('#masonry-container').masonry('reload');
-
-
+	
 	var newVideo;
 	newVideo = new YT.Player("<%= @video['yt_id'] %>", {
 		videoId: "<%= @video['yt_id']  %>",

@@ -1,11 +1,11 @@
-<div id="login_div">
+<div id="login_div" style="float: right">
 	<% if current_user %>
 	  Signed in as <%= current_user.name %>
 	  <%= link_to "Sign Out", signout_path %>
 	<% else %>
 	  <%= link_to "Sign in with Facebook", "/auth/facebook" %>
 	<% end %>
-</div>
+
 <% unless current_user.nil? %>
 	<% if current_user.id == 1 || current_user.id == 2 %>
 		<div class="flush-db-button">
@@ -16,7 +16,8 @@
 		</div>
 	<% end %>
 <% end %>
-<div class = "search_form">
+</div>
+<div class = "search_form" style="margin-bottom: 2%;">
 	<%= render :partial => 'video_form' %>
 </div>
 
