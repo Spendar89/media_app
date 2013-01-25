@@ -1,6 +1,6 @@
 <div class="media-form"> 
 	<h2>Copy and Paste a URL From Soundcloud or Youtube: </h2>
-	<%= form_tag("/videos", :method => "post", :remote => :true, :class => "media-form") do %>
+	<%= form_tag("/videos", :method => "post", :remote => :true) do %>
 		<%= label_tag(:url, "Media Url") %>
 	 	<%= text_field_tag(:url) %>
 		<%= label_tag(:start_minutes, "Start Minutes") %>
