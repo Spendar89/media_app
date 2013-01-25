@@ -32,7 +32,8 @@ $(document).ajaxComplete(function(){
 		return function (event) {
 			var parent_div = $('#'+identifier).parent('.yt_parent');
 			var player = players[frameID];
-			player.mute();		
+			player.mute();
+			player.playVideo();		
 			$(parent_div).hover(function(){
 				player.unMute();
 				player.playVideo();	

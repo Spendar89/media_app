@@ -88,6 +88,7 @@
 					return function (event) {
 						var parent_div = $('#'+identifier).parent('.yt_parent');
 						var player = players[frameID]; // Set player reference
+						player.playVideo();
 						$(parent_div).hover(function(){
 							player.unMute();
 							player.playVideo();	

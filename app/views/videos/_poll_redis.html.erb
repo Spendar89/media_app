@@ -5,7 +5,7 @@
 	<div class="yt_parent box col4 loading" data-uploaded="<%= video['uploaded']%>">
 		<div class="title-div"><%= video['title'] %> </div>
 		<div class="overlay <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>_overlay"></div>
-		<iframe id="<%= video['yt_id'] %>" class="yt-video poll-redis <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%=video['yt_id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=1&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0&amp;wmode=transparent" frameborder="0"></iframe>
+		<iframe id="<%= video['yt_id'] %>" class="yt-video poll-redis <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%=video['yt_id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=0&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0&amp;wmode=transparent" frameborder="0"></iframe>
 		<div class="info-div">
 			<table class="info-table">
 				<tr><td><%= video['description'] %></td></tr>
