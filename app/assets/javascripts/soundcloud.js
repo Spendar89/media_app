@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	$(document).bind('soundcloud:onPlayerReady', function(event, data) {
+	 
 	  var mediaUri = data.mediaUri,
+	
 	  mediaId   = data.mediaId,
 	  flashNode = event.target;
 	  event.target.api_play();
@@ -18,4 +20,6 @@ $(document).ready(function() {
 	  }); 
 	});
 });
+
+
 
