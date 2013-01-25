@@ -1,18 +1,21 @@
 class VideosController < ApplicationController
   
   def create
-    @error = "You Must Be Logged-in To Submit a Link" if current_user.nil?
-    seconds = Video.seconds(params[:start_minutes].to_i, params[:start_seconds].to_i)
-    if /youtube/.match(params[:url]) && @error.nil?
-      @video = Video.new(:url => params[:url].split('v=')[-1], :start => seconds, :uploaded => Time.now.to_i)
-      @video.add_redis(current_user)
-      @video = $redis.hgetall "youtube:#{@video.yt_id}"
-    elsif /soundcloud/.match(params[:url]) && @error.nil?
-      @video = Sound.new(params[:url], seconds)
-      @video.add_redis(current_user)
-      @video = $redis.hgetall "youtube:#{@video.id}"
+    if current_user.nil?
+      @error = "You Must Be Logged-in To Submit a Link!"
     else
-      @error = "Please Enter a Valid Soundcloud or Youtube url"
+      seconds = Video.seconds(params[:start_minutes], params[:start_seconds])
+      if /youtube/.match(params[:url])
+        @video = Video.new(:url => params[:url].split('v=')[-1], :start => seconds, :uploaded => Time.now.to_i)
+        @video.add_redis(current_user)
+        @video = $redis.hgetall "youtube:#{@video.yt_id}"
+      elsif /soundcloud/.match(params[:url])
+        @video = Sound.new(params[:url], seconds)
+        @video.add_redis(current_user)
+        @video = $redis.hgetall "youtube:#{@video.id}"
+      else
+        @error = "Please Enter a Valid Soundcloud or Youtube Url!"
+      end
     end
     respond_to do |format|
       format.js

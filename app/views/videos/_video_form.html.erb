@@ -1,13 +1,12 @@
-<%= form_tag("/videos", :method => "post", :remote => :true, :class => "media-form") do %>
-	<%= label_tag(:url, "Media Url") %>
- 	<%= text_field_tag(:url) %>
-	<%= label_tag(:start_minutes, "Start Minutes") %>
-	<%= text_field_tag(:start_minutes) %>
-	<%= label_tag(:start_seconds, "Start Seconds") %>	
-	<%= text_field_tag(:start_seconds) %>
-	<%= label_tag :type, 'Soundcloud' %>
-	<%= radio_button_tag :type, 'Soundcloud', :class => "radio-button" %>
-	<%= label_tag :type, 'Youtube' %>
-	<%= radio_button_tag :type, 'youtube', :class => "radio-button" %>
- 	<%= submit_tag("Submit", :class => "submit-button") %>
-<% end %>
+<div class="media-form"> 
+	<h2>Copy and Paste a URL From Soundcloud or Youtube: </h2>
+	<%= form_tag("/videos", :method => "post", :remote => :true, :class => "media-form") do %>
+		<%= label_tag(:url, "Media Url") %>
+	 	<%= text_field_tag(:url) %>
+		<%= label_tag(:start_minutes, "Start Minutes") %>
+		<%= text_field_tag(:start_minutes) %>
+		<%= label_tag(:start_seconds, "Start Seconds") %>	
+		<%= text_field_tag(:start_seconds) %>
+	 	<%= submit_tag("Submit", :class => "submit-button") %>
+	<% end %>
+</div>
