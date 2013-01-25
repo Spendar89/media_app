@@ -2,14 +2,16 @@ class VideosController < ApplicationController
   
   def create
     seconds = Video.seconds(params[:start_minutes].to_i, params[:start_seconds].to_i)
-    if params[:type] == "youtube"
+    if /youtube/.match(params[:url])
       @video = Video.new(:url => params[:url].split('v=')[-1], :start => seconds, :uploaded => Time.now.to_i)
       @video.add_redis(current_user)
       @video = $redis.hgetall "youtube:#{@video.yt_id}"
-    else
+    elsif /soundcloud/.match(params[:url])
       @video = Sound.new(params[:url], seconds)
       @video.add_redis(current_user)
       @video = $redis.hgetall "youtube:#{@video.id}"
+    else
+      @error = "Please Enter a Valid Soundcloud or Youtube url"
     end
     respond_to do |format|
       format.js
