@@ -40,7 +40,7 @@ class VideosController < ApplicationController
       if @after.is_a? Integer
         @updated_videos << video if video['uploaded'].to_i > @after + 1 && !video["type"].nil?
       else
-        @scroll_videos << video if video['uploaded'].to_i  < @before && !video["type"].nil?
+        @scroll_videos << video if video['uploaded'].to_i  < @before - 1 && !video["type"].nil?
       end
     end
   end
