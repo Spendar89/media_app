@@ -1,11 +1,11 @@
 <% unless @scroll_videos.empty? %>
 	<% @new_videos = @scroll_videos[0..5] %>
-	$(".videos_div").append("<%=j render(:partial => 'poll_redis', :locals => {:new_videos => @new_videos})%>");
+	$(".media_div").append("<%=j render(:partial => 'poll_redis', :locals => {:new_videos => @new_videos})%>");
 	$('#masonry-container').masonry('reload');
 <% else %>
 	<% @new_videos = @updated_videos[0..5] %>
 	<% unless @new_videos.empty? %>
-		$(".videos_div").prepend("<%=j render(:partial => 'poll_redis', :locals => {:new_videos => @new_videos})%>");
+		$(".media_div").prepend("<%=j render(:partial => 'poll_redis', :locals => {:new_videos => @new_videos})%>");
 			$('#masonry-container').masonry('reload');
 	<% end %>
 <% end %>

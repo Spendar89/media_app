@@ -1,0 +1,36 @@
+<% if @error.nil? %>
+	$('.media_div').prepend("<%=j render(:partial => 'create', :locals => {:new_media => @new_media})%>");
+	$('#masonry-container').masonry('reload');
+	
+	<% if @new_media['type'] == "youtube" %>
+		$(document).ajaxComplete(function(){
+		var newVideo;
+		newVideo = new YT.Player("<%= @new_media['yt_id'] %>", {
+			videoId: "<%= @new_media['yt_id']  %>",
+			events: {
+				'onReady': onPlayerReady,
+			}
+		});
+		function onPlayerReady(event) {
+			var parent_div = $('#'+"<%= @new_media['yt_id']  %>").parent('.yt_parent');
+			var player = event.target // Set player reference
+			player.setPlaybackQuality('small');
+			player.mute();
+			player.playVideo();
+			setTimeout(function(){
+				player.pauseVideo();
+				parent_div.children('.overlay').fadeOut()
+			}, 2000);
+			$(parent_div).hover(function(){
+				player.seekTo(parent_div.data("start"), 'false');
+				player.unMute();
+				player.playVideo();	
+			}, function(){
+				player.pauseVideo();
+			});
+		}
+		});
+	<% end %>
+<% else %>
+	alert("<%= @error %>");
+<%end%>

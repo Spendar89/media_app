@@ -1,0 +1,14 @@
+<div class="add-link-div"> 
+	<h2>Copy and Paste a URL From Soundcloud or Youtube: </h2>
+	<%= form_tag("/media", :method => "post", :remote => :true) do %>
+		<%= label_tag(:url, "Media Url", :width => "100px") %>
+		<%= text_field_tag(:url) %><br/>
+		<%= label_tag(:start_minutes, "Start Minutes", :width => "100px") %>
+		<%= text_field_tag :start_minutes, nil, :size =>1 %>
+		<%= label_tag(:start_seconds, "Start Seconds",  :width => "100px") %>
+		<%= text_field_tag :start_seconds, nil, :size=>1 %><br/>
+		<%= hidden_field_tag :page_id, @page.id %>
+		<%= submit_tag("Submit", :class => "submit-button") %>
+	<% end %>
+</div>
+

@@ -1,15 +1,31 @@
 require 'open-uri'
-class Video < ActiveRecord::Base
-  attr_accessible :id, :name, :rating, :type, :url, :start, :title, :uploaded, :description
+
+class Video
+  attr_accessor :id, :rating, :type, :url, :start, :title, :uploaded, :description
+  
+  def initialize(url, start, page_id)
+    @url = url
+    @id = yt_id
+    @start = start
+    @title = yt_title
+    @description = yt_description
+    @uploaded = Time.now.to_i
+    @page_id = page_id
+  end
   
   def add_redis(current_user)
-      $redis.hmset "youtube:#{yt_id}", :yt_id, yt_id, :type, "youtube", :title, yt_title, :start, self.start, :uploaded, Time.now.to_i, :description, yt_description, :user, current_user.name, :aspect_ratio, yt_aspect_ratio
-      $redis.zadd "youtube:by_upload", self.uploaded, yt_id
+      $redis.hmset "media:#{@id}", :yt_id, @id, :page_id, @page_id, :type, "youtube", :title, @title, 
+                                     :start, @start, :uploaded, @uploaded, 
+                                     :description, @description, :user, current_user.name, 
+                                     :aspect_ratio, yt_aspect_ratio
+      $redis.zadd "media:by_upload", @uploaded, @id
+      $redis.zadd "page:#{@page_id}:media:by_upload", @uploaded, @id
+      $redis.sadd "media:youtube", @id
   end
   
   def self.all_redis
-    yt_ids = $redis.zrevrange "youtube:by_upload", 0, -1
-    yt_ids.map! {|id| $redis.hgetall "youtube:#{id}"}
+    yt_ids = $redis.zrevrange "media:by_upload", 0, -1
+    yt_ids.map! {|id| $redis.hgetall "media:#{id}"}
     yt_ids
   end
   
@@ -18,7 +34,7 @@ class Video < ActiveRecord::Base
   end
   
   def yt_id
-    self.url.split('v=')[-1]
+    @url.split('v=')[-1]
   end
   
   def yt_aspect_ratio
@@ -34,10 +50,6 @@ class Video < ActiveRecord::Base
     JSON.parse(open("https://gdata.youtube.com/feeds/api/videos/#{yt_id}?alt=json").read)["entry"]["content"]["$t"].split(/\r?\n/)[0]
   end
   
-  def self.seconds(minutes, seconds)
-    minutes = 0 if minutes == ""
-    seconds = 0 if seconds == ""
-   (minutes.to_i*60) + seconds.to_i
-  end
+
   
 end

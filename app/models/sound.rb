@@ -3,19 +3,24 @@ require 'open-uri'
 class Sound
   attr_accessor :url, :id, :title
   
-  def initialize(url, start)
+  def initialize(url, start, page_id)
     @url = url
     @id = parsed_json["id"]
     @title = parsed_json["title"]
     @description = parsed_json["description"]
     @start = start
+    @uploaded = Time.now.to_i
+    @page_id = page_id
   end
   
   
   def add_redis(current_user)
-    uploaded = Time.now.to_i
-    $redis.hmset "youtube:#{@id}", :sc_id, @id, :type, "soundcloud", :url, @url, :title, @title, :start, @start, :uploaded, uploaded, :description, @description, :user, current_user.name
-    $redis.zadd "youtube:by_upload", uploaded, @id
+    $redis.hmset "media:#{@id}", :sc_id, @id, :page_id, @page_id, :type, "soundcloud", :url, @url, 
+                                 :title, @title, :start, @start, :uploaded, @uploaded, 
+                                 :description, @description, :user, current_user.name
+    $redis.zadd "media:by_upload", @uploaded, @id
+    $redis.zadd "page:#{@page_id}:media:by_upload", @uploaded, @id
+    $redis.sadd "media:soundcloud", @id
   end
   
   private

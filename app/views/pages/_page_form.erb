@@ -1,0 +1,11 @@
+<div class="page-form-div"> 
+	<h2>Create a New Page: </h2>
+	<%= form_tag("/pages", :method => "post") do %>
+		<%= label_tag :name, "Page Name" %>
+		<%= text_field_tag :name %><br/>
+		<%= label_tag :category_name, "Category" %>
+		<%= text_field_tag :category_name %>
+		<%= submit_tag("Create Page", :class => "submit-button") %>
+	<% end %>
+</div>
+
