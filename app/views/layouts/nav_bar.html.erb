@@ -1,33 +1,34 @@
-<nav class="top-bar">
-	<ul>
-		<!-- Title Area -->
-		<li class="name">
-			<h1>
-				<a href="#">
-					Top Bar Title
-				</a>
-			</h1>
-		</li>
-		<li class="toggle-topbar"><a href="#"></a></li>
-	</ul>
-	<section>
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li class="divider"></li>
-			<li><a href="#" data-reveal-id="page-form-modal">New Page</a></li>
-			<li class="divider hide-for-small"></li>
+<ul class="nav-bar" style="margin-top: 0px">
+	<li><a href="/">Home</a></li>
+	<li><a href="#" data-reveal-id="page-form-modal">New Page</a></li>
+	<li class="has-flyout">
+		<a href="#">Categories</a>
+		<a href="#" class="flyout-toggle"><span> </span></a>
+		<ul class="flyout">
+			<% Category.find_each do |cat| %>
+			<li><%= link_to cat[:name], "#" , :style=> "padding: 3%"%></li>
+			<% end %>
 		</ul>
-		<!-- Right Nav Section -->
-		<ul class="right">
-			<li class="divider"></li>
-			<li>
-				<% if current_user %>
-				<a href="#">Signed in as <%= current_user.name %></a>
-				<ul><li><%= link_to "Sign Out", signout_path %></li></ul>
-				<% else %>
-				<%= link_to "Sign in with Facebook", "/auth/facebook" %>
-				<% end %>
-			</li>
-	</ul>
-</section>
-</nav>
+	</li>
+	<li class="search four columns" style="height: 100%; padding: 0px" >
+		<%= form_tag "/media/search", do %>
+			<div class="eight columns">
+				<%= text_field_tag :query, nil, :style => "-webkit-appearance:none;margin-top: 1%; height: 100%; width: 100%;" %>
+			</div>
+			<div class="four columns">
+				<%= submit_tag "search", :class => "button secondary", :style=>"width: 100%;" %>
+			</div>
+		<% end %>
+	</li>
+	<% if current_user %>
+	<li class="has-flyout" style="float: right">
+		<a href="#">Signed in as <%= current_user.name %></a>
+		<a href="#" class="flyout-toggle"><span> </span></a>
+		<ul class="flyout">
+			<li><%= link_to "Sign Out", signout_path %></li>
+		</ul>
+	</li>
+	<% else %>
+	<%= link_to "Sign in with Facebook", "/auth/facebook" %>
+	<% end %>
+</ul>

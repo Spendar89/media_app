@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :provider, :uid
+  validates_uniqueness_of :name, :case_sensitive => false
   has_many :pages
   
   def self.create_with_omniauth(auth)

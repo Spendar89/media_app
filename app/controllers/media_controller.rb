@@ -3,13 +3,15 @@ class MediaController < ApplicationController
     if current_user.nil?
       @error = "You Must Be Logged-in To Submit a Link!"
     else
+      tags_array = params[:tags].split(",").map!{|tag| tag.strip.downcase}
+      puts "tags_array_test: #{tags_array}"
       seconds = params[:seconds]
       if /youtube/.match(params[:url])
-        video = Video.new(params[:url], seconds, params[:page_id], params[:title], params[:description])
+        video = Video.new(params[:url], seconds, params[:page_id], tags_array, params[:title], params[:description])
         video.add_redis(current_user)
         @new_media = $redis.hgetall "media:#{video.id}"
       elsif /soundcloud/.match(params[:url])
-        sound = Sound.new(params[:url], seconds, params[:page_id], params[:title], params[:description])
+        sound = Sound.new(params[:url], seconds, params[:page_id], tags_array, params[:title], params[:description])
         sound.add_redis(current_user)
         @new_media = $redis.hgetall "media:#{sound.id}"
       else
@@ -25,6 +27,8 @@ class MediaController < ApplicationController
     @url = params[:url]
     @seconds = Medium.seconds(params[:start_minutes], params[:start_seconds])
     @page_id = params[:page_id]
+    category_id = Page.find(params[:page_id])[:category_id]
+    @tags = "#{Category.find(category_id)[:name]}"
     if current_user.nil?
       @error = "You Must Be Logged-in To Submit a Link!"
     else
@@ -44,10 +48,23 @@ class MediaController < ApplicationController
   end
   
   def index
-    @recent_pages = Page.all 
-    @auth = request.env["omniauth.auth"]
-    @media = []
-    @media = Medium.all_redis[0..8] unless Medium.all_redis.nil?
+    if params[:tag]
+      @tag = params[:tag]
+      @media = Tag.find_all(@tag)
+    else   
+      @recent_pages = Page.all 
+      @auth = request.env["omniauth.auth"]
+      @media = []
+      @media = Medium.all_redis[0..8] unless Medium.all_redis.nil?
+    end
+  end
+  
+  def search
+    @query = params[:query]
+    @media = Medium.search_results(@query)
+    @users = User.where('name LIKE ?', "%#{params[:query].split(" ").map{|name| name[0].upcase + name[1..-1]}.join(" ")}%")
+    @pages = Page.where('name LIKE ?', "%#{params[:query].downcase}%")
+    @categories = Category.where('name LIKE ?', "%#{params[:query].downcase}%")
   end
   
   def flush_db

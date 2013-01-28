@@ -17,6 +17,15 @@
 				<p><%= sound['description'] %></p>	
 			</div>
 		</div>
+		<div class="row">
+			<div class="twelve columns">
+				<% unless sound['tags'].nil? %>
+					<% sound['tags'].each do |tag| %>
+						<div> #<%= tag %></div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
 		<div class="twelve columns user-info" style="width: 102%; height: 55px">
 			<div class="twelve columns" style="margin-left: -8%">
 				<div class="four columns">

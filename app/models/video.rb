@@ -3,7 +3,7 @@ require 'open-uri'
 class Video
   attr_accessor :id, :rating, :type, :url, :start, :title, :uploaded, :description
   
-  def initialize(url, start, page_id, title, description)
+  def initialize(url, start, page_id, tags_array, title, description)
     @url = url
     @id = yt_id
     @start = start
@@ -11,16 +11,25 @@ class Video
     @description = description
     @uploaded = Time.now.to_i
     @page_id = page_id
+    @tags = tags_array
   end
   
   def add_redis(current_user)
       $redis.hmset "media:#{@id}", :yt_id, @id, :page_id, @page_id, :type, "youtube", :title, @title, 
                                      :start, @start, :uploaded, @uploaded, 
                                      :description, @description, :user, current_user.name, 
-                                     :aspect_ratio, yt_aspect_ratio
+                                     :aspect_ratio, yt_aspect_ratio, :tags, @tags.join(",")
       $redis.zadd "media:by_upload", @uploaded, @id
       $redis.zadd "page:#{@page_id}:media:by_upload", @uploaded, @id
       $redis.sadd "media:youtube", @id
+      add_tag unless @tags.nil?
+  end
+  
+  def add_tag
+    @tags.each do |tag|
+      $redis.sadd "tags", tag
+      $redis.sadd "tag:#{tag}", @id
+    end
   end
   
   def self.all_redis

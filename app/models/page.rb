@@ -1,5 +1,6 @@
 class Page < ActiveRecord::Base
   attr_accessible :category_id, :name, :user_id
+  validates_uniqueness_of :name, :case_sensitive => false
   belongs_to :user
   belongs_to :category
   

@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="yt_parent box col4" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 0px; background: white">
 		<div class="title-div">
-			<h4><%= video['title'] %></h4>
+			<h5><%= video['title'] %></h5>
 		</div>
 		<div class="row">
 			<div class="<%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>_overlay overlay">
@@ -14,6 +14,15 @@
 		<div class="info-div row" style="margin-top: 2%; margin-left: -3pt">
 			<div class="twelve columns">
 				<p><%= video['description'] %></p>	
+			</div>
+		</div>
+		<div class="row">
+			<div class="twelve columns" style="margin-bottom: 4%; margin-left: 2%">
+				<% unless video['tags'].nil? %>
+					<% video['tags'].split(",").each do |tag| %>
+						<%= link_to "##{tag}","/tags/#{tag}", :class => "tag"%>
+					<% end %>
+				<% end %>
 			</div>
 		</div>
 		<div class="twelve columns user-info" style="width: 102%">

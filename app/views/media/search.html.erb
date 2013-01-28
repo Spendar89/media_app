@@ -1,0 +1,49 @@
+<% unless @users.empty? %>
+	<div class="twelve columns user-results">
+		<h3>Users Matching <%= @query %>: </h3>
+			<% @users.each do |user| %>
+				<div class="row">
+						<h4 class="subheader"><%= user[:name] %></h4>
+				</div>
+			<% end %>
+	</div>
+<% end %>
+
+<% unless @pages.empty? %>
+	<div class="twelve columns page-results">
+		<h3>Pages matching <%= @query %>: </h3>
+		<% @pages.each do |page| %>
+			<div class="row">
+					<h4 class="subheader"><%= link_to page[:name], page_path(page), :method => "get", :style=>"color:grey" %></h4>
+			</div>
+		<% end %>
+	</div>
+<% end %>
+
+<% unless @categories.empty? %>
+	<div class="twelve columns page-results">
+		<h3>Categories matching <%= @query %>: </h3>
+		<% @categories.each do |category| %>
+			<div class="row">
+					<h4 class="subheader"><%= category[:name] %></h4>
+			</div>
+		<% end %>
+	</div>
+<% end %>
+
+<% unless @media.empty? %>
+	<div class ="twelve columns media-results">
+		<h3>Media matching <%= @query %>: </h3>
+		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="index" >
+			<% @media.each do |medium| %>
+				<% unless medium["type"].nil? %>
+					<% if medium["type"] == "youtube" %>
+						<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
+					<% elsif medium["type"] == "soundcloud" %>
+						<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+<% end %>

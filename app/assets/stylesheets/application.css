@@ -26,6 +26,7 @@
 }
 #outer{
 	background: url('cream_dust.png');
+	min-height: 1000px;
 }
 
 #login_div{
@@ -60,6 +61,7 @@
 	width: 355px;
 	height: 266px;
 	margin-left: 2%;
+	z-index: -10000;
 }
 
 .centered { margin: 0 auto; }
@@ -71,8 +73,8 @@
 	margin-left: 6%;
 	background: url('video-loader.gif');
 	background-position: center;
-	z-index: 10000;
 	background-size: 100%;
+	z-index: 1;
 	background-repeat: no-repeat;
 }
 
@@ -107,4 +109,8 @@
 	padding: 1%;
 	height: 50px;
 	color: #505050;
+}
+
+.tag{
+	color: grey;
 }
