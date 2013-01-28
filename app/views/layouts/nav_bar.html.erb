@@ -1,0 +1,33 @@
+<nav class="top-bar">
+	<ul>
+		<!-- Title Area -->
+		<li class="name">
+			<h1>
+				<a href="#">
+					Top Bar Title
+				</a>
+			</h1>
+		</li>
+		<li class="toggle-topbar"><a href="#"></a></li>
+	</ul>
+	<section>
+		<!-- Left Nav Section -->
+		<ul class="left">
+			<li class="divider"></li>
+			<li><a href="#" data-reveal-id="page-form-modal">New Page</a></li>
+			<li class="divider hide-for-small"></li>
+		</ul>
+		<!-- Right Nav Section -->
+		<ul class="right">
+			<li class="divider"></li>
+			<li>
+				<% if current_user %>
+				<a href="#">Signed in as <%= current_user.name %></a>
+				<ul><li><%= link_to "Sign Out", signout_path %></li></ul>
+				<% else %>
+				<%= link_to "Sign in with Facebook", "/auth/facebook" %>
+				<% end %>
+			</li>
+	</ul>
+</section>
+</nav>

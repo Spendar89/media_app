@@ -1,82 +1,27 @@
-<div id="login_div" style="float: right">
-	<% if current_user %>
-		Signed in as <%= current_user.name %>
-		<%= link_to "Sign Out", signout_path %>
-	<% else %>
-		<%= link_to "Sign in with Facebook", "/auth/facebook" %>
-	<% end %>
+<div id="recent-pages" class="row">
+	<div class="twelve columns" style="margin-left: -1%">
+		<div class="three columns">
+			<h2>Trending Pages:</h2>
+		</div>
+		<div class="nine columns end">
+			<% @recent_pages.each do |page| %>
+				<div class="columns end">
+					<h3 class="subheader"><%= link_to page[:name], page_path(page), :method => "get", :style=>"color:grey" %></h3>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
 
-	<% unless current_user.nil? %>
-		<% if current_user.id == 1 || current_user.id == 2 %>
-			<div class="flush-db-button">
-				<%= form_tag "videos/flush_db" do %>
-				<%= password_field_tag :password %>
-				<%= submit_tag "clear db" %>
-				<% end %>
-			</div>
+
+<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="index" >
+	<% @media.each do |medium| %>
+		<% unless medium["type"].nil? %>
+			<% if medium["type"] == "youtube" %>
+				<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
+			<% elsif medium["type"] == "soundcloud" %>
+				<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+			<% end %>
 		<% end %>
 	<% end %>
-</div>
-
-<div class = "search_form" style="margin-bottom: 2%;">
-	<%= render :partial => 'pages/page_form' %>
-</div>
-<div id="recent-pages">
-	<% @recent_pages.each do |page| %>
-		<%= link_to page[:name], page_path(page), :method => "get" %>
-	<% end %>
-</div>
-
-<div class="page-title-div">
-	<h2>Most Recent Media:</h2>
-</div>
-
-<div id="masonry-container" class="centered clearfix masonry media_div">
-<% @media.each do |medium| %>
-	<% unless medium["type"].nil? %>
-		<% if medium["type"] == "youtube" %>
-			<% video = medium %>
-<div class="yt_parent box col4" data-uploaded="<%= video['uploaded']%>" data-start="<%= video['start']%>">
-	<div class="title-div"><%= video['title'] %> </div>
-	<div class="overlay <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>_overlay"></div>
-	<iframe id="<%= video['yt_id'] %>" class="yt-video <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%=video['yt_id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=0&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0&amp;wmode=transparent" frameborder="0"></iframe>
-	<div class="info-div">
-		<table class="info-table">
-			<tr><td><%= video['description'] %></td></tr>
-		</table>
-		<div class="info-user">
-			<div class="user-thumbnail">
-				<%  user_image = User.find_by_name("#{video['user']}").image unless video['user'].nil? %>
-				<img src="<%=user_image %>" style="height:30px; width:30px">
-			</div>
-			<div class="user-submit-date"><%= video['user'] %> on <%= Time.at(video['uploaded'].to_i).to_date %></div>
-		</div>
-	</div>
-</div>
-<% elsif medium["type"] == "soundcloud" %>
-	<% sound = medium %>
-<div class="sc_parent box col3" data-uploaded="<%= sound['uploaded']%>">
-	<div class="title-div"><%= sound['title'] %> </div>
-	<div class="sc_overlay"></div>		
-	<object height="90" width="97%" data-start="<%= sound['start'] %>" id="<%= sound['sc_id'] %>" class="sc-player"   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
-		<param name="movie" value="http://player.soundcloud.com/player.swf?url=<%= sound['url']%>&enable_api=true&auto_play=true&single_active=false&object_id=<%= sound['sc_id'] %>"></param>
-		<param name="allowscriptaccess" value="always"></param>
-		<embed allowscriptaccess="always" height="90" src="http://player.soundcloud.com/player.swf?url=<%= sound['url']%>&sharing=false&buying=false&liking=false&download=false&show_artwork=false&show_comments=false&show_playcount=false&show_user=false&enable_api=true&auto_play=true&single_active=false&object_id=<%= sound['sc_id'] %>" type="application/x-shockwave-flash" width="97%" name="<%= sound['sc_id'] %>"></embed>
-	</object>
-	<div class="info-div">
-		<table class="info-table">
-			<tr><td><%= sound['description'] %></td></tr>
-		</table>
-		<div class="info-user">
-			<div class="user-thumbnail">
-				<%  user_image = User.find_by_name("#{video['user']}").image unless sound['user'].nil? %>
-				<img src="<%=user_image %>" style="height:30px; width:30px">
-			</div>
-			<div class="user-submit-date"><%= sound['user'] %> on <%= Time.at(sound['uploaded'].to_i).to_date %></div>
-		</div>
-	</div>
-</div>
-<% end %>
-<% end %>
-<% end %>
 </div>

@@ -1,14 +1,26 @@
-<div class="add-link-div"> 
-	<h2>Copy and Paste a URL From Soundcloud or Youtube: </h2>
-	<%= form_tag("/media", :method => "post", :remote => :true) do %>
-		<%= label_tag(:url, "Media Url", :width => "100px") %>
-		<%= text_field_tag(:url) %><br/>
-		<%= label_tag(:start_minutes, "Start Minutes", :width => "100px") %>
-		<%= text_field_tag :start_minutes, nil, :size =>1 %>
-		<%= label_tag(:start_seconds, "Start Seconds",  :width => "100px") %>
-		<%= text_field_tag :start_seconds, nil, :size=>1 %><br/>
-		<%= hidden_field_tag :page_id, @page.id %>
-		<%= submit_tag("Submit", :class => "submit-button") %>
-	<% end %>
+<div class="add-link-div twelve columns"> 
+	<h4 class="subheader">Copy and paste a valid Soundcloud or Youtube URL, and specify when you'd like your media to start playing.</h4>
+	<%= form_tag("/media/preview", :remote => :true) do %>
+		<div class="row">
+			<div class="six columns">
+				<%= text_field_tag(:url, nil, :placeholder => "Copy and Paste a Soundcloud or Youtube URL") %>
+			</div>
+			<div class="six columns">
+				<div class="four columns">
+					<%= text_field_tag :start_minutes, nil, :placeholder =>"Minutes" %>
+				</div>
+				<div class="four columns">
+					<%= text_field_tag :start_seconds, nil, :placeholder => "Seconds" %>
+				</div>
+				<div class="four columns">
+					<%= hidden_field_tag :page_id, @page.id %>
+					<%= submit_tag("Preview", :class => "button secondary") %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<% end %>
+  <a class="close-reveal-modal">&#215;</a>
 </div>
 

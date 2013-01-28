@@ -8,6 +8,9 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+
+ *= require foundation_and_overrides
+ *= require_self
  *= require 'masonry/basic'
  *= require 'masonry/centered'
  *= require 'masonry/fluid'
@@ -15,24 +18,23 @@
  *= require 'masonry/infinitescroll'
  *= require 'masonry/right-to-left'
  *= require 'masonry/transitions'
- *= require_self
  *= require_tree .
  */
 
 *{
 	font-family: sans-serif;
 }
-
-#container{
-	background: #FDF8FF;
-	min-height: 1000px;
+#outer{
+	background: url('cream_dust.png');
 }
 
+#login_div{
+	color: white;	
+}
 #masonry-container {
   background: transparent;
   padding: 5px;
   margin-bottom: 20px;
-  border-radius: 5px;
   clear: both;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -45,72 +47,33 @@
 
 .box {
   border-radius: 0px;
-  -moz-box-shadow: 0 0 5px black;
-  -webkit-box-shadow: 0 0 5px black;
-  box-shadow: 0 0 5px black;
-  padding: 0px;
-  margin-bottom: 25px;
+  box-shadow: 0 0 3px grey;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.bad{
-  -webkit-filter: opacity(80%);
-}
+.col3 { width: 365px;  }
+.col4 { width: 365px; }
 
-.ugly{
-  -webkit-filter: opacity(40%)	blur(1px);
-
-}
-
-
-.centered { margin: 0 auto; }
-
-
-.col1 { width: 80px;}
-.col2 { width: 180px; }
-.col3 { width: 365px; min-height: 157px;}
-.col4 { width: 365px; min-height: 235px; }
-.col8 { width: 710px; height: 400px;}
-
-.col1 img { max-width: 80px; }
-.col2 img { max-width: 180px; }
-.col3 img { max-width: 280px;}
-.col4 img { max-width: 380px; }
-.col5 img { max-width: 480px; }
-
-.add-link-div{
-	text-align: left;
-	padding: 20px;
-	-moz-box-shadow: 0 0 5px black;
-	-webkit-box-shadow: 0 0 5px black;
-	box-shadow: 0 0 5px black;
-	width: 500px;
-	background: #CED7CE;
-}
-
-
-.add-link-div input {
-	font-size: 20pt;
-}
-
-.title-div{
-	font-size: 12pt;
-	font-weight: bold;
-	position: relative;
-	padding: 8px;
-}
 
 .yt-video{
 	width: 355px;
 	height: 266px;
-	margin-left: 5px;
+	margin-left: 2%;
 }
 
+.centered { margin: 0 auto; }
+
 .overlay{
-	position: absolute;
-	height: 271px;
-	width: 100%;
+	position:absolute;
+	height: 266px;
+	width: 360px;
+	margin-left: 6%;
 	background: url('video-loader.gif');
 	background-position: center;
+	z-index: 10000;
+	background-size: 100%;
+	background-repeat: no-repeat;
 }
 
 .sc_overlay{
@@ -130,72 +93,18 @@
 	height: 210px;
 }
 
-
-.info-div{
-	margin-top: 5%;
-	float: left;
-	position: relative;
-	font-size: 10pt;
-	margin-left: 5px;
-	width: 98%;	
-}
-
-.info-div b{
-  font-size: 12pt;
-;
-}
-
-.info-user{
-	position: relative;
-	margin-top: 2%;
-	margin-left: -5px;
-	width: 365px;
-	height: 30px;
-	background: #E0E0E0;
-	color: #545454;
-	padding: 2% 0%;
-}
-
-.info-user > div{
-	float: left;
-	margin-left: 2%;
-	font-weight: bold;
-}
-
-.user-submit-date{
-	width: 120px;
-	height: 30px;
-}
-
 .sc-player{
-	margin-left: 5px;
-
+	margin-left: 20px;
 }
 
-.media-form{
-	position: relative;
-	width: auto;
-	padding: 10px;
-	font-size: 16pt;
-	-moz-box-shadow: 0 0 5px #888;
-	-webkit-box-shadow: 0 0 5px#888;
-	box-shadow: 0 0 5px #888;
-	text-align: center;
-	margin-left: 110px;
-	margin-right: 110px;
-	margin-top: 2%;
-	margin-bottom: 2%;
-	background: white;
-	
+.row{
+	width: 100%;
 }
 
-.submit-button{
-	width: 75px;
-	font-size: 16pt;
-	font-weight: bold;
-}
-
-.page-title-div{
-	text-align: center;
-	font-size: 40pt;
+.user-info{
+	margin: -1%;
+	background: #E5E5E5;
+	padding: 1%;
+	height: 50px;
+	color: #505050;
 }

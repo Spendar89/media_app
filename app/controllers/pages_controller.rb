@@ -8,9 +8,6 @@ class PagesController < ApplicationController
   
   def show
     @page = Page.find(params[:id])
-    @media = @page.media
+    @media = @page.media[0..8]
   end
-  
-  
-  
 end

@@ -3,12 +3,12 @@ require 'open-uri'
 class Video
   attr_accessor :id, :rating, :type, :url, :start, :title, :uploaded, :description
   
-  def initialize(url, start, page_id)
+  def initialize(url, start, page_id, title, description)
     @url = url
     @id = yt_id
     @start = start
-    @title = yt_title
-    @description = yt_description
+    @title = title
+    @description = description
     @uploaded = Time.now.to_i
     @page_id = page_id
   end
@@ -37,6 +37,10 @@ class Video
     @url.split('v=')[-1]
   end
   
+  def self.yt_id(url)
+     url.split('v=')[-1]
+  end
+  
   def yt_aspect_ratio
     data= JSON.parse(open("https://gdata.youtube.com/feeds/api/videos/#{yt_id}?alt=json&v=2").read)["entry"]["media$group"]
     data["yt$aspectRatio"]["$t"] unless data["yt$aspectRatio"].nil?
@@ -46,10 +50,18 @@ class Video
     JSON.parse(open("https://gdata.youtube.com/feeds/api/videos/#{yt_id}?alt=json").read)["entry"]["title"]["$t"].gsub('"', '')
   end
   
+  def self.yt_title(url)
+    yt_id = self.yt_id(url)
+    JSON.parse(open("https://gdata.youtube.com/feeds/api/videos/#{yt_id}?alt=json").read)["entry"]["title"]["$t"].gsub('"', '')
+  end
+  
   def yt_description
     JSON.parse(open("https://gdata.youtube.com/feeds/api/videos/#{yt_id}?alt=json").read)["entry"]["content"]["$t"].split(/\r?\n/)[0]
   end
   
-
+  def self.yt_description(url)
+    yt_id = self.yt_id(url)
+    JSON.parse(open("https://gdata.youtube.com/feeds/api/videos/#{yt_id}?alt=json").read)["entry"]["content"]["$t"].split(/\r?\n/)[0]
+  end
   
 end

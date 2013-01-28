@@ -1,6 +1,4 @@
-setTimeout(function(){
-	$('#masonry-container').addClass('transitions-enabled');
-}, 5000);
+
 
 // $(function() {
 //     setTimeout(updateVideos, 10000);
@@ -12,25 +10,28 @@ setTimeout(function(){
 // 	setTimeout(updateVideos, 10000);
 // }
 
+
 function scrollLoad(){
-	$(window).scroll(function(e) {
+	$(window).scroll(function() {
 	   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+		 $('#masonry-container').removeClass('transitions-enabled')
 		 var before = $(".box").last().data("uploaded");
-		 $.getScript("/videos/poll_redis.js?after=none&before=" + before);
-		 $('#masonry-container').removeClass('transitions-enabled');
+		 var page_id = $('#masonry-container').data('page_id');
+		 $.getScript("/media/poll_redis.js?after=none&before="+before+"&page_id="+page_id);
 	   }
 	});
 }
 
 $(document).ready(function(){
-  	$(function(){  
-	  $('#masonry-container').masonry({
-	    itemSelector: '.box',
-	    columnWidth: 100,
-	    isAnimated: !Modernizr.csstransitions,
-	    isFitWidth: true
-	  });
+	$('#masonry-container').masonry({
+		itemSelector: '.box',
+		isFitWidth: true,	
 	});
-	scrollLoad();	
+	scrollLoad();
+	setTimeout(function(){
+		$('#masonry-container').addClass('transitions-enabled');
+	}, 2000);
 });
+
+
 

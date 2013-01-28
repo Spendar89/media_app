@@ -3,13 +3,13 @@ class MediaController < ApplicationController
     if current_user.nil?
       @error = "You Must Be Logged-in To Submit a Link!"
     else
-      seconds = Medium.seconds(params[:start_minutes], params[:start_seconds])
+      seconds = params[:seconds]
       if /youtube/.match(params[:url])
-        video = Video.new(params[:url].split('v=')[-1], seconds, params[:page_id])
+        video = Video.new(params[:url], seconds, params[:page_id], params[:title], params[:description])
         video.add_redis(current_user)
         @new_media = $redis.hgetall "media:#{video.id}"
       elsif /soundcloud/.match(params[:url])
-        sound = Sound.new(params[:url], seconds, params[:page_id])
+        sound = Sound.new(params[:url], seconds, params[:page_id], params[:title], params[:description])
         sound.add_redis(current_user)
         @new_media = $redis.hgetall "media:#{sound.id}"
       else
@@ -19,6 +19,28 @@ class MediaController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+  
+  def preview
+    @url = params[:url]
+    @seconds = Medium.seconds(params[:start_minutes], params[:start_seconds])
+    @page_id = params[:page_id]
+    if current_user.nil?
+      @error = "You Must Be Logged-in To Submit a Link!"
+    else
+      if /youtube/.match(params[:url])
+        @preview_title = Video.yt_title(params[:url])
+        @preview_description = Video.yt_description(params[:url])
+      elsif /soundcloud/.match(params[:url])
+        @preview_title = Sound.title(params[:url])
+        @preview_description = Sound.description(params[:url])
+      else
+        @error = "Please Enter a Valid Soundcloud or Youtube Url!"
+      end
+    end
+    respond_to do |format|
+      format.js
+    end 
   end
   
   def index
@@ -37,15 +59,21 @@ class MediaController < ApplicationController
   end
   
   def poll_redis
+    if params[:page_id] == "index"
+      @page = nil
+      @media = Medium.all_redis
+    else
+      @page = Page.find(params[:page_id])
+      @media = @page.media
+    end 
     @after = params[:after].to_i if params[:after] != 'none'
     @before = params[:before].to_i if params[:before] != 'none'
-    @videos = Video.all_redis
-    @updated_videos, @scroll_videos = [], []
-    @videos.each do |video|
+    @updated_media, @scroll_media = [], []
+    @media.each do |medium|
       if @after.is_a? Integer
-        @updated_videos << video if video['uploaded'].to_i > @after + 1 && !video["type"].nil?
+        @updated_media << medium if medium['uploaded'].to_i > @after + 1 && !medium["type"].nil?
       else
-        @scroll_videos << video if video['uploaded'].to_i  < @before - 1 && !video["type"].nil?
+        @scroll_media << medium if medium['uploaded'].to_i  < @before && !medium["type"].nil?
       end
     end
   end

@@ -3,11 +3,11 @@ require 'open-uri'
 class Sound
   attr_accessor :url, :id, :title
   
-  def initialize(url, start, page_id)
+  def initialize(url, start, page_id, title=nil, description=nil)
     @url = url
     @id = parsed_json["id"]
-    @title = parsed_json["title"]
-    @description = parsed_json["description"]
+    title.nil? ? @title = parsed_json["title"] : @title = title
+    description.nil? ? @description = parsed_json["description"] : @description = description
     @start = start
     @uploaded = Time.now.to_i
     @page_id = page_id
@@ -31,6 +31,23 @@ class Sound
   
     def parsed_json
       JSON.parse(to_json)
+    end
+    
+    def self.to_json(url)
+      open("http://api.soundcloud.com/resolve.json?url=#{url}&client_id=d3b8074244c4aeaf185e3eca51bf8baf").read
+    end
+    
+    def self.parsed_json(url)
+      JSON.parse(self.to_json(url))
+    end
+    
+    
+    def self.title(url)
+      self.parsed_json(url)["title"]
+    end
+    
+    def self.description(url)
+      self.parsed_json(url)["description"]
     end
   
 end

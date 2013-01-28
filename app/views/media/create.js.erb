@@ -1,35 +1,34 @@
 <% if @error.nil? %>
+	$('#add_media_div').trigger('reveal:close');
 	$('.media_div').prepend("<%=j render(:partial => 'create', :locals => {:new_media => @new_media})%>");
 	$('#masonry-container').masonry('reload');
-	
 	<% if @new_media['type'] == "youtube" %>
-		$(document).ajaxComplete(function(){
-		var newVideo;
-		newVideo = new YT.Player("<%= @new_media['yt_id'] %>", {
-			videoId: "<%= @new_media['yt_id']  %>",
-			events: {
-				'onReady': onPlayerReady,
-			}
-		});
-		function onPlayerReady(event) {
-			var parent_div = $('#'+"<%= @new_media['yt_id']  %>").parent('.yt_parent');
-			var player = event.target // Set player reference
-			player.setPlaybackQuality('small');
-			player.mute();
-			player.playVideo();
-			setTimeout(function(){
-				player.pauseVideo();
-				parent_div.children('.overlay').fadeOut()
-			}, 2000);
-			$(parent_div).hover(function(){
-				player.seekTo(parent_div.data("start"), 'false');
-				player.unMute();
-				player.playVideo();	
-			}, function(){
-				player.pauseVideo();
+			var playerId = $('.yt-video').first().attr('id');
+			var player;
+			player = new YT.Player(playerId, {
+			   events: { 'onReady': createYTEvent(playerId) }	
 			});
-		}
-		});
+			function createYTEvent(playerId){ 
+				return function (event) {
+					var parent_div = $('#'+playerId).parent('.yt_parent');	
+					var player = event.target // Set player reference
+					player.mute();
+					setTimeout(function(){
+						player.pauseVideo();
+					}, 2000);
+					setTimeout(function(){
+						parent_div.find('.overlay').fadeOut();
+					}, 3000);	
+					$(parent_div).hover(function(){
+						player.seekTo(parent_div.data("start"), 'false');
+						player.unMute();	
+						player.playVideo();	
+					}, function(){
+						player.pauseVideo();
+					});
+
+				}
+			}
 	<% end %>
 <% else %>
 	alert("<%= @error %>");

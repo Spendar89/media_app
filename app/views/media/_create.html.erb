@@ -1,43 +1,45 @@
-<% if @new_media["type"] == "youtube" %>
-	<div class="yt_parent box col4" data-uploaded="<%= @new_media['uploaded'] %>" data-start="<%= @new_media['start'] %>">
-		<div class="title-div"><%= @new_media['title'] %> </div>
-		<div class="overlay <%= @new_media['aspect_ratio'] unless @new_media['aspect_ratio'].nil? %>_overlay"></div>
-			<iframe id="<%= @new_media['yt_id'] %>" class="yt-video <%= @new_media['aspect_ratio'] unless @new_media['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%= @new_media['yt_id']%>?enablejsapi=1&start=<%= @new_media['start'] %>&controls=0&autoplay=0&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0&amp;wmode=transparent" frameborder="0"></iframe>
+<% unless @new_media["type"].nil? %>
+	<% if @new_media["type"] == "youtube" %>
+	<% video = @new_media %>	
+	<div class="yt_parent box col4" data-uploaded="<%= video['uploaded']%>" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 0px">
+		<div class="title-div">
+			<%= video['title'] %>
+		</div>
+		<iframe id="<%= video['yt_id'] %>" class="yt-video <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%=video['yt_id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=1&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0" frameborder="0" allowscriptaccess="always"></iframe>
 		<div class="info-div">
 			<table class="info-table">
-				<tr><td><%= @new_media['description'] %></td></tr>
+				<tr><td><%= video['description'] %></td></tr>
 			</table>
 			<div class="info-user">
 				<div class="user-thumbnail">
-				<%  user_image = User.find_by_name("#{@new_media['user']}").image unless @new_media['user'].nil? %>
-				<img src="<%=user_image %>" style="height:30px; width:30px">
+					<%  user_image = User.find_by_name("#{video['user']}").image unless video['user'].nil? %>
+					<img src="<%=user_image %>" style="height:30px; width:30px">
 				</div>
-				<div class="user-submit-date"><%= @new_media['user'] %> on <%= Time.at(@new_media['uploaded'].to_i).to_date %></div>
+				<div class="user-submit-date"><%= video['user'] %> on <%= Time.at(video['uploaded'].to_i).to_date %></div>
 			</div>
 		</div>
 	</div>
-<% elsif @new_media["type"] == "soundcloud" %>
-	<div class="sc_parent box col3" data-uploaded="<%= @new_media['uploaded']%>">
-		<div class="title-div"><%= @new_media['title'] %> </div>
-		<div class="sc_overlay"></div>		
-			<object height="90" width="97%" data-start="<%= @new_media['start'] %>" id="<%= @new_media['sc_id'] %>" class="sc-player"   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
-			  <param name="movie" value="http://player.soundcloud.com/player.swf?url=<%= @new_media['url']%>&enable_api=true&auto_play=true&single_active=false&object_id=<%= @new_media['sc_id'] %>"></param>
-			  <param name="allowscriptaccess" value="always"></param>
-			  <embed allowscriptaccess="always" height="90" src="http://player.soundcloud.com/player.swf?url=<%= @new_media['url']%>&sharing=false&buying=false&liking=false&download=false&show_artwork=false&show_comments=false&show_playcount=false&show_user=false&enable_api=true&auto_play=true&single_active=false&object_id=<%= @new_media['sc_id'] %>" type="application/x-shockwave-flash" width="97%" name="<%= @new_media['sc_id'] %>"></embed>
-			</object>
+	<% elsif @new_media["type"] == "soundcloud" %>
+	<% sound = @new_media %>
+	<div class="sc_parent box col3" data-uploaded="<%= sound['uploaded']%>">
+		<div class="title-div"><%= sound['title'] %> </div>
+		<object height="90" width="97%" data-start="<%= sound['start'] %>" id="<%= sound['sc_id'] %>" class="sc-player"   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+			<param name="movie" value="http://player.soundcloud.com/player.swf?url=<%= sound['url']%>&enable_api=true&auto_play=true&single_active=false&object_id=<%= sound['sc_id'] %>"></param>
+			<param name="allowscriptaccess" value="always"></param>
+			<embed allowscriptaccess="always" height="90" src="http://player.soundcloud.com/player.swf?url=<%= sound['url']%>&sharing=false&buying=false&liking=false&download=false&show_artwork=false&show_comments=false&show_playcount=false&show_user=false&enable_api=true&auto_play=true&single_active=false&object_id=<%= sound['sc_id'] %>" type="application/x-shockwave-flash" width="97%" name="<%= sound['sc_id'] %>"></embed>
+		</object>
 		<div class="info-div">
 			<table class="info-table">
-				<tr><td><%= @new_media['description'] %></td></tr>
+				<tr><td><%= sound['description'] %></td></tr>
 			</table>
 			<div class="info-user">
 				<div class="user-thumbnail">
-				<%  user_image = User.find_by_name("#{@new_media['user']}").image unless @new_media['user'].nil? %>
-				<img src="<%=user_image %>" style="height:30px; width:30px">
+					<%  user_image = User.find_by_name("#{sound['user']}").image unless sound['user'].nil? %>
+					<img src="<%=user_image %>" style="height:30px; width:30px">
 				</div>
-				<div class="user-submit-date"><%= @new_media['user'] %> on <%= Time.at(@new_media['uploaded'].to_i).to_date %></div>
+				<div class="user-submit-date"><%= sound['user'] %> on <%= Time.at(sound['uploaded'].to_i).to_date %></div>
 			</div>
 		</div>
 	</div>
+	<% end %>
 <% end %>
-		
-		

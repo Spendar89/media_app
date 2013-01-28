@@ -4,6 +4,7 @@ YoutubeApp::Application.routes.draw do
     collection do
       get :poll_redis
       post :flush_db
+      match :preview
     end
   end
 

@@ -1,0 +1,10 @@
+<% if @error.nil? %>
+	$('.add-link-div').html("<%=j render(:partial => 'preview', 
+							  :locals => {:preview_title => @preview_title, 
+							  :preview_description => @preview_description,
+							  :url => @url,
+							  :seconds => @seconds,
+							  :page_id => @page_id})%>");
+<% else %>
+	alert("<%= @error %>");
+<% end %>
