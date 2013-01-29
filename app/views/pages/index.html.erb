@@ -1,0 +1,8 @@
+<div class="twelve columns">
+	<h2> <%= @category[:name][0].upcase + @category[:name][1..-1] %> Pages: </h2>
+	<% @pages.each do |page| %>
+		<div class="row">
+			<h3 class="subheader"><%= link_to page[:name], page_path(page), :method => "get", :style=>"color:grey" %></h3>
+		</div>
+	<% end %>
+</div>

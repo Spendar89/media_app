@@ -1,8 +1,12 @@
 class PagesController < ApplicationController
   
+  def index
+    @category = Category.find(params[:category_id])
+    @pages = @category.pages
+  end
+  
   def create
-    @category = Category.find_or_create_by_name(params[:category_name])
-    @page = current_user.pages.new(:category_id => @category.id, :name => params[:name])
+    @page = current_user.pages.new(:category_id => params[:category_id], :name => params[:name])
     redirect_to page_path(@page) if @page.save
   end
   

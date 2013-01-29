@@ -62,9 +62,9 @@ class MediaController < ApplicationController
   def search
     @query = params[:query]
     @media = Medium.search_results(@query)
-    @users = User.where('name LIKE ?', "%#{params[:query].split(" ").map{|name| name[0].upcase + name[1..-1]}.join(" ")}%")
-    @pages = Page.where('name LIKE ?', "%#{params[:query].downcase}%")
-    @categories = Category.where('name LIKE ?', "%#{params[:query].downcase}%")
+    @users = User.where('name ILIKE ?', "%#{params[:query]}%")
+    @pages = Page.where('name ILIKE ?', "%#{params[:query]}%")
+    @categories = Category.where('name ILIKE ?', "%#{params[:query]}%")
   end
   
   def flush_db

@@ -5,14 +5,18 @@ YoutubeApp::Application.routes.draw do
       get :poll_redis
       post :flush_db
       match :preview
-      match :search
+      get :search
     end
   end
   
   get 'tags/:tag', to: 'media#index', as: :tag
 
 
-  resources :pages
+  resources :pages do
+    collection do
+      get :index
+    end
+  end
 
 
   resources :sounds

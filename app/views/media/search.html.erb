@@ -1,3 +1,8 @@
+<% if @users.empty? && @pages.empty? && @categories.empty? && @media.empty? %>
+	<div class="twelve columns" style="text-align: center">
+		<h3>Sorry, but Your Search Returned Zero Results</h3>
+	</div>
+<% end %>
 <% unless @users.empty? %>
 	<div class="twelve columns user-results">
 		<h3>Users Matching <%= @query %>: </h3>
