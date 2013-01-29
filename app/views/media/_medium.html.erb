@@ -1,0 +1,7 @@
+<% unless medium["type"].nil? %>
+	<% if medium["type"] == "youtube" %>
+		<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
+	<% elsif medium["type"] == "soundcloud" %>
+		<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+	<% end %>
+<% end %>

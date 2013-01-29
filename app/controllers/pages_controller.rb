@@ -11,7 +11,8 @@ class PagesController < ApplicationController
   end
   
   def show
+    @recent_pages = Page.all
     @page = Page.find(params[:id])
-    @media = @page.media[0..8]
+    @media = @page.media.paginate(:page => params[:page], :per_page => 12)
   end
 end

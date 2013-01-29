@@ -18,9 +18,10 @@
 		<% end %>
 		</div>
 	</div>
+		<%= will_paginate @media %>
 	<div class="media_div" style="width: 85%; float: left">
-		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="index">
-			<% @media.each do |medium| %>
+		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="index" data-query="<%= @recent_pages.nil? ? @tag : false %>">
+			<% for medium in @media %>
 				<% unless medium["type"].nil? %>
 					<% if medium["type"] == "youtube" %>
 						<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
@@ -28,9 +29,7 @@
 						<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
 					<% end %>
 				<% end %>
-			<% end %>
+			<% end %>	
 		</div>
 	</div>
-
-
 </div>

@@ -1,6 +1,6 @@
 <% poll_redis %>
 <div class="row">
-	<div class="yt_parent box col4" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 0px; background: white">
+	<div class="yt_parent box col3" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 0px; background: white;">
 		<div class="title-div">
 			<h5><%= video['title'] %></h5>
 		</div>
@@ -26,13 +26,13 @@
 			</div>
 		</div>
 		<div class="twelve columns user-info" style="width: 102%">
-			<div class="eight columns" style="margin-left: -8%">
+			<div class="twelve columns" style="margin-left: -8%">
 				<div class="four columns">
 					<%  user_image = User.find_by_name("#{video['user']}").image unless video['user'].nil? %>
 					<a href="#" class="th"><img src="<%=user_image %>"></a>
 				</div>
-				<div class="eight columns">
-					<p><%= video['user'] %> on <%= Time.at(video['uploaded'].to_i).to_date %></p>
+				<div>
+					<p style="font-size: 9pt"><%= video['user'] %> on <%= Time.at(video['uploaded'].to_i).to_date %></p>
 				</div>
 			</div>
 		</div>

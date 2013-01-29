@@ -48,14 +48,13 @@ class MediaController < ApplicationController
   end
   
   def index
+    @recent_pages = Page.all 
     if params[:tag]
       @tag = params[:tag]
-      @media = Tag.find_all(@tag)
+      @media = Tag.find_all(@tag).paginate(:page => params[:page], :per_page => 12)
     else   
-      @recent_pages = Page.all 
       @auth = request.env["omniauth.auth"]
-      @media = []
-      @media = Medium.all_redis[0..8] unless Medium.all_redis.nil?
+      @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
     end
   end
   
@@ -75,23 +74,4 @@ class MediaController < ApplicationController
   def shows
   end
   
-  def poll_redis
-    if params[:page_id] == "index"
-      @page = nil
-      @media = Medium.all_redis
-    else
-      @page = Page.find(params[:page_id])
-      @media = @page.media
-    end 
-    @after = params[:after].to_i if params[:after] != 'none'
-    @before = params[:before].to_i if params[:before] != 'none'
-    @updated_media, @scroll_media = [], []
-    @media.each do |medium|
-      if @after.is_a? Integer
-        @updated_media << medium if medium['uploaded'].to_i > @after + 1 && !medium["type"].nil?
-      else
-        @scroll_media << medium if medium['uploaded'].to_i  < @before && !medium["type"].nil?
-      end
-    end
-  end
 end

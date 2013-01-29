@@ -53,14 +53,13 @@
   cursor: pointer;
 }
 
-.col3 { width: 365px;  }
-.col4 { width: 365px; }
+.col3 { width: 250px;  }
+.col4 { width: 250px; }
 
 
 .yt-video{
-	width: 355px;
-	height: 266px;
-	margin-left: 2%;
+	width: 250px;
+	margin-left: 4%;
 	z-index: -10000;
 }
 
@@ -68,9 +67,9 @@
 
 .overlay{
 	position:absolute;
-	height: 266px;
-	width: 360px;
-	margin-left: 6%;
+	height: 180px;
+	width: 260px;
+	margin-left: 7%;
 	background: url('video-loader.gif');
 	background-position: center;
 	background-size: 100%;
@@ -88,11 +87,11 @@
 
 
 .widescreen{
-	height: 200px;
+	height: 140px;
 }
 
 .widescreen_overlay{
-	height: 210px;
+	height: 150px;
 }
 
 .sc-player{
@@ -107,10 +106,15 @@
 	margin: -1%;
 	background: #E5E5E5;
 	padding: 1%;
-	height: 50px;
+	height: 30px;
 	color: #505050;
+	
 }
 
 .tag{
 	color: grey;
+}
+
+.pagination{
+	visibility: hidden;
 }

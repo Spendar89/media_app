@@ -1,12 +1,18 @@
-<% unless @scroll_media.empty? %>
-	$(".media_div").append("<%=j render(:partial => 'poll_redis', :locals => {:new_media =>  @scroll_media[0..5]})%>");
-	$('#masonry-container').masonry('reload');
-<% else %>
-	<% @new_media = @updated_media[0..2] %>
-	<% unless @new_media.empty? %>
-		$(".media_div").prepend("<%=j render(:partial => 'poll_redis', :locals => {:new_media=> @new_media})%>");
+<% for medium in @media %>
+	<% unless medium["type"].nil? %>
+		<% if medium["type"] == "youtube" %>
+			$('#masonry-container').append("<%= j render(:partial => 'videos/show', :locals => {:video => medium, :poll_redis => true}) %>");
+		<% elsif medium["type"] == "soundcloud" %>
+			$('#masonry-container').append("<%= j render(:partial => 'sounds/show', :locals => {:sound => medium}) %>");
+		<% end %>
 		$('#masonry-container').masonry('reload');
 	<% end %>
+<% end %>
+
+<% if @media.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate(@media) %>');
+<% else %>
+  $('.pagination').remove();
 <% end %>
 
 $(document).ajaxComplete(function(){
@@ -41,5 +47,3 @@ $(document).ajaxComplete(function(){
 		}
 	}
 });
-
-

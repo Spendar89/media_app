@@ -12,15 +12,19 @@
 
 
 function scrollLoad(){
-	$(window).scroll(function() {
-	   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-		 $('#masonry-container').removeClass('transitions-enabled')
-		 var before = $(".box").last().data("uploaded");
-		 var page_id = $('#masonry-container').data('page_id');
-		 $.getScript("/media/poll_redis.js?after=none&before="+before+"&page_id="+page_id);
-	   }
-	});
+	if ($('.pagination').length){
+		$(window).scroll(function() {
+			url = $('.pagination .next_page').attr('href')
+	   		if(url && $(window).scrollTop() > $(document).height() - $(window).height() - 10){
+				$('#masonry-container').removeClass('transitions-enabled')
+				$('.pagination').text("Fetching more products...")
+				$.getScript(url)
+				$(window).scroll()
+	   		}
+		});
+	}
 }
+
 
 $(document).ready(function(){
 	$('#masonry-container').masonry({
