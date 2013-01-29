@@ -1,8 +1,5 @@
 <div class="row">
 	<div class="sc_parent box col3" data-uploaded="<%= sound['uploaded']%>" style="background: white; border-radius: 0px;">
-		<div class="title-div">
-			<h4><%= sound['title'] %></h4>
-		</div>
 		<div class="row">
 			<div clas="twelve columns">	
 				<object height="90" width="87%" data-start="<%= sound['start'] %>" id="<%= sound['sc_id'] %>" class="sc-player"   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
@@ -14,14 +11,14 @@
 		</div>
 		<div class="info-div row" style="margin-top: 2%; margin-left: -3pt">
 			<div class="twelve columns">
-				<p><%= sound['description'] %></p>	
+				<p><%= sound['title'] %></p>	
 			</div>
 		</div>
 		<div class="row">
 			<div class="twelve columns">
 				<% unless sound['tags'].nil? %>
 					<% sound['tags'].split(",").each do |tag| %>
-						<div> #<%= tag %></div>
+						<%= link_to "##{tag}","/tags/#{tag}", :class => "tag"%>
 					<% end %>
 				<% end %>
 			</div>
