@@ -29,7 +29,7 @@
 					<a href="#" class="th"><img src="<%=user_image %>" style="border: 3px solid transparent"></a>
 				</div>
 				<div>
-					<p style="font-size: 9pt"><%= video['user'] %> on <%= Time.at(video['uploaded'].to_i).to_date %></p>
+					<p style="font-size: 9pt; color:grey"><%= link_to video['user'], user_path(current_user.id) , :style=>"color:grey"%> on <%= Time.at(video['uploaded'].to_i).to_date %></p>
 				</div>
 			</div>
 		</div>
