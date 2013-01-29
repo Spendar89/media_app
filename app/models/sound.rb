@@ -19,9 +19,10 @@ class Sound
     $redis.hmset "media:#{@id}",:sc_id, @id, :page_id, @page_id, :type, "soundcloud", :url, @url, 
                                 :title, @title, :start, @start, :uploaded, @uploaded, 
                                 :description, @description, :user, current_user.name, :tags, @tags
-                                $redis.zadd "media:by_upload", @uploaded, @id
-                                $redis.zadd "page:#{@page_id}:media:by_upload", @uploaded, @id
-                                $redis.sadd "media:soundcloud", @id
+    $redis.zadd "media:by_upload", @uploaded, @id
+    $redis.zadd "page:#{@page_id}:media:by_upload", @uploaded, @id
+    $redis.sadd "media:soundcloud", @id
+    $redis.zadd "user:#{current_user.id}:media:by_upload", @uploaded, @id
     add_tag unless @tags.nil?
   end
 

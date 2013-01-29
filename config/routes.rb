@@ -1,5 +1,12 @@
 YoutubeApp::Application.routes.draw do
   
+  
+  resources :users do
+    member do
+      get :show
+    end
+  end
+
   resources :media do
     collection do
       get :poll_redis

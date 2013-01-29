@@ -26,6 +26,7 @@
 		<a href="#" class="flyout-toggle"><span> </span></a>
 		<ul class="flyout">
 			<li><%= link_to "Sign Out", signout_path %></li>
+			<li><%= link_to "View Profile", user_path(current_user.id) %></li>
 		</ul>
 	</li>
 	<% else %>

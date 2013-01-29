@@ -21,6 +21,7 @@ class Video
                                      :aspect_ratio, yt_aspect_ratio, :tags, @tags.join(",")
       $redis.zadd "media:by_upload", @uploaded, @id
       $redis.zadd "page:#{@page_id}:media:by_upload", @uploaded, @id
+      $redis.zadd "user:#{current_user.id}:media:by_upload", @uploaded, @id
       $redis.sadd "media:youtube", @id
       add_tag unless @tags.nil?
   end

@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
       user.image = auth["info"]["image"]
     end
   end
+  
+  def media
+    $redis.zrevrange "user:#{self.id}:media:by_upload", 0, -1
+  end
 end
