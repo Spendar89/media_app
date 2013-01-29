@@ -3,15 +3,16 @@ class MediaController < ApplicationController
     if current_user.nil?
       @error = "You Must Be Logged-in To Submit a Link!"
     else
+      @page_id = params[:page_id]
       tags_array = params[:tags].split(",").map!{|tag| tag.strip.downcase}
       puts "tags_array_test: #{tags_array}"
       seconds = params[:seconds]
       if /youtube/.match(params[:url])
-        video = Video.new(params[:url], seconds, params[:page_id], tags_array, params[:title], params[:description])
+        video = Video.new(params[:url], seconds, @page_id, tags_array, params[:title], params[:description])
         video.add_redis(current_user)
         @new_media = $redis.hgetall "media:#{video.id}"
       elsif /soundcloud/.match(params[:url])
-        sound = Sound.new(params[:url], seconds, params[:page_id], tags_array, params[:title], params[:description])
+        sound = Sound.new(params[:url], seconds, @page_id, tags_array, params[:title], params[:description])
         sound.add_redis(current_user)
         @new_media = $redis.hgetall "media:#{sound.id}"
       else

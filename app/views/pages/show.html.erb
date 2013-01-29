@@ -21,7 +21,7 @@
 <% end %>
 </div>
 <div id="add_media_div" class="reveal-modal xlarge">
-  	<div class = "row">
-		<%= render :partial => 'add_media_form' %>
+  	<div class = "row add-media-partial-div">
+		<%= render :partial => 'add_media_form', :locals => {:page_id => @page.id} %>
 	</div>
 </div>
