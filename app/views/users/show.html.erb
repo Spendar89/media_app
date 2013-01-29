@@ -1,19 +1,30 @@
 <div class="row user-header-div">
-	<div class="twelve columns">
-		<h1><%= @user[:name] %></h1>
+	<div class="three columns">
+		<div class="twelve columns">
+			<a href="#" class="th"><%= @user.image %></a>
+		</div>
+		<div class="twelve columns">
+			<h3><%= @user[:name] %></h3>
+		</div>
 	</div>
 </div>
 
 <%= will_paginate @media %>
-
-<div id="masonry-container" class="masonry media_div infinite-scroll clearfix">
-<% for medium in @media %>
-	<% unless medium["type"].nil? %>
-		<% if medium["type"] == "youtube" %>
-			<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
-		<% elsif medium["type"] == "soundcloud" %>
-			<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
-		<% end %>
-	<% end %>
-<% end %>
+<div class="row">
+	<div class="twelve columns">
+		<div class="twelve columns">
+			<h4>Added Media:</h4>
+		</div>
+		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix">
+			<% for medium in @media %>
+				<% unless medium["type"].nil? %>
+					<% if medium["type"] == "youtube" %>
+						<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
+					<% elsif medium["type"] == "soundcloud" %>
+						<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
 </div>

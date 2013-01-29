@@ -26,11 +26,11 @@
 		<div class="twelve columns user-info" style="width: 102%">
 			<div class="twelve columns" style="margin-left: -8%">
 				<div class="three columns">
-					<%  user_image = User.find_by_name("#{video['user']}").image unless video['user'].nil? %>
+					<%  user_image = User.find_by_name("#{sound['user']}").image unless sound['user'].nil? %>
 					<a href="#" class="th"><img src="<%=user_image %>" style="border: 3px solid transparent"></a>
 				</div>
 				<div>
-					<p style="font-size: 9pt"><%= video['user'] %> on <%= Time.at(video['uploaded'].to_i).to_date %></p>
+					<p style="font-size: 9pt"><%= sound['user'] %> on <%= Time.at(sound['uploaded'].to_i).to_date %></p>
 				</div>
 			</div>
 		</div>

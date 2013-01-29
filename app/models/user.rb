@@ -12,7 +12,13 @@ class User < ActiveRecord::Base
     end
   end
   
-  def media
+  def media_ids
     $redis.zrevrange "user:#{self.id}:media:by_upload", 0, -1
   end
+  
+  def media
+    media_hashes= media_ids.map{|id| $redis.hgetall "media:#{id}" }
+    media_hashes
+  end
+  
 end
