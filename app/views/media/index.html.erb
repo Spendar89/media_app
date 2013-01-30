@@ -9,6 +9,7 @@
 		<div style="float:right; width: 15%;">
 		<div class="row">
 				<h4>Trending Pages:</h4>
+				<%= @auth unless current_user.nil? %>
 		</div>
 			<% @recent_pages.each do |page| %>
 				<div class="row">
