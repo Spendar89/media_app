@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   def show
-    @auth = request.env["omniauth.auth"]
     @recent_pages = Page.all 
     @user = User.find(params[:id])
+    @omni = @user.auth_hash
     @media = @user.media.paginate(:page => params[:page], :per_page => 12)
   end
   
