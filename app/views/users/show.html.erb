@@ -1,13 +1,15 @@
-<div class="row user-header-div">
-	<div class="four columns">
+<div class="user-header-div">
+	<div class="row">
 		<div class="panel">
-			<div class="six columns">
-				<a href="#" class="th"><img src="<%= @user.image %>" class="twelve columns"></a>
-			</div>
-			<div class="six columns">
-				<h4 style="margin-top: -2%"><%= @user[:name] %></h4>
-				<h5 class="subheader"><%= @user[:location] %></h5>
-				<%= @omni %>
+			<div class="four columns">
+				<div class="six columns">
+					<a href="#" class="th"><img src="<%= @user.image %>" class="twelve columns"></a>
+				</div>
+				<div class="six columns">
+					<h4 style="margin-top: -2%"><%= @user[:name] %></h4>
+					<h5 class="subheader"><%= @user[:location] %></h5>
+					<%= @omni %>
+				</div>
 			</div>
 		</div>
 	</div>

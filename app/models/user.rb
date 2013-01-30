@@ -22,9 +22,6 @@ class User < ActiveRecord::Base
     media_hashes
   end
   
-  def auth_hash
-    request.env["omniauth.auth"]
-  end
   
   def vote_up(media_id)
     unless already_voted?(media_id)
