@@ -10,6 +10,7 @@
  *
 
  *= require foundation_and_overrides
+ *= require foundation-icons
  *= require_self
  *= require 'masonry/basic'
  *= require 'masonry/centered'
@@ -67,7 +68,8 @@
 
 .overlay{
 	position:absolute;
-	height: 180px;
+	height: 150px;
+	margin-top: 33px;
 	width: 260px;
 	margin-left: 7%;
 	background: url('video-loader.gif');
@@ -91,7 +93,7 @@
 }
 
 .widescreen_overlay{
-	height: 150px;
+	height: 155px;
 }
 
 .sc-player{
@@ -117,4 +119,29 @@
 
 .pagination{
 	visibility: hidden;
+}
+
+a{
+	color: #999;
+}
+
+a:hover{
+	color: #272727;
+	cursor: pointer;
+}
+
+.hide-link{
+	display:none;
+}
+
+.voted_down{
+	color: #C9565E;
+}
+
+.voted_up{
+	color: #719975;
+}
+
+.glyph{
+	margin-left: -5%;
 }

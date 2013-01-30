@@ -1,0 +1,21 @@
+<div class="rating-div twelve columns">
+	<div class="four columns" style="margin-left: -6%">
+		<% if current_user.voted_up?(medium['id']) || !current_user.already_voted?(medium['id']) %>
+			<div class="six columns thumbs-up-div">
+				<%= link_to thumbs_up_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_up", :class => "#{'voted_up' if current_user.voted_up?(medium['id'])}" do %>
+					<span class="glyph social" style="font-size: 20pt">a</span>
+				<% end %>
+			</div>
+		<% end %>
+		<% if current_user.voted_down?(medium['id']) || !current_user.already_voted?(medium['id']) %>
+			<div class="six columns end thumbs-down-div">
+				<%= link_to thumbs_down_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_down", :class => "#{'voted_down' if current_user.voted_down?(medium['id'])}" do %>
+					<span class="glyph social" style="font-size: 20pt">b</span>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+	<div class="eight columns score-div" style="margin-top: -4%; margin-right: -2%; text-align: right">
+		<h6><%= (medium['score'].to_f*100).to_i %>%</h6>
+	</div>
+</div>

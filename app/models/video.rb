@@ -15,13 +15,14 @@ class Video
   end
   
   def add_redis(current_user)
-      $redis.hmset "media:#{@id}", :yt_id, @id, :page_id, @page_id, :type, "youtube", :title, @title, 
+      $redis.hmset "media:#{@id}", :id, @id, :page_id, @page_id, :type, "youtube", :title, @title, 
                                      :start, @start, :uploaded, @uploaded, 
                                      :description, @description, :user, current_user.name, 
-                                     :aspect_ratio, yt_aspect_ratio, :tags, @tags.join(",")
+                                     :aspect_ratio, yt_aspect_ratio, :score, 0, :up, 0, :num_ratings, 0, :tags, @tags.join(",")
       $redis.zadd "media:by_upload", @uploaded, @id
       $redis.zadd "page:#{@page_id}:media:by_upload", @uploaded, @id
       $redis.zadd "user:#{current_user.id}:media:by_upload", @uploaded, @id
+      $redis.zadd "media:by_score", 0, @id
       $redis.sadd "media:youtube", @id
       add_tag unless @tags.nil?
   end

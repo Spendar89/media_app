@@ -4,8 +4,11 @@
 		<div class="row">
 			<div class="<%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>_overlay overlay">
 			</div>
-			<div class="twelve columns" style="margin-top: 3%">
-				<iframe id="<%= video['yt_id'] %>" class="yt-video <%= 'poll-redis' if poll_redis %> <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%= video['yt_id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=1&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0" frameborder="0" allowscriptaccess="always"></iframe>
+			<% unless current_user.nil? %>
+				<%= render :partial => "media/rating_div", :locals => {:medium => video} %>
+			<% end %>
+			<div class="twelve columns">
+				<iframe id="<%= video['id'] %>" class="yt-video <%= 'poll-redis' if poll_redis %> <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%= video['id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=1&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0" frameborder="0" allowscriptaccess="always"></iframe>
 			</div>
 		</div>
 		<div class="info-div row" style="margin-top: 2%; margin-left: -3pt">

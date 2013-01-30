@@ -1,8 +1,8 @@
 class Medium < ActiveRecord::Base
   
   def self.all_redis
-    yt_ids = $redis.zrevrange "media:by_upload", 0, -1
-    yt_ids.map! {|id| $redis.hgetall "media:#{id}"}
+    ids = $redis.zrevrange "media:by_upload", 0, -1
+    ids.map! {|id| $redis.hgetall "media:#{id}"}
   end
   
   def self.seconds(minutes, seconds)
@@ -22,5 +22,6 @@ class Medium < ActiveRecord::Base
       @media_array.map{ |id| $redis.hgetall "media:#{id}" }  
     end
   end
+  
   
 end

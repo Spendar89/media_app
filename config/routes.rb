@@ -1,11 +1,17 @@
 YoutubeApp::Application.routes.draw do
   
+  mount Foundation::Icons::Rails::Engine => '/fi'
+  
   
   resources :users do
     member do
       get :show
+      post :thumbs_up
+      post :thumbs_down
     end
   end
+  
+
 
   resources :media do
     collection do

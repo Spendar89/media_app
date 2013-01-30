@@ -25,6 +25,21 @@ function scrollLoad(){
 	}
 }
 
+function disableThumbs(){
+	$('.voted_up, .voted_down').removeAttr('href').click(function(e){
+		e.preventDefault();
+		return false;
+	});
+	upColor = $('.voted_up').css('color');
+	downColor = $('.voted_down').css('color');
+	$('.voted_up').children('span').hover(function(){
+		$(this).css('color', upColor);
+	});
+	$('.voted_down').children('span').hover(function(){
+		$(this).css('color', downColor);
+	});
+}
+
 
 $(document).ready(function(){
 	$('#masonry-container').masonry({
@@ -35,7 +50,12 @@ $(document).ready(function(){
 	setTimeout(function(){
 		$('#masonry-container').addClass('transitions-enabled');
 	}, 2000);
+	disableThumbs();
 });
+
+$(document).ajaxComplete(function(){
+	disableThumbs();
+})
 
 
 
