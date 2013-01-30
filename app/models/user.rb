@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["name"]
       user.image = auth["info"]["image"]
       user.location = auth["info"]["location"]
-      user.likes = auth["extra"]
     end
   end
   
