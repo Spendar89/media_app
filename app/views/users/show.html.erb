@@ -1,11 +1,12 @@
 <div class="row user-header-div">
-	<div class="six columns">
+	<div class="four columns">
 		<div class="panel">
 			<div class="six columns">
 				<a href="#" class="th"><img src="<%= @user.image %>" class="twelve columns"></a>
 			</div>
 			<div class="six columns">
-				<h4 style="margin-top: 0%"><%= @user[:name] %></h4>
+				<h4 style="margin-top: -2%"><%= @user[:name] %></h4>
+				<h5 class="subheader"><%= @user[:location] %></h5>
 			</div>
 		</div>
 	</div>
