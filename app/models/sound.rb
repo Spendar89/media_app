@@ -16,7 +16,7 @@ class Sound
 
 
   def add_redis(current_user)
-    $redis.hmset "media:#{@id}",:id, @id, :yt:page_id, @page_id, :type, "soundcloud", :url, @url, 
+    $redis.hmset "media:#{@id}",:id, @id, :page_id, @page_id, :type, "soundcloud", :url, @url, 
                                 :title, @title, :start, @start, :uploaded, @uploaded, 
                                 :description, @description, :user, current_user.name,  :score, 0, :up, 0, :num_ratings, 0, :tags, @tags
     $redis.zadd "media:by_upload", @uploaded, @id
