@@ -24,9 +24,11 @@
 	<div class="row two columns end">
 		<div class="twelve columns">
 			<h4>Recommended Pages:</h4>
-		<% @ranked_pages.each do |page| %>
-			<h5 class="subheader"><%= link_to page[:name], page_path(page), :method => "get", :style=>"color:grey" %></h5>
+		<% unless @ranked_pages.nil? %>
+			<% @ranked_pages.each do |page| %>
+				<h5 class="subheader"><%= link_to page[:name], page_path(page), :method => "get", :style=>"color:grey" %></h5>
+				<% end %>
+			</div>
 		<% end %>
-		</div>
 	</div>
 </div>
