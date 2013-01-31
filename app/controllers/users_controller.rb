@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @feed = []
     feed_array = $redis.zrevrange "user:#{@user.id}:feed", 0, -1
     feed_array[0..4].each{ |feed| @feed << feed }
+    @feed = ["No Recent Activity"] if @feed.empty?
   end
   
   def thumbs_up

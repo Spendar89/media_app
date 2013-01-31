@@ -32,16 +32,20 @@
 		<div class="twelve columns">
 			<h4>Recently Added</h4>
 		</div>
-		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix">
-			<% for medium in @media %>
-				<% unless medium["type"].nil? %>
-					<% if medium["type"] == "youtube" %>
-						<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
-					<% elsif medium["type"] == "soundcloud" %>
-						<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+		<% if @media.empty? %>
+			<h2 class="subheader">This User Has not Contributed any Sounds or Videos... Yet.</h2>
+		<% else %>
+			<div id="masonry-container" class="masonry media_div infinite-scroll clearfix">
+				<% for medium in @media %>
+					<% unless medium["type"].nil? %>
+						<% if medium["type"] == "youtube" %>
+							<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
+						<% elsif medium["type"] == "soundcloud" %>
+							<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+						<% end %>
 					<% end %>
 				<% end %>
-			<% end %>
-		</div>
+			</div>
+		<% end %>
 	</div>
 </div>

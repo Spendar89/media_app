@@ -22,13 +22,13 @@
 		</div>
 	</div>
 	<div class="row two columns end">
-		<div class="twelve columns">
-			<h4>Recommended Pages:</h4>
+		<div class="twelve columns panel radius">
+			<h4>Recommended</h4>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each do |page| %>
-				<h5 class="subheader"><%= link_to page[:name], page_path(page), :method => "get", :style=>"color:grey" %></h5>
-				<% end %>
-			</div>
+		      		<h4 class="subheader"><%= link_to page[:name], page_path(page), :method => "get" %></h4>
+			<% end %>
 		<% end %>
+		</div>
 	</div>
 </div>

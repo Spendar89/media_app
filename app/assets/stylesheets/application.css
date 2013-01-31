@@ -55,7 +55,7 @@
 }
 
 .box:hover{
-	box-shadow: 0 0 10px black;;
+	box-shadow: 0 0 10px black;
 }
 
 .col3 { width: 250px;  }
@@ -150,4 +150,8 @@ a:hover{
 
 .glyph{
 	margin-left: -5%;
+}
+
+.reccomended-list{
+	margin: 0%;
 }
