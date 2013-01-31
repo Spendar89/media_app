@@ -1,5 +1,5 @@
 jQuery.fn.center = function () {
-    this.css("top",  0);
+    this.css("top",  $(window).scrollTop());
     this.css("left", $(window).outerWidth() / 2);
     return this;
 }
