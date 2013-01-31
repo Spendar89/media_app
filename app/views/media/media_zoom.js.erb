@@ -4,6 +4,8 @@ jQuery.fn.center = function () {
     return this;
 }
 
+
+
 var modal_div =$("#"+"<%= @medium_id %>"+"-zoom-modal");
 modal_div.center();
 modal_div.html("<%=j render :partial => 'videos/zoom_box', :locals => {:video => @medium} %>");
