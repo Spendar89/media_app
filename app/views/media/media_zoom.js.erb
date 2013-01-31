@@ -1,0 +1,11 @@
+jQuery.fn.center = function () {
+    this.css("top",  0);
+    this.css("left", $(window).outerWidth() / 2);
+    return this;
+}
+
+var modal_div =$("#"+"<%= @medium_id %>"+"-zoom-modal");
+modal_div.center();
+modal_div.html("<%=j render :partial => 'videos/zoom_box', :locals => {:video => @medium} %>");
+$('.close-reveal-modal').click(function(){modal_div.trigger("reveal:close")});
+modal_div.reveal({ "closed": function () { modal_div.children().remove() }, "animation": "fade" });

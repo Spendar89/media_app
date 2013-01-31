@@ -75,7 +75,9 @@ class MediaController < ApplicationController
     redirect_to :root 
   end
   
-  def shows
+  def media_zoom
+    @medium_id = params[:id]
+    @medium = $redis.hgetall "media:#{@medium_id}"
   end
   
 end

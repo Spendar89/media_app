@@ -40,6 +40,13 @@ function disableThumbs(){
 	});
 }
 
+function mediaZoom(){
+	$(".yt_parent, .invisible-overlay").click(function() {
+		var videoId = $(this).attr('video_id');
+		$.getScript("/media/media_zoom.js?id=" + videoId)
+   });
+}
+
 
 $(document).ready(function(){
 	$('#masonry-container').masonry({
@@ -51,10 +58,12 @@ $(document).ready(function(){
 		$('#masonry-container').addClass('transitions-enabled');
 	}, 2000);
 	disableThumbs();
+	mediaZoom();
 });
 
 $(document).ajaxComplete(function(){
 	disableThumbs();
+	mediaZoom();
 })
 
 

@@ -19,6 +19,7 @@ YoutubeApp::Application.routes.draw do
       post :flush_db
       match :preview
       get :search
+      match :media_zoom
     end
   end
   
