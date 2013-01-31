@@ -41,7 +41,7 @@ function disableThumbs(){
 }
 
 function mediaZoom(){
-	$(".yt_parent, .invisible-overlay").click(function() {
+	$(".invisible-overlay").click(function() {
 		var videoId = $(this).attr('video_id');
 		$.getScript("/media/media_zoom.js?id=" + videoId)
    });

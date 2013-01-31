@@ -20,6 +20,13 @@ class UsersController < ApplicationController
     current_user.vote_down(@media_id)
   end
   
+  def add_comment
+    @user = User.find(params[:id])
+    @media_id = params[:media_id]
+    @comment = @user.comments.create(:content => params[:comment], :media_id => @media_id)
+    $redis.zadd "media:#{@media_id}:comments:by_date", Time.now.to_i, @comment.id
+  end
+  
 
   
 end

@@ -78,6 +78,8 @@ class MediaController < ApplicationController
   def media_zoom
     @medium_id = params[:id]
     @medium = $redis.hgetall "media:#{@medium_id}"
+    @comments = $redis.zrevrange "media:#{@medium_id}:comments:by_date", 0, -1
+    @comments.map!{|id| Comment.find(id)}
   end
   
 end

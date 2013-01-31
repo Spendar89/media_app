@@ -12,5 +12,30 @@
 <div class="twelve columns">
 	<h4 class="subheader"><%= video['description'] %></h4>
 </div>
+<div class="twelve columns add-comments-div">
+	<%= form_tag add_comment_user_path(current_user), :remote => true do %>
+		<%= hidden_field_tag :media_id, video['id'] %>
+		<%= text_field_tag :comment %>
+		<%= submit_tag "Add Comment", :class => "button secondary" %>
+	<% end %>
+</div>
+<div id="<%=video['id']%>_show_comments">
+	<% unless comments.empty? %>
+		<% comments.each do |comment| %>
+			<div class="twelve columns comment">
+				<div class="twelve columns panel" style="padding: 1%">
+					<% user = User.find(comment.user_id) %>
+					<div class="one columns" style="padding: 0%">
+						<a href="#"><img src="<%=user.image %>" style="border: none; width: 100%; height: auto"></a>
+					</div>
+					<div class="eleven columns">
+						<span class="subheader" style="font-size:18pt;"><%= comment.content %></span>
+						<aside><span class="subheader" style=""><Added><%= user.name %> on <%= comment.created_at %></span></aside>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+</div>
 
 <a class="close-reveal-modal">&#215;</a>

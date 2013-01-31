@@ -3,17 +3,12 @@ YoutubeApp::Application.routes.draw do
   mount Foundation::Icons::Rails::Engine => '/fi'
   
   
-  resources :comments do
-    member do
-      get :create
-    end
-  end
-  
   resources :users do
     member do
       get :show
       post :thumbs_up
       post :thumbs_down
+      match :add_comment
     end
   end
   
@@ -30,6 +25,8 @@ YoutubeApp::Application.routes.draw do
   end
   
   get 'tags/:tag', to: 'media#index', as: :tag
+  
+  get 'comments/:comment', to: 'user#add_comment', as: :comment
 
 
   resources :pages do
