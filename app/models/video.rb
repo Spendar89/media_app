@@ -25,8 +25,8 @@ class Video
       $redis.zadd "user:#{current_user.id}:media:by_upload", @uploaded, @id
       $redis.zadd "media:by_score", 0, @id
       $redis.sadd "media:youtube", @id
-      $redis.zadd "user:#{current_user.id}:feed", @uploaded, "<span class='feed-story'> <%= link_to '#{Time.now.strftime("%b %e, %l:%M %p")}: Added #{@title} to #{Page.find(@page_id).name}', 
-                                                             '/pages/#{@page_id}', :method => 'get'%></span>"
+      $redis.zadd "user:#{current_user.id}:feed", @uploaded, "<aside><p class='feed-story'> <%= link_to '#{Time.now.strftime("%b %e, %l:%M %p")}: Added #{@title} to #{Page.find(@page_id).name}', 
+                                                             '/pages/#{@page_id}', :method => 'get'%></p></aside>"
       add_tag unless @tags.nil?
   end
   

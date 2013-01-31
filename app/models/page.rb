@@ -13,8 +13,8 @@ class Page < ActiveRecord::Base
   end
   
   def add_to_feed(current_user)
-    $redis.zadd "user:#{current_user.id}:feed", Time.now.to_i, "<span class='feed-story'><%= link_to '#{Time.now.strftime("%b %e, %l:%M %p")}: 
-                                                                Created Page #{self.name}', '/pages/#{self.id}', :method => 'get'%></span>"
+    $redis.zadd "user:#{current_user.id}:feed", Time.now.to_i, "<aside><p class='feed-story'><%= link_to '#{Time.now.strftime("%b %e, %l:%M %p")}: 
+                                                                Created Page #{self.name}', '/pages/#{self.id}', :method => 'get'%></p></aside>"
   end
 
 end

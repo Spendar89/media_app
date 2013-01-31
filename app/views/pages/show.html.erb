@@ -1,23 +1,20 @@
-<div class="row">
-	<div class="twelve columns">
-		<div class="eight columns" style="margin-top: -1%">
-			<div class="six columns">
-				<h1><%= @page.name %></h1>
-				<% if  @page_score %>
-				<h4>Page Score: <%= @page_score %>%</h4>
-				<% end %>
-			</div>
-			<div class="six columns end">
-				<h4 class="subheader" style="line-height: 60px">created by <%= User.find(@page.user_id).name %> </h4>
-			</div>
-		</div>
-		<div class="four columns">
-			<h4><a style="color: #999" href="#" data-reveal-id="add_media_div" data-animation="fade">Add a Song or Video</a></h4>
-		</div>
+<div class="eight columns" style="margin-top: -1%">
+	<div class="five columns" style="width:auto">
+		<h1><%= @page.name %></h1>
+		<% if  @page_score && @page_score > 60 %>
+			<h2 class="label success">Recommended</h2>
+		<% end %>
+	</div>
+	<div class="four columns end">
+		<h4 class="subheader" style="line-height: 60px">created by <%= User.find(@page.user_id).name %> </h4>
 	</div>
 </div>
+<div class="four columns">
+	<h4 class="button secondary"><a href="#" data-reveal-id="add_media_div" data-animation="fade">Add a Song or Video</a></h4>
+</div>
+
 <%= will_paginate @media %>
-<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="<%= @page.id %>" style="margin-left: 2%">
+<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="<%= @page.id %>" style="margin-left: 1%; margin-top: 8%">
 <% for medium in @media %>
 	<% unless medium["type"].nil? %>
 		<% if medium["type"] == "youtube" %>

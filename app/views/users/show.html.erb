@@ -13,15 +13,15 @@
 		</div>
 	</div>
 	<div class="four columns">
-		<h4>Recent Activity:</h4>
+		<h4>Recent Activity</h4>
 	<% @feed.each do |story| %>
 		<h5 class="subheader"><%=raw ERB.new(story).result(binding) %></h5>
 	<% end %>
 	</div>
 	<div class="four columns end">
-			<h4 class="twelve columns">Pages:</h4>
+			<h4 class="twelve columns" style="margin-left: 2%">Pages</h4>
 			<% @user.pages.each do |page|%>
-				<h5 class="four columns subheader end"><%= link_to page[:name], page_path(page), :method => "get", :style=>"color:grey" %></h5>
+				<div class="three columns end" style="margin: 2%"><span class="round label secondary"><%= link_to page[:name], page_path(page), :method => "get" %></span></div>
 			<% end %>
 	</div>
 </div>
@@ -30,7 +30,7 @@
 <div class="row recent-media-div">
 	<div class="twelve columns">
 		<div class="twelve columns">
-			<h4>Recently Added:</h4>
+			<h4>Recently Added</h4>
 		</div>
 		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix">
 			<% for medium in @media %>

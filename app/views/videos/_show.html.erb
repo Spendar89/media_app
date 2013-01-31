@@ -1,6 +1,6 @@
 <% poll_redis %>
 <div class="row">
-	<div class="yt_parent box col3" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 0px; background: white;">
+	<div class="yt_parent box col3" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 6px; background: white;">
 		<div class="row">
 			<div class="<%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>_overlay overlay">
 			</div>
@@ -13,7 +13,7 @@
 		</div>
 		<div class="info-div row" style="margin-top: 2%; margin-left: -3pt">
 			<div class="twelve columns">
-				<p><%= video['title'] %></p>	
+				<h6 style="color: #5B8DBC; line-height: 15px;"><%= video['title'] %></h6>	
 			</div>
 		</div>
 		<div class="row">
@@ -33,7 +33,7 @@
 					<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 100%"></a>
 				</div>
 				<div>
-					<p style="font-size: 11pt; color:grey"><%= link_to media_user.name, user_path(media_user) , :style=>"color:grey"%> on <%= Time.at(video['uploaded'].to_i).to_date %></p>
+					<h8 style="color:grey"><%= link_to media_user.name, user_path(media_user) , :style=>"color:grey"%> on <%= Time.at(video['uploaded'].to_i).to_date %></h8>
 				</div>
 			</div>
 		</div>
