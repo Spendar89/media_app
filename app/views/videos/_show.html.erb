@@ -28,11 +28,12 @@
 		<div class="twelve columns user-info" style="width: 102%">
 			<div class="twelve columns" style="margin-left: -8%">
 				<div class="three columns">
-					<%  user_image = User.find_by_name("#{video['user']}").image unless video['user'].nil? %>
-					<a href="#" class="th"><img src="<%=user_image %>" style="border: 3px solid transparent"></a>
+					<% media_user = User.find(video['user']) %>
+					<%  user_image = media_user.image unless media_user.nil? %>
+					<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 100%"></a>
 				</div>
 				<div>
-					<p style="font-size: 9pt; color:grey"><%= link_to video['user'], user_path(User.find_by_name(video['user'])) , :style=>"color:grey"%> on <%= Time.at(video['uploaded'].to_i).to_date %></p>
+					<p style="font-size: 11pt; color:grey"><%= link_to media_user.name, user_path(media_user) , :style=>"color:grey"%> on <%= Time.at(video['uploaded'].to_i).to_date %></p>
 				</div>
 			</div>
 		</div>

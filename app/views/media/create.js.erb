@@ -2,7 +2,7 @@
 	$('#add_media_div').trigger('reveal:close');
 	$('.media_div').prepend("<%=j render(:partial => 'create', :locals => {:medium => @new_media})%>");
 	$('#masonry-container').masonry('reload');
-	$('.add-media-partial-div').html("<%=j  render(:partial => 'pages/add_media_form', :locals => { :page_id => @page_id }) %>");
+	$('.add-media-partial-div').html("<%=j  render(:partial => 'pages/add_media_form', :locals => { :page_id => @page_id, :category_id => @category_id }) %>");
 	<% if @new_media['type'] == "youtube" %>
 			var playerId = $('.yt-video').first().attr('id');
 			var player;

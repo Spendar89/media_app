@@ -107,11 +107,12 @@
 
 .user-info{
 	margin: -1%;
+
 	background: #E5E5E5;
 	padding: 1%;
-	height: 30px;
-	color: #505050;
-	
+	padding-top: 2%;
+	height: 40px;
+	color: #505050;	
 }
 
 .tag{

@@ -3,7 +3,7 @@ require 'open-uri'
 class Sound
   attr_accessor :url, :id, :title
 
-  def initialize(url, start, page_id, tags_array, title=nil, description=nil)
+  def initialize(url, start, page_id, category_id, tags_array, title=nil, description=nil)
     @url = url
     @id = parsed_json["id"]
     title.nil? ? @title = parsed_json["title"] : @title = title
@@ -11,6 +11,7 @@ class Sound
     @start = start
     @uploaded = Time.now.to_i
     @page_id = page_id
+    @category_id = category_id
     @tags = tags_array
   end
 
@@ -18,11 +19,13 @@ class Sound
   def add_redis(current_user)
     $redis.hmset "media:#{@id}",:id, @id, :page_id, @page_id, :type, "soundcloud", :url, @url, 
                                 :title, @title, :start, @start, :uploaded, @uploaded, 
-                                :description, @description, :user, current_user.name,  :score, 0, :up, 0, :num_ratings, 0, :tags, @tags
+                                :description, @description, :user, current_user.id,  :score, 0, :up, 0, :num_ratings, 0, :tags, @tags
     $redis.zadd "media:by_upload", @uploaded, @id
     $redis.zadd "page:#{@page_id}:media:by_upload", @uploaded, @id
     $redis.sadd "media:soundcloud", @id
     $redis.zadd "user:#{current_user.id}:media:by_upload", @uploaded, @id
+    $redis.zadd "user:#{current_user.id}:feed", @uploaded, "<span class='feed-story'> <%= link_to '#{Time.now.strftime("%b %e, %l:%M %p")}: Added #{@title} to #{Page.find(@page_id).name}', 
+                                                            '/pages/#{@page_id}', :method => 'get'%></span>"
     $redis.zadd "media:by_score", 0, @id
     add_tag unless @tags.nil?
   end

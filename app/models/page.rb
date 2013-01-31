@@ -9,8 +9,12 @@ class Page < ActiveRecord::Base
   end
   
   def media
-    media_hashes= media_ids.map{|id| $redis.hgetall "media:#{id}" }
-    media_hashes
+    media_ids.map{|id| $redis.hgetall "media:#{id}" }
+  end
+  
+  def add_to_feed(current_user)
+    $redis.zadd "user:#{current_user.id}:feed", Time.now.to_i, "<span class='feed-story'><%= link_to '#{Time.now.strftime("%b %e, %l:%M %p")}: 
+                                                                Created Page #{self.name}', '/pages/#{self.id}', :method => 'get'%></span>"
   end
 
 end

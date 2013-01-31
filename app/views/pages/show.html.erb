@@ -3,6 +3,9 @@
 		<div class="eight columns" style="margin-top: -1%">
 			<div class="six columns">
 				<h1><%= @page.name %></h1>
+				<% if  @page_score %>
+				<h4>Page Score: <%= @page_score %>%</h4>
+				<% end %>
 			</div>
 			<div class="six columns end">
 				<h4 class="subheader" style="line-height: 60px">created by <%= User.find(@page.user_id).name %> </h4>
@@ -27,6 +30,6 @@
 </div>
 <div id="add_media_div" class="reveal-modal xlarge">
   	<div class = "row add-media-partial-div">
-		<%= render :partial => 'add_media_form', :locals => {:page_id => @page.id} %>
+		<%= render :partial => 'add_media_form', :locals => {:page_id => @page.id, :category_id => @category_id} %>
 	</div>
 </div>
