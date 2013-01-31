@@ -59,7 +59,7 @@ class MediaController < ApplicationController
       @auth = request.env["omniauth.auth"]
       @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
     end
-   @ranked_pages = current_user.ranked_pages.reverse
+   @ranked_pages = current_user.ranked_pages.reverse unless current_user.nil?
   end
   
   def search
