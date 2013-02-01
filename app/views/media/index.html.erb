@@ -23,7 +23,7 @@
 	</div>
 	<div class="row two columns end">
 		<div class="twelve columns" style="min-height: 600px; box-shadow: inset 5px 0 5px -5px #676767; margin-left: -10%">
-			<h3 class="subheader" style="text-align:center">Recommended</h3>
+			<h3 class="subheader">Recommended</h3>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each do |page| %>
 		      		<h4 class="subheader"><%= link_to page[:name], page_path(page), :method => "get" %></h4>

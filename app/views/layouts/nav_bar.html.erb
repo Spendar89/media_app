@@ -16,7 +16,7 @@
 				<%= text_field_tag :query, nil, :placeholder => "Search for Category, Page, Media, or User" %>
 			</div>
 			<div class="four columns">
-				<%= submit_tag "search", :class => "button secondary radius", :style => "height: 25pt; line-height: 10pt" %>
+				<%= submit_tag "search", :class => "button secondary radius", :style => "height: 25pt; line-height: 10pt;" %>
 			</div>
 		<% end %>
 	</li>
@@ -30,6 +30,6 @@
 		</ul>
 	</li>
 	<% else %>
-		<li style="float:right"><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>
+		<li style="float: right"><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>
 	<% end %>
 </ul>
