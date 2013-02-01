@@ -1,5 +1,5 @@
 <ul class="nav-bar" style="margin-top: 0px">
-	<li><a href="/">Home</a></li>
+	<li><a id="logo" href="/">Huuvr</a></li>
 	<li><a href="#" data-reveal-id="page-form-modal">New Page</a></li>
 	<li class="has-flyout">
 		<a href="#">Categories</a>
@@ -10,13 +10,13 @@
 			<% end %>
 		</ul>
 	</li>
-	<li class="search four columns" style="height: 100%; padding: 0px" >
-		<%= form_tag(search_media_path, :method => "get") do %>
+	<li class="search four columns" >
+		<%= form_tag(search_media_path, :method => "get", :class => "nav-form") do %>
 			<div class="eight columns">
-				<%= text_field_tag :query, nil, :style => "-webkit-appearance:none;margin-top: 1%; height: 100%; width: 100%;" %>
+				<%= text_field_tag :query, nil, :placeholder => "Search for Category, Page, Media, or User" %>
 			</div>
 			<div class="four columns">
-				<%= submit_tag "search", :class => "button secondary", :style=>"width: 100%;" %>
+				<%= submit_tag "search", :class => "button secondary radius", :style => "height: 25pt; line-height: 10pt" %>
 			</div>
 		<% end %>
 	</li>

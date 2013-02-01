@@ -155,3 +155,59 @@ a:hover{
 .reccomended-list{
 	margin: 0%;
 }
+
+.nav-bar{
+	background:#FFF;
+	box-shadow: 0 0 3px grey;
+	height: 90px;
+	border-right: none;
+}
+
+.nav-bar>li{
+	border: none;
+	box-shadow: none;
+}
+
+.nav-bar>li:hover{
+	background: #FFF;
+	box-shadow: none;
+	height: 90px;
+}
+
+.nav-bar>li>a{
+	color: #5B8DBC;
+	font-weight: bold;		
+}
+
+.nav-bar>li>a:first-child{
+	font-size: 20pt;
+	line-height: 40pt;
+	padding-top: 30pt;
+}
+
+.nav-bar>li>a:hover{
+	color: #323232;
+}
+
+ul.flyout li a, .nav-bar li ul li a{
+	background: #fff;
+	box-shadow: none;
+}
+
+.flyout{
+	margin-top: 55%;
+}
+
+.nav-form {
+	-webkit-appearance:none;
+	margin-top:  40pt;
+}
+
+#logo{
+	font-size: 70pt;
+	line-height: 10pt;
+}
+
+#logo:hover{
+	color: #5B8DBC;
+}
