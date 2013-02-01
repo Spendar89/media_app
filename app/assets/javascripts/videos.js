@@ -49,7 +49,7 @@ function mediaZoom(){
 
 function notLoggedIn(){
 	$('.not-logged-in').click(function(){
-		// e.preventDefault();
+		e.preventDefault();
 		alert("Sorry, you must be logged in to do that.");
 	});
 }
