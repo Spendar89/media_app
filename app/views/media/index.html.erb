@@ -26,7 +26,10 @@
 			<h3 class="subheader">Recommended</h3>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each do |page| %>
-		      		<h4 class="subheader"><%= link_to page[:name], page_path(page), :method => "get" %></h4>
+					<% page_score = reccomend_page_score(page) %>
+					<% if page_score %>
+		      			<h4 class="subheader "><%= link_to "#{page[:name]}: #{page_score}%", page_path(page), :method => "get" %></h4>
+					<% end %>
 			<% end %>
 		<% end %>
 		</div>
