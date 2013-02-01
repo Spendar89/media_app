@@ -47,6 +47,13 @@ function mediaZoom(){
    });
 }
 
+function notLoggedIn(){
+	$('.not-logged-in').click(function(){
+		// e.preventDefault();
+		alert("Sorry, you must be logged in to do that.");
+	});
+}
+
 
 $(document).ready(function(){
 	$('#masonry-container').masonry({
@@ -59,11 +66,13 @@ $(document).ready(function(){
 	}, 2000);
 	disableThumbs();
 	mediaZoom();
+	notLoggedIn();
 });
 
 $(document).ajaxComplete(function(){
 	disableThumbs();
 	mediaZoom();
+	notLoggedIn();
 })
 
 
