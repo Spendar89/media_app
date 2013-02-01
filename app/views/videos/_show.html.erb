@@ -32,7 +32,7 @@
 				<div class="three columns">
 					<% media_user = User.find(video['user']) %>
 					<%  user_image = media_user.image unless media_user.nil? %>
-					<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 100%"></a>
+					<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 30px"></a>
 				</div>
 				<div>
 					<h8 style="color:grey"><%= link_to media_user.name, user_path(media_user) , :style=>"color:grey"%> on <%= Time.at(video['uploaded'].to_i).to_date %></h8>

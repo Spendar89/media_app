@@ -52,11 +52,9 @@ class MediaController < ApplicationController
   def index
     @recent_pages = Page.all 
     if params[:tag]
-      @auth = request.env["omniauth.auth"]
       @tag = params[:tag]
       @media = Tag.find_all(@tag).paginate(:page => params[:page], :per_page => 12)
     else   
-      @auth = request.env["omniauth.auth"]
       @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
     end
    @ranked_pages = current_user.ranked_pages.reverse unless current_user.nil?
