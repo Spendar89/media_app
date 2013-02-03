@@ -1,8 +1,15 @@
 <div class="twelve columns">
-	<h2> <%= @category[:name][0].upcase + @category[:name][1..-1] %> Pages: </h2>
-	<% @pages.each do |page| %>
-		<div class="row">
-			<h3 class="subheader"><%= link_to page[:name], page_path(page), :method => "get", :style=>"color:grey" %></h3>
-		</div>
+	<h2> <%= @category[:name][0].upcase + @category[:name][1..-1] %> </h2>
+	<%= will_paginate @media %>
+	<div id="masonry-container" class="masonry media_div infinite-scroll clearfix">
+	<% for medium in @media %>
+		<% unless medium["type"].nil? %>
+			<% if medium["type"] == "youtube" %>
+				<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
+			<% elsif medium["type"] == "soundcloud" %>
+				<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+			<% end %>
+		<% end %>
 	<% end %>
+	</div>
 </div>

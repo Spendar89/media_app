@@ -54,11 +54,32 @@ function notLoggedIn(){
 	});
 }
 
+function keyNav(){
+	var first = true
+	$(document.documentElement).keyup(function (event) {
+		if (event.keyCode == 39) {
+			if(first == true){
+				$('.media_parent').first().trigger("mouseover").addClass('selected');
+				first = false;
+			}else{
+				$('.selected').trigger('mouseout').removeClass('selected').parent().nextAll('.media_row:first').children('.media_parent').trigger('mouseover').addClass('selected');
+			}	
+		} else if (event.keyCode == 37) {
+			if(first == true){
+				$('.media_parent').first().trigger("mouseover").addClass('selected');
+				first  = false
+			}else{
+				$('.selected').trigger('mouseout').removeClass('selected').parent().prevAll('.media_row:first').children('.media_parent').trigger('mouseover').addClass('selected');
+			}
+		}
+	});
+}
+
 
 $(document).ready(function(){
-	$('#masonry-container').masonry({
+	$('#masonry-container').isotope({
 		itemSelector: '.box',
-		isFitWidth: true,	
+		layoutMode : 'masonry'
 	});
 	scrollLoad();
 	setTimeout(function(){
@@ -67,6 +88,7 @@ $(document).ready(function(){
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
+	keyNav();
 });
 
 $(document).ajaxComplete(function(){

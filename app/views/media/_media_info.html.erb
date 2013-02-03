@@ -1,0 +1,28 @@
+<div class="info-div row" style="margin-top: 2%; margin-left: -3pt">
+	<div class="twelve columns">
+		<h6 style="color: #5B8DBC; line-height: 15px;"><%= medium['title'] %></h6>	
+	</div>
+</div>
+<div class="row">
+	<div class="twelve columns" style="margin-bottom: 4%; margin-left: 2%">
+		<% unless medium['tags'].nil? %>
+			<% medium['tags'].split(",").each do |tag| %>
+				<%= link_to "##{tag}","/tags/#{tag}", :class => "tag"%>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+<div class="twelve columns user-info" style="width: 102%">
+	<div class="twelve columns" style="margin-left: -8%">
+		<div class="three columns">
+			<% media_user = User.find(medium['user']) %>
+			<%  user_image = media_user.image unless media_user.nil? %>
+			<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 30px"></a>
+		</div>
+		<div>
+			<% page_name =  $redis.get "page:#{medium['page_id']}:name" %>
+			<h8 ><%= link_to media_user.name, user_path(media_user) , :class=>"box-link"%> on <%= Time.at(medium['uploaded'].to_i).strftime("%b %e") %> in <%=link_to page_name, "/pages/#{medium['page_id']}", :method => 'get', :class=>"box-link" %></h8>
+		</div>
+	</div>
+</div>
+</div>

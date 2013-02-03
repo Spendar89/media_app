@@ -32,16 +32,16 @@ class MediaController < ApplicationController
     category_id = Page.find(params[:page_id])[:category_id]
     @tags = "#{Category.find(category_id)[:name]}"
     if current_user.nil?
-      @error = "You Must Be Logged-in To Submit a Link!"
+      @user_error = true
     else
-      if /youtube/.match(params[:url])
+      if /youtube/.match(params[:url]) && /v=/.match(params[:url])
         @preview_title = Video.yt_title(params[:url])
         @preview_description = Video.yt_description(params[:url])
       elsif /soundcloud/.match(params[:url])
         @preview_title = Sound.title(params[:url])
         @preview_description = Sound.description(params[:url])
       else
-        @error = "Please Enter a Valid Soundcloud or Youtube Url!"
+        @url_error = true
       end
     end
     respond_to do |format|

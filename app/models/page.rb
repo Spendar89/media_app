@@ -16,5 +16,9 @@ class Page < ActiveRecord::Base
     $redis.zadd "user:#{current_user.id}:feed", Time.now.to_i, "<aside><p class='feed-story'><%= link_to '#{Time.now.strftime("%b %e, %l:%M %p")}: 
                                                                 Created Page #{self.name}', '/pages/#{self.id}', :method => 'get'%></p></aside>"
   end
+  
+  def add_redis
+    $redis.set "page:#{self.id}:name", self.name
+  end
 
 end

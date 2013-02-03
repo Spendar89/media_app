@@ -1,6 +1,6 @@
 <% poll_redis %>
-<div class="row">
-	<div class="yt_parent box col3" video_id= "<%= video['id'] %>" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 6px; background: white;">
+<div class="row media_row">
+	<div class="yt_parent box col3 media_parent" video_id= "<%= video['id'] %>" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 6px; background: white;">
 		<div class="invisible-overlay" video_id="<%= video['id'] %>" style="margin-top: 10%; height: 200px; width: 100%; background: transparent; position: absolute; z-index:2">
 		</div>
 		<div class="row">
@@ -11,34 +11,8 @@
 				<iframe id="<%= video['id'] %>" class="yt-video <%= 'poll-redis' if poll_redis %> <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%= video['id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=1&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0" frameborder="0" allowscriptaccess="always"></iframe>
 			</div>
 		</div>
-		<div class="info-div row" style="margin-top: 2%; margin-left: -3pt">
-			<div class="twelve columns">
-				<h6 style="color: #5B8DBC; line-height: 15px;"><%= video['title'] %></h6>	
-			</div>
-		</div>
-		<div class="row">
-			<div class="twelve columns" style="margin-bottom: 4%; margin-left: 2%">
-				<% unless video['tags'].nil? %>
-					<% video['tags'].split(",").each do |tag| %>
-						<%= link_to "##{tag}","/tags/#{tag}", :class => "tag"%>
-					<% end %>
-				<% end %>
-			</div>
-		</div>
-		<div class="twelve columns user-info" style="width: 102%">
-			<div class="twelve columns" style="margin-left: -8%">
-				<div class="three columns">
-					<% media_user = User.find(video['user']) %>
-					<%  user_image = media_user.image unless media_user.nil? %>
-					<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 30px"></a>
-				</div>
-				<div>
-					<h8 style="color:grey"><%= link_to media_user.name, user_path(media_user) , :style=>"color:grey"%> on <%= Time.at(video['uploaded'].to_i).to_date %></h8>
-				</div>
-			</div>
-		</div>
-	</div>
+		<%= render :partial => "media/media_info", :locals => {:medium => video} %>
 </div>
 
-	<div id="<%= video['id']%>-zoom-modal" class="reveal-modal xlarge" style="min-width: 600px">
-	</div>
+<div id="<%= video['id']%>-zoom-modal" class="reveal-modal xlarge" style="min-width: 600px">
+</div>

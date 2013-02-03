@@ -28,11 +28,11 @@ function createYTEvent(playerId){
 		setTimeout(function(){
 			parent_div.find('.overlay').fadeOut();
 		}, 3000);
-			$(parent_div).hover(function(){
+			$(parent_div).mouseover(function(){
 				player.seekTo(parent_div.data("start"), 'false');
 				player.unMute();	
 				player.playVideo();	
-			}, function(){
+			}).mouseout(function(){
 				player.pauseVideo();
 			});
 

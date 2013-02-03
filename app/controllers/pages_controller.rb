@@ -3,6 +3,11 @@ class PagesController < ApplicationController
   def index
     @category = Category.find(params[:category_id])
     @pages = @category.pages
+    media = []
+    @pages.each do |page|
+      media << page.media
+    end
+    @media = media.flatten.paginate(:page => params[:page], :per_page => 12)
   end
   
   def create
@@ -12,7 +17,7 @@ class PagesController < ApplicationController
   end
   
   def show
-    @page_score = current_user.reccomend_page_score(params[:id])
+    @page_score = current_user.reccomend_page_score(params[:id]) unless current_user.nil?
     @recent_pages = Page.all
     @page = Page.find(params[:id])
     @category_id = @page.category_id

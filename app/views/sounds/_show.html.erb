@@ -1,9 +1,7 @@
-<div class="row">
-	<div class="sc_parent box col3" data-uploaded="<%= sound['uploaded']%>" style="background: white; border-radius: 0px;">
+<div class="row media_row">
+	<div class="sc_parent box col3 media_parent" data-uploaded="<%= sound['uploaded']%>" style="background: white; border-radius: 0px;">
 		<div class="row">
-			<% unless current_user.nil? %>
 				<%= render :partial => "media/rating_div", :locals => {:medium => sound} %>
-			<% end %>
 			<div clas="twelve columns">	
 				<object height="90" width="87%" data-start="<%= sound['start'] %>" id="<%= sound['id'] %>" class="sc-player"   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
 					<param name="movie" value="http://player.soundcloud.com/player.swf?url=<%= sound['url']%>&enable_api=true&auto_play=true&single_active=false&object_id=<%= sound['id'] %>"></param>
@@ -12,31 +10,7 @@
 				</object>
 			</div>
 		</div>
-		<div class="info-div row" style="margin-top: 2%; margin-left: -3pt">
-			<div class="twelve columns">
-				<h6 style="color: #5B8DBC; line-height: 15px;"><%= sound['title'] %></h6>
-			</div>
-		</div>
-		<div class="row">
-			<div class="twelve columns">
-				<% unless sound['tags'].nil? %>
-					<% sound['tags'].split(",").each do |tag| %>
-						<%= link_to "##{tag}","/tags/#{tag}", :class => "tag"%>
-					<% end %>
-				<% end %>
-			</div>
-		</div>
-		<div class="twelve columns user-info" style="width: 102%">
-			<div class="twelve columns" style="margin-left: -8%">
-				<div class="three columns">
-					<% media_user = User.find(sound['user']) %>
-					<%  user_image = media_user.image unless media_user.nil? %>
-					<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 30px"></a>
-				</div>
-				<div>
-					<h8 style="color:grey"><%= link_to media_user.name, user_path(media_user) , :style=>"color:grey"%> on <%= Time.at(sound['uploaded'].to_i).to_date %></h8>
-				</div>
-			</div>
-		</div>
-	</div>
+		<%= render :partial => "media/media_info", :locals => {:medium => sound} %>
+</div>
+<div id="<%= sound['id']%>-zoom-modal" class="reveal-modal xlarge" style="min-width: 600px">
 </div>

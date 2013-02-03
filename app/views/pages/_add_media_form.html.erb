@@ -2,8 +2,14 @@
 	<h4 class="subheader">Copy and paste a valid Soundcloud or Youtube URL, and specify when you'd like your media to start playing.</h4>
 	<%= form_tag("/media/preview", :remote => :true) do %>
 		<div class="row">
+			<div class="alert-box alert user-error" style="display: none">
+			  You Must be Logged In to Submit a Link
+			</div>
 			<div class="six columns">
 				<%= text_field_tag(:url, nil, :placeholder => "Copy and Paste a Soundcloud or Youtube URL") %>
+				<div class="alert-box alert url-error" style="display: none">
+				  Please Enter a Valid Soundcloud or Youtube URL
+				</div>
 			</div>
 			<div class="six columns">
 				<div class="four columns">

@@ -1,10 +1,18 @@
-<% if @error.nil? %>
+<% if !@user_error && !@url_error %>
 	$('.add-link-div').html("<%=j render(:partial => 'preview', 
 							  :locals => {:preview_title => @preview_title, 
 							  :preview_description => @preview_description,
 							  :url => @url,
 							  :seconds => @seconds,
 							  :page_id => @page_id})%>");
-<% else %>
-	alert("<%= @error %>");
+<% elsif @url_error %>
+	$('.url-error').fadeIn();
+	setTimeout(function(){
+		$('.rl-error').fadeOut()
+	}, 3000);
+<% elsif @user_error %>
+	$('.user-error').fadeIn();
+	setTimeout(function(){
+		$('.user-error').fadeOut()
+	}, 3000);
 <% end %>

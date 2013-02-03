@@ -19,6 +19,7 @@
  *= require 'masonry/infinitescroll'
  *= require 'masonry/right-to-left'
  *= require 'masonry/transitions'
+ *= require isotope
  *= require_tree .
  */
 
@@ -56,6 +57,10 @@
 
 .box:hover{
 	box-shadow: 0 0 10px black;
+}
+
+.selected{
+	box-shadow: 0 0 10px black;	
 }
 
 .col3 { width: 250px;  }
@@ -161,6 +166,14 @@ a:hover{
 	box-shadow: 0 0 3px grey;
 	height: 90px;
 	border-right: none;
+}
+
+.box-link{
+	color: #637699;
+}
+
+.box-link:hover{
+	color:#131C35;
 }
 
 .nav-bar>li{
