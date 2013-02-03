@@ -16,7 +16,6 @@ function scrollLoad(){
 		$(window).scroll(function() {
 			url = $('.pagination .next_page').attr('href')
 	   		if(url && $(window).scrollTop() > $(document).height() - $(window).height() - 50){
-				$('#masonry-container').removeClass('transitions-enabled')
 				$('.pagination').text("Fetching more products...")
 				$.getScript(url)
 				$(window).scroll()
@@ -56,35 +55,36 @@ function notLoggedIn(){
 
 function keyNav(){
 	var first = true
+	var counter = -1
 	$(document.documentElement).keyup(function (event) {
-		if (event.keyCode == 39) {
-			if(first == true){
-				$('.media_parent').first().trigger("mouseover").addClass('selected');
-				first = false;
-			}else{
-				$('.selected').trigger('mouseout').removeClass('selected').parent().nextAll('.media_row:first').children('.media_parent').trigger('mouseover').addClass('selected');
-			}	
-		} else if (event.keyCode == 37) {
-			if(first == true){
-				$('.media_parent').first().trigger("mouseover").addClass('selected');
-				first  = false
-			}else{
-				$('.selected').trigger('mouseout').removeClass('selected').parent().prevAll('.media_row:first').children('.media_parent').trigger('mouseover').addClass('selected');
-			}
+		var array = []
+		$('.media_parent').each(function(){
+			array.push($(this))
+		});
+
+		function SortByUploaded(a, b){
+			var aUploaded = a.data('uploaded');
+			var bUploaded = b.data('uploaded'); 
+			return ((aUploaded < bUploaded) ? -1 : ((aUploaded > bUploaded) ? 1 : 0));
 		}
+		var boxes = array.sort(SortByUploaded).reverse();
+
+		if (event.keyCode == 39) {
+			counter += 1
+		} else if (event.keyCode == 37) { 
+			counter -= 1
+		}
+		$('.selected').trigger('mouseout').removeClass('selected');
+		$(boxes[counter]).trigger('mouseover').addClass('selected');	
 	});
 }
 
 
 $(document).ready(function(){
-	$('#masonry-container').isotope({
-		itemSelector: '.box',
-		layoutMode : 'masonry'
+	$('#masonry-container').masonry({
+		itemSelector: '.box'
 	});
 	scrollLoad();
-	setTimeout(function(){
-		$('#masonry-container').addClass('transitions-enabled');
-	}, 2000);
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
