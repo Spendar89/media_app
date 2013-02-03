@@ -95,6 +95,7 @@ $(document).ajaxComplete(function(){
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
+	keyNav();
 })
 
 

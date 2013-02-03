@@ -29,6 +29,7 @@ function createYTEvent(playerId){
 			parent_div.find('.overlay').fadeOut();
 		}, 3000);
 			$(parent_div).mouseover(function(){
+				$('.selected').trigger('mouseout').removeClass('selected');
 				player.seekTo(parent_div.data("start"), 'false');
 				player.unMute();	
 				player.playVideo();	

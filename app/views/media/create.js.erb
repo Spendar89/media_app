@@ -1,7 +1,7 @@
 <% if @error.nil? %>
 	$('#add_media_div').trigger('reveal:close');
 	$('.media_div').prepend("<%=j render(:partial => 'create', :locals => {:medium => @new_media})%>");
-	$('#masonry-container').isotope('reloadItems');
+	$('#masonry-container').masonry('reload');
 	$('.add-media-partial-div').html("<%=j  render(:partial => 'pages/add_media_form', :locals => { :page_id => @page_id, :category_id => @category_id }) %>");
 	<% if @new_media['type'] == "youtube" %>
 			var playerId = $('.yt-video').first().attr('id');
@@ -21,6 +21,7 @@
 						parent_div.find('.overlay').fadeOut();
 					}, 3000);	
 					$(parent_div).mouseover(function(){
+						$('.selected').trigger('mouseout').removeClass('selected');
 						player.seekTo(parent_div.data("start"), 'false');
 						player.unMute();	
 						player.playVideo();	
