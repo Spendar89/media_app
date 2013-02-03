@@ -1,11 +1,11 @@
 <% for medium in @media %>
 	<% unless medium["type"].nil? %>
 		<% if medium["type"] == "youtube" %>
-			var items = $("<%= j render(:partial => 'videos/show', :locals => {:video => medium, :poll_redis => true}) %>");
+			$('#masonry-container').append("<%= j render(:partial => 'videos/show', :locals => {:video => medium, :poll_redis => true}) %>");
 		<% elsif medium["type"] == "soundcloud" %>
-			var items = $("<%= j render(:partial => 'sounds/show', :locals => {:sound => medium}) %>");
+			$('#masonry-container').append("<%= j render(:partial => 'sounds/show', :locals => {:sound => medium}) %>");
 		<% end %>
-		$('#masonry-container').isotope( 'appended', items)
+		$('#masonry-container').masonry('reload');
 	<% end %>
 <% end %>
 
