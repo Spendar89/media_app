@@ -5,7 +5,7 @@
 		<% elsif medium["type"] == "soundcloud" %>
 			$('#masonry-container').append("<%= j render(:partial => 'sounds/show', :locals => {:sound => medium}) %>");
 		<% end %>
-		$('#masonry-container').isotope('reload');
+		$('#masonry-container').isotope('reloadItems');
 	<% end %>
 <% end %>
 
