@@ -76,7 +76,7 @@ function keyNav(){
 		} else if (event.keyCode == 38){
 			counter -= numColumns()
 			
-		}else if (event.keyCode == 36){
+		}else if (event.keyCode == 40){
 			counter += numColumns()
 		}
 		$('.selected').trigger('mouseout').removeClass('selected');
