@@ -73,10 +73,32 @@ function keyNav(){
 			counter += 1
 		} else if (event.keyCode == 37) { 
 			counter -= 1
+		} else if (event.keyCode == 38){
+			counter -= numColumns()
+			
+		}else if (event.keyCode == 36){
+			counter += numColumns()
 		}
 		$('.selected').trigger('mouseout').removeClass('selected');
 		$(boxes[counter]).trigger('mouseover').addClass('selected');	
 	});
+}
+
+function numColumns(){
+	var conWidth = $('#masonry-container').width();
+	if (conWidth >= 1750){
+		return 6
+	}else if (conWidth >= 1460 && conWidth < 1750){
+		return 5
+	}else if (conWidth >= 1170 && conWidth < 1460){
+		return  4
+	}else if(conWidth < 1170 && conWidth >= 880){
+		return  3
+	}else if (conWidth < 880 && conWidth > 590){
+		return 2
+	}else{
+		return 1
+	}	
 }
 
 
