@@ -223,3 +223,11 @@ ul.flyout li a, .nav-bar li ul li a{
 #logo:hover{
 	color: #5B8DBC;
 }
+
+.overlayed{
+	filter: blur(2px) brightness(-0.4);
+	-webkit-filter: blur(2px) brightness(-0.4);
+	-moz-filter: blur(2px) brightness(-0.4);
+	-o-filter: blur(2px) brightness(-0.4);
+	-ms-filter: blur(2px) brightness(-0.4);
+}
