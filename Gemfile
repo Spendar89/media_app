@@ -23,3 +23,4 @@ gem 'omniauth-facebook'
 gem 'will_paginate', '~> 3.0'
 gem 'foundation-icons-rails'
 gem "koala"
+gem 'newrelic_rpm'
