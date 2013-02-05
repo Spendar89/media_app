@@ -21,7 +21,7 @@
 	<div class="four columns end">
 			<h4 class="twelve columns" style="margin-left: 2%">Pages</h4>
 			<% @user.pages.each do |page|%>
-				<div class="three columns end" style="margin: 2%"><span class="round label secondary"><%= link_to page[:name], page_path(page), :method => "get" %></span></div>
+				<div class="three columns end" style="margin: 2%"><span class="round label secondary"><%= link_to page[:name].gsub("'", ""), page_path(page), :method => "get" %></span></div>
 			<% end %>
 	</div>
 </div>
