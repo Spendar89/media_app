@@ -61,7 +61,6 @@ function keyNav(){
 		$('.media_parent').each(function(){
 			array.push($(this))
 		});
-
 		function SortByUploaded(a, b){
 			var aUploaded = a.data('uploaded');
 			var bUploaded = b.data('uploaded'); 

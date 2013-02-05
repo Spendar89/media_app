@@ -13,8 +13,9 @@ class Page < ActiveRecord::Base
   end
   
   def add_to_feed(current_user)
+    escape_name = self.name.gsub("'", "")
     $redis.zadd "user:#{current_user.id}:feed", Time.now.to_i, "<aside><p class='feed-story'><%= link_to '#{Time.now.strftime("%b %e, %l:%M %p")}: 
-                                                                Created Page #{self.name}', '/pages/#{self.id}', :method => 'get'%></p></aside>"
+                                                                Created Page #{escape_name}', '/pages/#{self.id}', :method => 'get'%></p></aside>"
   end
   
   def add_redis
