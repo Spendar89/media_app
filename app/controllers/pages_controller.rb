@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   def create
     @page = current_user.pages.create(:category_id => params[:category_id], :name => params[:name].gsub("'", "\\\\'"))
     @page.add_to_feed(current_user)
+    @page.add_redis
     redirect_to page_path(@page)
   end
   

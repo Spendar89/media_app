@@ -15,10 +15,9 @@ function scrollLoad(){
 	if ($('.pagination').length){
 		$(window).scroll(function() {
 			url = $('.pagination .next_page').attr('href')
-	   		if(url && $(window).scrollTop() > $(document).height() - $(window).height() - 50){
-				$('.pagination').text("Fetching more products...")
-				$.getScript(url)
-				$(window).scroll()
+	   		if(url && $(window).scrollTop() > $(document).height() - $(window).height() - 200){
+				$.getScript(url);
+				$(window).scroll();
 	   		}
 		});
 	}
@@ -116,7 +115,6 @@ $(document).ajaxComplete(function(){
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
-	keyNav();
 })
 
 
