@@ -38,7 +38,7 @@ function createYTEvent(playerId){
 			}).mouseout(function(){
 				player.pauseVideo();
 			});
-		parent_div.trigger('mouseout');
+			$(parent_div).trigger('mouseout');
 
 		}
 	}
