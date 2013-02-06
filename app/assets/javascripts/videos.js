@@ -1,16 +1,3 @@
-
-
-// $(function() {
-//     setTimeout(updateVideos, 10000);
-// });
-// 
-// function updateVideos(){
-// 	var after = $(".videos_div").children(':first').data("uploaded");
-// 	$.getScript("/videos/poll_redis.js?before=none&after=" + after)
-// 	setTimeout(updateVideos, 10000);
-// }
-
-
 function scrollLoad(){
 	if ($('.pagination').length){
 		$(window).scroll(function() {

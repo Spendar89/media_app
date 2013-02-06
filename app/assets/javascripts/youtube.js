@@ -22,6 +22,7 @@ function createYTEvent(playerId){
 		var parent_div = $('#'+playerId).parents('.yt_parent');	
 		var player = event.target // Set player reference
 		player.mute();
+		player.setPlaybackQuality('small');
 		setTimeout(function(){
 			player.pauseVideo();
 		}, 2000);
