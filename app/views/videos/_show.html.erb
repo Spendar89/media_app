@@ -8,7 +8,7 @@
 			</div>
 				<%= render :partial => "media/rating_div", :locals => {:medium => video} %>
 			<div class="twelve columns">
-				<iframe id="<%= video['id'] %>" class="yt-video <%= 'poll-redis' if poll_redis %> <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%= video['id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=1&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0" frameborder="0" allowscriptaccess="always"></iframe>
+				<iframe id="<%= video['id'] %>" class="yt-video <%= 'poll-redis' if poll_redis %> <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%= video['id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=0&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0" frameborder="0" allowscriptaccess="always"></iframe>
 			</div>
 		</div>
 		<%= render :partial => "media/media_info", :locals => {:medium => video} %>
