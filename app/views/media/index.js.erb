@@ -29,8 +29,9 @@ $(document).ajaxComplete(function(){
 		return function (event) {
 			var parent_div = $('#'+playerId).parents('.yt_parent');	
 			var player = event.target
-			player.setPlaybackQuality('small');
 			player.mute();
+			player.playVideo();
+			player.setPlaybackQuality('small');
 			setTimeout(function(){
 				player.pauseVideo();
 			}, 2000);
