@@ -15,7 +15,7 @@ function scrollLoad(){
 	if ($('.pagination').length){
 		$(window).scroll(function() {
 			url = $('.pagination .next_page').attr('href')
-	   		if(url && $(window).scrollTop() > $(document).height() - $(window).height() - 200){
+	   		if(url && $(window).scrollTop() > $(document).height() - $(window).height()){
 				$.getScript(url);
 				$(window).scroll();
 	   		}
@@ -115,6 +115,7 @@ $(document).ajaxComplete(function(){
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
+	keyNav();
 })
 
 
