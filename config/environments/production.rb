@@ -67,5 +67,5 @@ YoutubeApp::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   ENV["REDISCLOUD_URL"] = 'redis://rediscloud:jKtTH4kVEOVJg9S1@redis-17808.us-east-1-4.3.ec2.garantiadata.com:17808'
   ENV['FACEBOOK_APP_ID'] = "504167816300624"
-  ENV['FACEBOOK_SECRET'] = "955a04fb2e6ca5e54a850d814763ca2e"
+  ENV['FACEBOOK_SECRET'] = "1204222b5d48970ce6c4d91c97b52bd3"
 end
