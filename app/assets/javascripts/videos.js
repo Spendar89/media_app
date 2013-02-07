@@ -3,6 +3,7 @@ function scrollLoad(){
 		$(window).scroll(function() {
 			url = $('.pagination .next_page').attr('href')
 	   		if(url && $(window).scrollTop() > $(document).height() - $(window).height()){
+				$('.loader').fadeIn();
 				$('.pagination').text("Fetching more products...");
 				$.getScript(url);
 				$(window).scroll();
@@ -105,6 +106,7 @@ $(document).ready(function(){
 });
 
 $(document).ajaxComplete(function(){
+	$('.loader').fadeOut();
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
