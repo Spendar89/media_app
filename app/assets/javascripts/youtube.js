@@ -36,10 +36,6 @@ function createYTEvent(playerId){
 		});
 		}
 	}
-	
-function onPlayerError(event){
-	event.target.mute();
-}
 
 function  onPlayerStateChange(playerId){
 		return function (event) {
