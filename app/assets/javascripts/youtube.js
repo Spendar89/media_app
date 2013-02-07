@@ -22,13 +22,15 @@ function onYouTubeIframeAPIReady() {
 function createYTEvent(playerId){ 
 	return function (event) {
 		var parent_div = $('#'+playerId).parents('.yt_parent');
-		var player = event.target
+		var player = event.target;
+		player.mute();
 		parent_div.addClass('loading');	
 		player.playVideo();
 		parent_div.hover(function(){
 				$('.selected').trigger('mouseout').removeClass('selected');
 				player.seekTo(parent_div.data("start"), 'false');	
 				player.playVideo();
+				player.unMute();
 		},
 			function(){
 				player.pauseVideo();

@@ -34,11 +34,13 @@ $(document).ajaxComplete(function(){
 			var parent_div = $('#'+playerId).parents('.yt_parent');	
 			var player = event.target;
 			parent_div.addClass('loading');
+			player.mute();
 			player.playVideo();
 			parent_div.hover(function(){
 				$('.selected').trigger('mouseout').removeClass('selected');
 				player.seekTo(parent_div.data("start"), 'false');	
-				player.playVideo();	
+				player.playVideo();
+				player.unMute();	
 			}, function(){
 				player.pauseVideo();
 			});
