@@ -21,14 +21,12 @@ function onYouTubeIframeAPIReady() {
 
 function createYTEvent(playerId){ 
 	return function (event) {
-		var parent_div = $('#'+playerId).parents('.yt_parent');	
-		var player = event.target // Set player reference
+		var parent_div = $('#'+playerId).parents('.yt_parent');
+		var player = event.target
+		parent_div.addClass('loading');	
 		player.playVideo();
 		player.mute();
-		setTimeout(function(){
-			player.pauseVideo();
-		}, 1000);
-		$(parent_div).mouseover(function(){
+		parent_div.mouseover(function(){
 			$('.selected').trigger('mouseout').removeClass('selected');
 			player.seekTo(parent_div.data("start"), 'false');
 			player.unMute();	
@@ -45,8 +43,14 @@ function onPlayerError(event){
 
 function  onPlayerStateChange(playerId){
 		return function (event) {
-			if (event.data == YT.PlayerState.PAUSED){
-				var parent_div = $('#'+playerId).parents('.yt_parent');	
+			var parent_div = $('#'+playerId).parents('.yt_parent');	
+			var player = event.target
+			if (event.data == YT.PlayerState.PLAYING && parent_div.hasClass('loading')){
+				player.mute();
+				player.pauseVideo();
+				parent_div.removeClass('loading');
+			}
+			else if (event.data == YT.PlayerState.PAUSED){
 				parent_div.find('.overlay').fadeOut();	
 			}	
 	}

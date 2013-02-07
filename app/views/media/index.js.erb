@@ -32,13 +32,11 @@ $(document).ajaxComplete(function(){
 	function createYTEvent(playerId){ 
 		return function (event) {
 			var parent_div = $('#'+playerId).parents('.yt_parent');	
-			var player = event.target
+			var player = event.target;
+			parent_div.addClass('loading');
 			player.playVideo();
-			player.mute();
-			setTimeout(function(){
-				player.pauseVideo();
-			}, 2000);	
-			$(parent_div).hover(function(){
+			player.mute();	
+			parent_div.hover(function(){
 				$('.selected').trigger('mouseout').removeClass('selected');
 				player.seekTo(parent_div.data("start"), 'false');
 				player.unMute();	
@@ -46,7 +44,6 @@ $(document).ajaxComplete(function(){
 			}, function(){
 				player.pauseVideo();
 			});
-			$(parent_div).trigger('mouseout');
 		}
 	}
 	
@@ -56,8 +53,14 @@ $(document).ajaxComplete(function(){
 
 	function  onPlayerStateChange(playerId){
 			return function (event) {
-				if (event.data == YT.PlayerState.PAUSED){
-					var parent_div = $('#'+playerId).parents('.yt_parent');	
+				var parent_div = $('#'+playerId).parents('.yt_parent');	
+				var player = event.target
+				if (event.data == YT.PlayerState.PLAYING && parent_div.hasClass('loading')){
+					player.mute();
+					player.pauseVideo();
+					parent_div.removeClass('loading');
+				}
+				else if (event.data == YT.PlayerState.PAUSED){
 					parent_div.find('.overlay').fadeOut();	
 				}	
 		}
