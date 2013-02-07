@@ -88,6 +88,10 @@ function numColumns(){
 	}	
 }
 
+function deleteVideo(video_id){
+	$('div[video_id='+video_id).remove();
+}
+
 
 $(document).ready(function(){
 	$('#masonry-container').masonry({

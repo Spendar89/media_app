@@ -1,15 +1,15 @@
 <div class="rating-div twelve columns">
-	<div class="five columns" style="margin-left: -6%">
+	<div class="seven columns" style="margin-left: -6%">
 		<% unless current_user.nil? %>
 			<% if current_user.voted_up?(medium['id']) || !current_user.already_voted?(medium['id']) %>
-				<div class="six columns thumbs-up-div">
+				<div class="two columns thumbs-up-div">
 					<%= link_to thumbs_up_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_up", :class => "#{'voted_up' if current_user.voted_up?(medium['id'])}" do %>
 						<span class="glyph social" style="font-size: 20pt">a</span>
 					<% end %>
 				</div>
 			<% end %>
 			<% if current_user.voted_down?(medium['id']) || !current_user.already_voted?(medium['id']) %>
-				<div class="six columns end thumbs-down-div">
+				<div class="two columns end thumbs-down-div">
 					<%= link_to thumbs_down_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_down", :class => "#{'voted_down' if current_user.voted_down?(medium['id'])}" do %>
 						<span class="glyph social" style="font-size: 20pt">b</span>
 					<% end %>
@@ -24,7 +24,12 @@
 			</div>
 		<% end %>
 	</div>
-	<div class="seven columns score-div" style="margin-top: -4%; margin-right: -2%; text-align: right">
-		<h6 style="color: grey"><%= (medium['score'].to_f*100).to_i %>%</h6>
+	<div class="five columns score-div" style="margin-top: -6%; margin-right: -5%">
+		<h4 class="six columns end" style="color: grey;"><%= (medium['score'].to_f*100).to_i %>%</h4>
+		<% if current_user.id == medium['user_id'].to_i || current_user.uid.to_i == 1092240216 %>
+			<%= link_to "/media/#{medium['id']}", :method => :delete, :class => "delete-button six columns end", :style => "margin-top: 15%", :remote => :true, :confirm => "Are You Sure You Want to Remove This Item?"  do %>
+				<span class="glyph general" style="font-size: 15pt;">g</span>
+			<% end %>
+		<% end %>
 	</div>
 </div>

@@ -35,6 +35,6 @@ YoutubeApp::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  ENV['FACEBOOK_APP_ID'] = "504167816300624";
-  ENV['FACEBOOK_SECRET'] = "955a04fb2e6ca5e54a850d814763ca2e";
+  ENV['FACEBOOK_APP_ID'] = "504167816300624"
+  ENV['FACEBOOK_SECRET'] = "1204222b5d48970ce6c4d91c97b52bd3";
 end

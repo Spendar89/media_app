@@ -25,6 +25,22 @@ class MediaController < ApplicationController
     end
   end
   
+  def destroy
+    @id = params[:id]
+    @page_id = $redis.hget "media:#{@id}", "page_id"
+    @tags = $redis.hget "media:#{@id}", "tags"
+    @user_id = $redis.hget "media:#{@id}", "user_id"
+    if current_user.id == @user_id.to_i || current_user.uid.to_i == 1092240216
+      @tags.split(",").each{ |tag|  $redis.srem "tag:#{tag}", @id }
+      $redis.del "media:#{@id}"
+      $redis.zrem "media:by_upload", @id
+      $redis.zrem "page:#{@page_id}:media:by_upload", @id
+      $redis.zrem "user:#{current_user.id}:media:by_upload", @id
+      $redis.zrem "media:by_score", @id
+      $redis.srem "media:youtube", @id
+    end
+  end
+  
   def preview
     @url = params[:url]
     @seconds = Medium.seconds(params[:start_minutes], params[:start_seconds])

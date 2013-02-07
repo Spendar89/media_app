@@ -13,7 +13,7 @@ function onYouTubeIframeAPIReady() {
 			events: {
 				'onReady': createYTEvent(playerId),
 				'onStateChange': onPlayerStateChange(playerId),
-				'onError': onPlayerError
+				// 'onError': onPlayerError
 			}
 		});
 	});
