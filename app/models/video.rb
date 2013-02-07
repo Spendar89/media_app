@@ -48,7 +48,7 @@ class Video
   end
   
   def yt_id
-    @url.split('v=')[-1]
+    @url.split('v=')[-1][0..10]
   end
   
   def self.yt_id(url)
