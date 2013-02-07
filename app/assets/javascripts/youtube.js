@@ -38,7 +38,7 @@ function createYTEvent(playerId){
 	}
 	
 function onPlayerError(event){
-	alert(event.data);
+	event.target.mute();
 }
 
 function  onPlayerStateChange(playerId){
