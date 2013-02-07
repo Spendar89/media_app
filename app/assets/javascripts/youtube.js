@@ -12,7 +12,8 @@ function onYouTubeIframeAPIReady() {
 		player = new YT.Player(playerId, {
 			events: {
 				'onReady': createYTEvent(playerId),
-				'onStateChange': onPlayerStateChange(playerId)
+				'onStateChange': onPlayerStateChange(playerId),
+				'onError': onPlayerError
 			}
 		});
 	});
@@ -33,6 +34,10 @@ function createYTEvent(playerId){
 		});
 		}
 	}
+	
+function onPlayerError(event){
+	event.target.stopVideo();
+}
 
 function  onPlayerStateChange(playerId){
 		return function (event) {
@@ -47,6 +52,13 @@ function  onPlayerStateChange(playerId){
 			}	
 	}
 }
+
+
+
+
+
+
+
 
 
 

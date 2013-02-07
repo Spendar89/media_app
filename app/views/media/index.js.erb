@@ -23,7 +23,8 @@ $(document).ajaxComplete(function(){
 	  	player = new YT.Player(playerId, {
 	    	events: {
 				'onReady': createYTEvent(playerId),
-				'onStateChange': onPlayerStateChange(playerId)
+				'onStateChange': onPlayerStateChange(playerId),
+				'onError': onPlayerError
 			}
 	  	});
 	});
@@ -44,13 +45,15 @@ $(document).ajaxComplete(function(){
 		}
 	}
 	
+	function onPlayerError(event){
+		event.target.stopVideo();
+	}
 
 	function  onPlayerStateChange(playerId){
 			return function (event) {
 				var parent_div = $('#'+playerId).parents('.yt_parent');	
 				var player = event.target
 				if (event.data == YT.PlayerState.PLAYING && parent_div.hasClass('loading')){
-					player.mute();
 					player.pauseVideo();
 					parent_div.removeClass('loading');
 				}
