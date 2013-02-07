@@ -24,12 +24,10 @@ function createYTEvent(playerId){
 		var player = event.target
 		parent_div.addClass('loading');	
 		player.playVideo();
-		player.mute();
 		parent_div.mouseover(function(){
 			$('.selected').trigger('mouseout').removeClass('selected');
 			player.seekTo(parent_div.data("start"), 'false');	
 			player.playVideo();
-			player.unMute();	
 		}).mouseout(function(){
 			player.pauseVideo();
 		});

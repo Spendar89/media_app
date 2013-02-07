@@ -34,11 +34,9 @@ $(document).ajaxComplete(function(){
 			var player = event.target;
 			parent_div.addClass('loading');
 			player.playVideo();
-			player.mute();	
 			parent_div.hover(function(){
 				$('.selected').trigger('mouseout').removeClass('selected');
-				player.seekTo(parent_div.data("start"), 'false');
-				player.unMute();	
+				player.seekTo(parent_div.data("start"), 'false');	
 				player.playVideo();	
 			}, function(){
 				player.pauseVideo();
