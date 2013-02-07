@@ -21,7 +21,11 @@ $(document).ajaxComplete(function(){
 		var playerId = $(this).attr('id');
 	  	var player;
 	  	player = new YT.Player(playerId, {
-	    	events: {'onReady': createYTEvent(playerId)}
+	    	events: {
+				'onReady': createYTEvent(playerId),
+				'onStateChange': onPlayerStateChange(playerId),
+				'onError': onPlayerError
+			}
 	  	});
 	});
 	
@@ -29,15 +33,11 @@ $(document).ajaxComplete(function(){
 		return function (event) {
 			var parent_div = $('#'+playerId).parents('.yt_parent');	
 			var player = event.target
-			player.mute();
 			player.playVideo();
-			player.setPlaybackQuality('small');
+			player.mute();
 			setTimeout(function(){
 				player.pauseVideo();
-			}, 2000);
-			setTimeout(function(){
-				parent_div.find('.overlay').fadeOut();
-			}, 3000);	
+			}, 2000);	
 			$(parent_div).hover(function(){
 				$('.selected').trigger('mouseout').removeClass('selected');
 				player.seekTo(parent_div.data("start"), 'false');
@@ -49,4 +49,18 @@ $(document).ajaxComplete(function(){
 			$(parent_div).trigger('mouseout');
 		}
 	}
+	
+	function onPlayerError(){
+		alert("error");
+	}
+
+	function  onPlayerStateChange(playerId){
+			return function (event) {
+				if (event.data == YT.PlayerState.PAUSED){
+					var parent_div = $('#'+playerId).parents('.yt_parent');	
+					parent_div.find('.overlay').fadeOut();	
+				}	
+		}
+	}
+	
 });
