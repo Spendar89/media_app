@@ -12,11 +12,11 @@ $(document).ready(function() {
 		$("#"+mediaId).parents('.sc_parent').children('.sc_overlay').fadeOut();
 	  }, 1);
 	  
-	  $("#"+mediaId).parents('.sc_parent').mouseover(function() {
+	  $("#"+mediaId).parents('.sc_parent').hover(function() {
+			$('.selected').trigger('mouseout').removeClass('selected');
 			event.target.api_seekTo($("#"+mediaId).data("start"));
 			event.target.api_play();
-		});
-		$("#"+mediaId).parents('.sc_parent').mouseout(function() {
+		}, function() {
 			event.target.api_pause();
 	  }); 
 	});
