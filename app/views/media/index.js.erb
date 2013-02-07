@@ -50,8 +50,8 @@ $(document).ajaxComplete(function(){
 		}
 	}
 	
-	function onPlayerError(){
-		alert("error");
+	function onPlayerError(event){
+		alert(event.data);
 	}
 
 	function  onPlayerStateChange(playerId){

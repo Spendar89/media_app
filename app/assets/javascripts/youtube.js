@@ -39,8 +39,8 @@ function createYTEvent(playerId){
 		}
 	}
 	
-function onPlayerError(){
-	alert("error");
+function onPlayerError(event){
+	alert(event.data);
 }
 
 function  onPlayerStateChange(playerId){
