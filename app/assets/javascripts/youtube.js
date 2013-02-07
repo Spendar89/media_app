@@ -12,8 +12,7 @@ function onYouTubeIframeAPIReady() {
 		player = new YT.Player(playerId, {
 			events: {
 				'onReady': createYTEvent(playerId),
-				'onStateChange': onPlayerStateChange(playerId),
-				'onError': onPlayerError
+				'onStateChange': onPlayerStateChange(playerId)
 			}
 		});
 	});
