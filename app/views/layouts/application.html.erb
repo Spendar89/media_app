@@ -29,6 +29,11 @@
 	<div id="outer">
 	<%= render :template => 'layouts/nav_bar.html.erb' %>
   		<%= yield %>
+		<div class="loader row" style="display: none">
+			<div class="twelve columns" style="text-align:center">
+				<%=image_tag "ajax-loader.gif" %>
+			</div>
+		</div>
 		<div id="page-form-modal" class="reveal-modal [expand, xlarge, large, medium, small]">
 	  		<%= render :partial => 'pages/page_form' %>
 	  		<a class="close-reveal-modal">&#215;</a>
@@ -41,11 +46,6 @@
 			<a class="close-reveal-modal" onclick="$('#welcome-modal').fadeOut('fast'); $('#outer').removeClass('overlayed')">&#215;</a>
 		</div>
 	<% end %>
-	<div class="loader row" style="display: none">
-		<div class="twelve columns" style="text-align:center">
-			<%=image_tag "ajax-loader.gif" %>
-		</div>
-	</div>
 </body>
 
 </html>
