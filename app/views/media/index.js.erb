@@ -24,7 +24,7 @@ $(document).ajaxComplete(function(){
 	    	events: {
 				'onReady': createYTEvent(playerId),
 				'onStateChange': onPlayerStateChange(playerId),
-				// 'onError': onPlayerError
+				'onError': onPlayerError
 			}
 	  	});
 	});
@@ -46,7 +46,7 @@ $(document).ajaxComplete(function(){
 	}
 	
 	function onPlayerError(event){
-		event.target.stopVideo();
+		event.target.pauseVideo();
 	}
 
 	function  onPlayerStateChange(playerId){

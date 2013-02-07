@@ -13,7 +13,7 @@ function onYouTubeIframeAPIReady() {
 			events: {
 				'onReady': createYTEvent(playerId),
 				'onStateChange': onPlayerStateChange(playerId),
-				// 'onError': onPlayerError
+				'onError': onPlayerError
 			}
 		});
 	});
@@ -25,18 +25,19 @@ function createYTEvent(playerId){
 		var player = event.target
 		parent_div.addClass('loading');	
 		player.playVideo();
-		parent_div.mouseover(function(){
-			$('.selected').trigger('mouseout').removeClass('selected');
-			player.seekTo(parent_div.data("start"), 'false');	
-			player.playVideo();
-		}).mouseout(function(){
-			player.pauseVideo();
+		parent_div.hover(function(){
+				$('.selected').trigger('mouseout').removeClass('selected');
+				player.seekTo(parent_div.data("start"), 'false');	
+				player.playVideo();
+		},
+			function(){
+				player.pauseVideo();
 		});
 		}
 	}
 	
 function onPlayerError(event){
-	event.target.stopVideo();
+	event.target.pauseVideo();
 }
 
 function  onPlayerStateChange(playerId){

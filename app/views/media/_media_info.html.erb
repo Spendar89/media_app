@@ -21,7 +21,7 @@
 		</div>
 		<div>
 			<% page_name =  $redis.get "page:#{medium['page_id']}:name" %>
-			<h8 ><%= link_to media_user.name, user_path(media_user) , :class=>"box-link"%> on <%= Time.at(medium['uploaded'].to_i).strftime("%b %e") %> in <%=link_to page_name, "/pages/#{medium['page_id']}", :method => 'get', :class=>"box-link" %></h8>
+			<h8 ><%= link_to media_user.name, user_path(media_user) , :class=>"box-link"%> on <%= Time.at(medium['uploaded'].to_i).strftime("%b %e")  %> in <%=link_to page_name, "/pages/#{medium['page_id']}", :method => 'get', :class=>"box-link" %></h8>
 		</div>
 	</div>
 </div>
