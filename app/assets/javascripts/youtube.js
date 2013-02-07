@@ -27,9 +27,9 @@ function createYTEvent(playerId){
 		player.mute();
 		parent_div.mouseover(function(){
 			$('.selected').trigger('mouseout').removeClass('selected');
-			player.seekTo(parent_div.data("start"), 'false');
+			player.seekTo(parent_div.data("start"), 'false');	
+			player.playVideo();
 			player.unMute();	
-			player.playVideo();	
 		}).mouseout(function(){
 			player.pauseVideo();
 		});
@@ -41,7 +41,6 @@ function  onPlayerStateChange(playerId){
 			var parent_div = $('#'+playerId).parents('.yt_parent');	
 			var player = event.target
 			if (event.data == YT.PlayerState.PLAYING && parent_div.hasClass('loading')){
-				player.mute();
 				player.pauseVideo();
 				parent_div.removeClass('loading');
 			}
