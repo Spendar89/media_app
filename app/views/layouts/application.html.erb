@@ -29,9 +29,9 @@
 	<div id="outer">
 	<%= render :template => 'layouts/nav_bar.html.erb' %>
   		<%= yield %>
-		<div class="loader row" style="display: none">
-			<div class="ten columns" style="text-align:center">
-				<%=image_tag "ajax-loader.gif" %>
+		<div class="loader row" style="display:none">
+			<div class="ten columns" style="margin-left: 30%">
+				<%= render :partial => "media/loader" %>
 			</div>
 		</div>
 		<div id="page-form-modal" class="reveal-modal [expand, xlarge, large, medium, small]">
