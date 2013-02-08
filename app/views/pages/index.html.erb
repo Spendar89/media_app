@@ -1,7 +1,7 @@
 <div class="twelve columns">
 	<h2> <%= @category[:name][0].upcase + @category[:name][1..-1] %> </h2>
 	<%= will_paginate @media %>
-	<div id="masonry-container" class="masonry media_div infinite-scroll clearfix index-masonry-container">
+	<div id="masonry-container" class="masonry media_div infinite-scroll clearfix">
 	<% for medium in @media %>
 		<% unless medium["type"].nil? %>
 			<% if medium["type"] == "youtube" %>
