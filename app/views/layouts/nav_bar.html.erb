@@ -30,6 +30,10 @@
 		</ul>
 	</li>
 	<% else %>
-		<li style="float: right"><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>
+		<li style="float: right">
+			<%= link_to "/auth/facebook" do %>
+				<%= image_tag "facebook_login.png", :width => "200", :style=>"margin-top: 8%" %>
+			<% end%>
+		</li>
 	<% end %>
 </ul>
