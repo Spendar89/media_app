@@ -104,7 +104,8 @@ function deleteVideo(video_id){
 
 $(document).ready(function(){
 	$('#masonry-container').masonry({
-		itemSelector: '.box'
+		itemSelector: '.box',
+		isAnimated: !Modernizr.csstransitions
 	});
 	scrollLoad();
 	disableThumbs();
