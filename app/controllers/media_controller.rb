@@ -96,4 +96,11 @@ class MediaController < ApplicationController
     @comments.map!{|id| Comment.find(id)}
   end
   
+  def poll_redis
+    most_recent_id = params[:most_recent_id]
+    most_recent_rank = $redis.zrank "media:by_upload", most_recent_id
+    added_ids = $redis.zrange "media:by_upload", most_recent_rank + 1, -1
+    @new_media = added_ids[0...3].map{ |id| $redis.hgetall "media:#{id}" }
+  end
+  
 end

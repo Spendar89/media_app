@@ -13,6 +13,14 @@ function scrollLoad(){
 	}
 }
 
+function pollRedis(){
+	if($('#masonry-container').hasClass('.index-masonry-container')){
+		setTimeout(function(){
+			$.get("/media/poll_redis?most_recent_id=" + $('.media_parent').first().attr('video_id'));
+		}, 10000);
+	};
+}
+
 function disableThumbs(){
 	$('.voted_up, .voted_down').removeAttr('href').click(function(e){
 		e.preventDefault();
@@ -103,6 +111,7 @@ $(document).ready(function(){
 	mediaZoom();
 	notLoggedIn();
 	keyNav();
+	pollRedis();
 });
 
 $(document).ajaxComplete(function(){

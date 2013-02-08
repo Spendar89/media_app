@@ -1,32 +1,48 @@
-<div class="eight columns" style="margin-top: -1%">
-	<div class="five columns" style="width:auto">
-		<h1><%= @page.name %></h1>
-		<% if  @page_score && @page_score > 60 %>
-			<h2 class="label success">Recommended</h2>
-		<% end %>
+<div class="row">
+	<div class="ten columns">
+	<div class="eight columns" style="margin-top: -1%">
+		<div class="five columns" style="width:auto">
+			<h1><%= @page.name %></h1>
+			<% if  @page_score && @page_score > 60 %>
+				<h2 class="label success">Recommended</h2>
+			<% end %>
+		</div>
+		<div class="four columns end">
+			<h4 class="subheader" style="line-height: 60px">created by <%= User.find(@page.user_id).name %> </h4>
+		</div>
 	</div>
-	<div class="four columns end">
-		<h4 class="subheader" style="line-height: 60px">created by <%= User.find(@page.user_id).name %> </h4>
-	</div>
-</div>
-<div class="four columns">
-	<h4 class="button secondary"><a href="#" data-reveal-id="add_media_div" data-animation="fade">Add a Song or Video</a></h4>
-</div>
 
-<%= will_paginate @media %>
-<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="<%= @page.id %>" style="margin-left: 1%; margin-top: 8%">
-<% for medium in @media %>
-	<% unless medium["type"].nil? %>
-		<% if medium["type"] == "youtube" %>
-			<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
-		<% elsif medium["type"] == "soundcloud" %>
-			<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+	<%= will_paginate @media %>
+	<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="<%= @page.id %>" style="margin-left: 1%; margin-top: 8%">
+	<% for medium in @media %>
+		<% unless medium["type"].nil? %>
+			<% if medium["type"] == "youtube" %>
+				<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
+			<% elsif medium["type"] == "soundcloud" %>
+				<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+			<% end %>
 		<% end %>
 	<% end %>
-<% end %>
+	</div>
+</div>
+	<div class="row two columns end">
+		<div class="twelve columns" style="min-height: 600px; box-shadow: inset 5px 0 5px -5px #676767; margin-left: -10%">
+			<h4 class="button secondary" style="margin-top: 20px"><a href="#" data-reveal-id="add_media_div" data-animation="fade">Add a Song or Video</a></h4>
+			<h4 class="button secondary" style="margin-top: 20px"><a href="#" data-reveal-id="add_media_div" data-animation="fade">Follow Page</a></h4>
+		</div>
+	</div>
 </div>
 <div id="add_media_div" class="reveal-modal xlarge">
   	<div class = "row add-media-partial-div">
 		<%= render :partial => 'add_media_form', :locals => {:page_id => @page.id, :category_id => @category_id} %>
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
