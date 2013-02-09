@@ -24,7 +24,7 @@
 			</div>
 		<% end %>
 	</div>
-	<div class="five columns score-div" style="margin-top: -6%; margin-right: -5%">
+	<div class="five columns score-div" style="margin-top: -6%;">
 		<h4 class="six columns end" style="color: grey;"><%= (medium['score'].to_f*100).to_i %>%</h4>
 		<% unless current_user.nil? %>
 			<% if current_user.id == medium['user_id'].to_i || current_user.uid.to_i == 1092240216 %>
