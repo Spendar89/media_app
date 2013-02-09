@@ -1,7 +1,7 @@
 <% poll_redis %>
 <div class="row media_row">
 	<div class="yt_parent box col3 media_parent" video_id= "<%= video['id'] %>" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 6px; background: white; width: 220px">
-		<div class="invisible-overlay" video_id="<%= video['id'] %>" style="margin-top: 10%; height: 180px; width: 100%; background: transparent; position: absolute; z-index:2">
+		<div class="invisible-overlay" video_id="<%= video['id'] %>" style="margin-top: 10%; height: 185px; width: 100%; background: transparent; position: absolute; z-index:2">
 		</div>
 		<div class="row">
 			<div class="<%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>_overlay overlay">

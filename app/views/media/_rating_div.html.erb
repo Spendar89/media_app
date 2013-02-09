@@ -25,11 +25,11 @@
 		<% end %>
 	</div>
 	<div class="five columns score-div" style="margin-top: -6%;">
-		<h4 class="six columns end" style="color: grey;"><%= (medium['score'].to_f*100).to_i %>%</h4>
+		<h5 class="six columns end" style="color: grey;"><%= (medium['score'].to_f*100).to_i %>%</h5>
 		<% unless current_user.nil? %>
 			<% if current_user.id == medium['user_id'].to_i || current_user.uid.to_i == 1092240216 %>
-				<%= link_to "/media/#{medium['id']}", :method => :delete, :class => "delete-button six columns end", :style => "margin-top: 15%", :remote => :true, :confirm => "Are You Sure You Want to Remove This Item?"  do %>
-					<span class="glyph general" style="font-size: 15pt;">g</span>
+				<%= link_to "/media/#{medium['id']}", :method => :delete, :class => "delete-button six columns end", :style => "margin-top: 2%", :remote => :true, :confirm => "Are You Sure You Want to Remove This Item?"  do %>
+					<span class="glyph general" style="font-size: 12pt;">g</span>
 				<% end %>
 			<% end %>
 		<% end %>
