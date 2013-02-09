@@ -35,10 +35,12 @@
 		<% end %>
 			<h4 class="glyph general three columns" style="font-size: 25pt; color: #D66540">o</h4><h4 class="nine columns" style="margin-top: 13%">Trending</h4>
 		<% unless @trending_tags.nil? %>
+		<div class="twelve columns">
 			<% @trending_tags.each do |tag| %>
-		      	<span class="subheader six columns end" style="font-size: 20pt"><%= link_to "##{tag},","/tags/#{tag}"%></span>
+		      	<span class="subheader" style="font-size: 20pt"><%= link_to "##{tag}, ","/tags/#{tag}"%></span>
 			<% end %>
 		<% end %>
+		</div>
 		</div>
 	</div>
 </div>
