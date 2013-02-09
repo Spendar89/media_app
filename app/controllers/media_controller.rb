@@ -69,7 +69,7 @@ class MediaController < ApplicationController
     @recent_pages = Page.all 
     if params[:tag]
       @tag = params[:tag]
-      @media = Tag.find_all(@tag).reverse.paginate(:page => params[:page], :per_page => 12)
+      @media = Tag.find_all(@tag).paginate(:page => params[:page], :per_page => 12)
     else   
       @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
     end
