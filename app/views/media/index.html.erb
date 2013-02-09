@@ -28,7 +28,7 @@
 			<h4 class="glyph social three columns" style="font-size: 25pt; color: #D66540">a</h4><h4 class="nine columns">Recommended</h4>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
-		      		<h4 class="subheader twelve columns"><%= i %>.<%= link_to page[:name], page_path(page), :method => "get" %></h4>
+		      		<h4 class="subheader twelve columns"><%= i+1 %>.<%= link_to page[:name], page_path(page), :method => "get" %></h4>
 			<% end %>
 		<% else %>
 			<h4 class="subheader twelve columns">Rate More Content to Receive Page Recommendations!</h4>
@@ -36,7 +36,7 @@
 			<h4 class="glyph general three columns" style="font-size: 25pt; color: #D66540">o</h4><h4 class="nine columns" style="margin-top: 13%">Trending</h4>
 		<% unless @trending_tags.nil? %>
 			<% @trending_tags.each do |tag| %>
-		      	<h4 class="subheader four columns end"><%= link_to "##{tag},","/tags/#{tag}"%></h4>
+		      	<span class="subheader six columns end" style="font-size: 20pt"><%= link_to "##{tag},","/tags/#{tag}"%></span>
 			<% end %>
 		<% end %>
 		</div>
