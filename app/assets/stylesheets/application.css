@@ -70,13 +70,13 @@ h3, h2, h1, h4{
 	box-shadow: 0 0 10px #1E50BC;	
 }
 
-.col3 { width: 250px;  }
+.col3 { width: 200px;  }
 .col4 { width: 250px; }
 
 
 .yt-video{
-	width: 250px;
-	margin-left: 4%;
+	width: 200px;
+	margin-left: 1%;
 	z-index: -10000;
 }
 
@@ -84,15 +84,14 @@ h3, h2, h1, h4{
 
 .overlay{
 	position:absolute;
-	height: 150px;
-	margin-top: 33px;
-	width: 260px;
+	margin-top: 11%;
+	padding-bottom: 180px;
+	width: 210px;
 	margin-left: 7%;
 	background: url('video-loader.gif');
 	background-position: center;
 	background-size: 100%;
 	z-index: 1;
-	background-repeat: no-repeat;
 }
 
 .sc_overlay{
@@ -103,14 +102,11 @@ h3, h2, h1, h4{
 	background-position: center;
 }
 
-
 .widescreen{
 	height: 140px;
 }
 
-.widescreen_overlay{
-	height: 155px;
-}
+
 
 .sc-player{
 	margin-left: 20px;
@@ -171,7 +167,7 @@ a:hover{
 .nav-bar{
 	background:#FFF;
 	box-shadow: 0 0 3px grey;
-	height: 90px;
+	height: 60px;
 	border-right: none;
 }
 
@@ -191,7 +187,7 @@ a:hover{
 .nav-bar>li:hover{
 	background: #FFF;
 	box-shadow: none;
-	height: 90px;
+	height: 60px;
 }
 
 .nav-bar>li>a{
@@ -200,9 +196,9 @@ a:hover{
 }
 
 .nav-bar>li>a:first-child{
-	font-size: 20pt;
-	line-height: 40pt;
-	padding-top: 30pt;
+	font-size: 15pt;
+	line-height: 50pt;
+	padding-top: 10px;
 }
 
 .nav-bar>li>a:hover{
@@ -215,17 +211,17 @@ ul.flyout li a, .nav-bar li ul li a{
 }
 
 .flyout{
-	margin-top: 55%;
+	margin-top: 30%;
 }
 
 .nav-form {
 	-webkit-appearance:none;
-	margin-top:  40pt;
+	margin-top:  6%;
 }
 
 #logo{
-	font-size: 70pt;
-	line-height: 10pt;
+	font-size: 45pt;
+	line-height: 35pt;
 }
 
 #logo:hover{
