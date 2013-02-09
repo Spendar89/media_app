@@ -36,6 +36,7 @@ class Sound
     @tags.each do |tag|
       $redis.sadd "tags", tag
       $redis.sadd "tag:#{tag}", @id
+      $redis.zincrby "tags:by_count", 1, tag
     end  
   end
 

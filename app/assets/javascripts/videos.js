@@ -14,7 +14,7 @@ function scrollLoad(){
 }
 
 function pollRedis(){
-	if($('#masonry-container').hasClass('index-masonry-container')){
+	if($('#masonry-container').hasClass('polling-enabled')){
 		setTimeout(function(){
 			$.get("/media/poll_redis?most_recent_id=" + $('.media_parent').first().attr('video_id'));
 		}, 10000);

@@ -25,6 +25,13 @@
 *{
 	font-family: sans-serif;
 }
+
+
+h3, h2, h1, h4{
+	color: #545052;
+}
+
+
 #outer{
 	background: url('cream_dust.png');
 	min-height: 1000px;

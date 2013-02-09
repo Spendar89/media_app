@@ -9,8 +9,9 @@
 		<% end %>
 		<%= will_paginate @media %>
 	<div class="media_div ten columns">
-		<h2 class="subheader twelve columns">Live Feed</h2>
-		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix index-masonry-container" data-page_id="index" data-query="<%= @recent_pages.nil? ? @tag : false %>">
+		<h2 class="glyph general one columns end" style="color: #D66540; font-size: 30pt; margin-top: 2px; margin-left: 0px">l</h2>
+		<h2 class="two columns end" style="margin-left: -4%">Live Feed</h2>
+		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix polling-enabled" data-page_id="index" data-query="<%= @recent_pages.nil? ? @tag : false %>">
 			<% for medium in @media %>
 				<% unless medium["type"].nil? %>
 					<% if medium["type"] == "youtube" %>
@@ -23,14 +24,20 @@
 		</div>
 	</div>
 	<div class="row two columns end">
-		<div class="twelve columns" style="min-height: 600px; box-shadow: inset 5px 0 5px -5px #676767; margin-left: -10%">
-			<h3 class="subheader">Recommended</h3>
+		<div class="twelve columns" style="min-height: 600px; box-shadow: inset 5px 0 5px -5px #676767; margin-left: -10%;">
+			<h4 class="glyph social three columns" style="font-size: 25pt; color: #D66540">a</h4><h4 class="nine columns">Recommended</h4>
 		<% unless @ranked_pages.nil? %>
-			<% @ranked_pages.each do |page| %>
-		      		<h4 class="subheader"><%= link_to page[:name], page_path(page), :method => "get" %></h4>
+			<% @ranked_pages.each_with_index do |page, i| %>
+		      		<h4 class="subheader twelve columns"><%= i %>.<%= link_to page[:name], page_path(page), :method => "get" %></h4>
 			<% end %>
 		<% else %>
-			<h4 class="subheader">Rate More Content to Receive Page Recommendations!</h4>
+			<h4 class="subheader twelve columns">Rate More Content to Receive Page Recommendations!</h4>
+		<% end %>
+			<h4 class="glyph general three columns" style="font-size: 25pt; color: #D66540">o</h4><h4 class="nine columns" style="margin-top: 13%">Trending</h4>
+		<% unless @trending_tags.nil? %>
+			<% @trending_tags.each do |tag| %>
+		      	<h4 class="subheader four columns end"><%= link_to "##{tag},","/tags/#{tag}"%></h4>
+			<% end %>
 		<% end %>
 		</div>
 	</div>

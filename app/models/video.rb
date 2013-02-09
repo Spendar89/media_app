@@ -34,6 +34,7 @@ class Video
     @tags.each do |tag|
       $redis.sadd "tags", tag
       $redis.sadd "tag:#{tag}", @id
+      $redis.zincrby "tags:by_count", 1, tag
     end
   end
   
@@ -41,6 +42,20 @@ class Video
     yt_ids = $redis.zrevrange "media:by_upload", 0, -1
     yt_ids.map! {|id| $redis.hgetall "media:#{id}"}
     yt_ids
+  end
+  
+  def self.find(id)
+    $redis.hgetall "media:#{id}"
+  end
+  
+  def self.tags(id)
+    self.find(id)["tags"].split(",")
+  end
+  
+  def self.set_tags
+    self.all_redis.each do |video|
+      self.tags(video["id"]).each {|tag| $redis.zincrby "tags:by_count", 1, tag }
+    end
   end
   
   def self.flush_db

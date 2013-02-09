@@ -69,11 +69,12 @@ class MediaController < ApplicationController
     @recent_pages = Page.all 
     if params[:tag]
       @tag = params[:tag]
-      @media = Tag.find_all(@tag).paginate(:page => params[:page], :per_page => 12)
+      @media = Tag.find_all(@tag).reverse.paginate(:page => params[:page], :per_page => 12)
     else   
       @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
     end
-   @ranked_pages = current_user.ranked_pages.reverse unless current_user.nil?
+   @ranked_pages = current_user.ranked_pages.reverse[0..9] unless current_user.nil?
+   @trending_tags = Tag.ranked[0..9]
   end
   
   def search
