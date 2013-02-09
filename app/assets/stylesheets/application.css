@@ -22,9 +22,6 @@
  *= require_tree .
  */
 
-body{
-	min-width: 1490px;
-}
 
 *{
 	font-family: sans-serif;
