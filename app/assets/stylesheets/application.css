@@ -28,7 +28,7 @@
 }
 
 body{
-	min-width: 1203;
+	min-width: 1203px;
 }
 
 
@@ -129,9 +129,8 @@ h3, h2, h1, h4{
 	margin: -1%;
 	height: 100%;
 	background: #E5E5E5;
-	padding: 1%;
-	padding-top: 2%;
-	height: 40px;
+	padding: 2%;
+	height: 100%;
 	color: #505050;	
 }
 
