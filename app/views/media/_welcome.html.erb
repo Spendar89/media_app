@@ -1,12 +1,12 @@
-<div class="row">
-	<h1 style="font-size: 60pt; color: #5B8DBC">Welcome to Huuvr!</h1>
-</div>
-<div class="row">
-		<h2 class="subheader">Huuvr is the fastest, most efficient way to interact with mass media.  Select a page by theme, and hover over a media box to play its content.  Rate media to receive personalized recommendations and discover new videos and music.</h2>
-	<h2>
-		<%= link_to "/auth/facebook", :onclick => "$('#welcome-modal').fadeOut('fast'); $('#outer').removeClass('overlayed')" do %>
-			<%= image_tag "facebook_login.png" %>
-		<% end %>
-		
-	</h2>
-</div>
+
+	<div style="font-size: 40pt; font-weight: bold; color: #5B8DBC">Welcome to Huvly!</div>
+
+
+<h3 class="subheader">Huvly is the fastest, most efficient way to interact with mass media.  Select a page by theme, and hover over a media box to play its content.  Rate media to receive personalized recommendations and discover new videos and music.</h3>
+<h6>
+	<%= link_to "/auth/facebook", :onclick => "$('#welcome-modal').fadeOut('fast'); $('#outer').removeClass('overlayed')" do %>
+	<%= image_tag "facebook_login.png", :width => "300" %>
+	<% end %>
+
+</h6>
+

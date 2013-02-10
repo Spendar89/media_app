@@ -27,6 +27,10 @@
 	font-family: sans-serif;
 }
 
+body{
+	min-width: 1200;
+}
+
 
 h3, h2, h1, h4{
 	color: #545052;
@@ -86,7 +90,7 @@ h3, h2, h1, h4{
 	position:absolute;
 	margin-top: 31px;
 	width: 97%;
-	height: 150px;
+	height: 155px;
 	margin-left: 7%;
 	background: url('video-loader.gif');
 	background-position: center;
