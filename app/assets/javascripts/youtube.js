@@ -22,10 +22,6 @@ function onYouTubeIframeAPIReady() {
 function createYTEvent(playerId){ 
 	return function (event) {
 		var parent_div = $('#'+playerId).parents('.yt_parent');
-		$('.overlay').each(function(){
-			var closestIframe = $(this).siblings('.yt-video-div').children('.yt-video');
-			$(this).css('height', closestIframe.height());
-		});
 		var player = event.target;
 		player.setVolume(0);
 		parent_div.addClass('loading');	

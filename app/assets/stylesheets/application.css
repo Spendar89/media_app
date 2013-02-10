@@ -84,9 +84,9 @@ h3, h2, h1, h4{
 
 .overlay{
 	position:absolute;
-	margin-top: 11%;
-	padding-bottom: 180px;
-	width: 210px;
+	margin-top: 31px;
+	width: 97%;
+	height: 150px;
 	margin-left: 7%;
 	background: url('video-loader.gif');
 	background-position: center;
@@ -103,7 +103,11 @@ h3, h2, h1, h4{
 }
 
 .widescreen{
-	height: 140px;
+	height: 112.5px;
+}
+
+.widescreen_overlay{
+	height: 115px;
 }
 
 

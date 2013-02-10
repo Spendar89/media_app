@@ -101,13 +101,7 @@ function deleteVideo(video_id){
 	$('div[video_id='+video_id).remove();
 }
 
-function sizeOverlay(){
-	$('.overlay').each(function(){
-		var closestIframe = $(this).siblings('.yt-video-div').children('.yt-video');
-		$(this).css('height', closestIframe.height());
-	});
-	
-}
+
 
 
 $(document).ready(function(){
@@ -121,7 +115,7 @@ $(document).ready(function(){
 	notLoggedIn();
 	keyNav();
 	pollRedis();
-	sizeOverlay();
+
 	
 });
 
@@ -131,7 +125,6 @@ $(document).ajaxComplete(function(){
 	mediaZoom();
 	notLoggedIn();
 	keyNav();
-	sizeOverlay();
 })
 
 
