@@ -17,11 +17,11 @@
 		<div class="three columns">
 			<% media_user = User.find(medium['user']) %>
 			<%  user_image = media_user.image unless media_user.nil? %>
-			<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 30px"></a>
+			<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 30px; margin-right: 1px"></a>
 		</div>
-		<div>
+		<div style="font-size: 8pt">
 			<% page_name =  $redis.get "page:#{medium['page_id']}:name" %>
-			<h8 ><%= link_to media_user.name, user_path(media_user) , :class=>"box-link"%> on <%= Time.at(medium['uploaded'].to_i).strftime("%b %e")  %> in <%=link_to page_name, "/pages/#{medium['page_id']}", :method => 'get', :class=>"box-link" %></h8>
+			<%= link_to media_user.name, user_path(media_user) , :class=>"box-link"%> on <%= Time.at(medium['uploaded'].to_i).strftime("%b %e")  %> in <%=link_to page_name, "/pages/#{medium['page_id']}", :method => 'get', :class=>"box-link" %>
 		</div>
 	</div>
 </div>

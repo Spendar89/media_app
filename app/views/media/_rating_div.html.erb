@@ -1,26 +1,26 @@
 <div class="rating-div twelve columns">
-	<div class="seven columns" style="margin-left: -6%">
+	<div class="seven columns" style="margin-left: -10%">
 		<% unless current_user.nil? %>
 			<% if current_user.voted_up?(medium['id']) || !current_user.already_voted?(medium['id']) %>
-				<div class="two columns thumbs-up-div">
+				<div class="one columns thumbs-up-div">
 					<%= link_to thumbs_up_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_up", :class => "#{'voted_up' if current_user.voted_up?(medium['id'])}" do %>
-						<span class="glyph social" style="font-size: 20pt">a</span>
+						<span class="glyph social" style="font-size: 15pt; margin-left: -10px">a</span>
 					<% end %>
 				</div>
 			<% end %>
 			<% if current_user.voted_down?(medium['id']) || !current_user.already_voted?(medium['id']) %>
-				<div class="two columns end thumbs-down-div">
+				<div class="one columns end thumbs-down-div">
 					<%= link_to thumbs_down_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_down", :class => "#{'voted_down' if current_user.voted_down?(medium['id'])}" do %>
-						<span class="glyph social" style="font-size: 20pt">b</span>
+						<span class="glyph social" style="font-size: 15pt">b</span>
 					<% end %>
 				</div>
 			<% end %>
 		<% else%>
-			<div class="six columns thumbs-up-div">
-				<a href="#" class="not-logged-in"><span class="glyph social" style="font-size: 20pt">a</span></a>
+			<div class="one columns thumbs-up-div">
+				<a href="#" class="not-logged-in"><span class="glyph social" style="font-size: 15pt">a</span></a>
 			</div>
-			<div class="six columns end thumbs-down-div">
-				<a href="#" class="not-logged-in"><span class="glyph social" style="font-size: 20pt">b</span></a>
+			<div class="one columns end thumbs-down-div">
+				<a href="#" class="not-logged-in"><span class="glyph social" style="font-size: 15pt; margin-left: -10px">b</span></a>
 			</div>
 		<% end %>
 	</div>
