@@ -120,16 +120,18 @@ function tokenInput() {
 			  params += (name + "|")
 		    });
 			
-	         $.get("/media/search.js?query="+params);
+	         $.get("/media/search.js?page=1&query="+params);
 	     },
 		onReady: function(){
 			$('#token-input-tag-search').attr('placeholder', 'Filter By Tag');
 		},
 		onDelete: function (item) {
+			var params = ""
 		    array = $.map($(this).tokenInput("get"), function(n){
 		      return (n.name );
+			  params += (name + "|")
 		    });
-	         $.get("/media/search.js?query="+array);
+	         $.get("/media/search.js?page=1&query="+params);
 	     }
 	});
 }
