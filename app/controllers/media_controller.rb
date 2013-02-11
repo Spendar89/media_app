@@ -94,7 +94,6 @@ class MediaController < ApplicationController
   #     @categories = Category.where('name ILIKE ?', "%#{params[:query]}%")
   # end
         
-  
   def token_input
     @q = params[:q]
     @tags = Tag.all

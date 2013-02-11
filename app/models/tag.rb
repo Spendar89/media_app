@@ -9,6 +9,7 @@ class Tag
     tags.map{|media_id| $redis.hgetall "media:#{media_id}"}
   end
   
+  
   def self.ranked
     $redis.zrevrange "tags:by_count", 0, -1
   end
