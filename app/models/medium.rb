@@ -11,21 +11,26 @@ class Medium < ActiveRecord::Base
     (minutes.to_i*60) + seconds.to_i
   end
   
+  def self.each_has_tag?(tags_array, id)
+    tags_array.each do |tag|
+      ids = $redis.smembers "tag:#{tag}"
+      return false unless ids.include?(id)
+    end
+    true
+  end
+  
   def self.search_results(query)
     matches = []
-    query.split(",").each do |query|
-      ids = $redis.keys "tag:#{query}"
+    query_array = query.split(",")
+    query_array.each do |query|
+      ids = $redis.smembers "tag:#{query}"
       matches << ids
     end
-    matches = matches.flatten.uniq
-    unless matches.empty?
-      @media_array = []
-      matches.each do |match|
-        media_ids = $redis.smembers match
-        media_ids.each { |media_id| @media_array << media_id unless @media_array.include?(media_id) }
-      end
-      @media_array.map{ |id| $redis.hgetall "media:#{id}" }.sort{ |x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }  
+    matched_ids = matches.flatten.uniq
+    matched_ids.map! do |id|
+        $redis.hgetall "media:#{id}" if self.each_has_tag?(query_array, id)
     end
+    matched_ids.sort{ |x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }
   end
   
   

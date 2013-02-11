@@ -141,7 +141,7 @@ $(document).ready(function(){
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
-	keyNav();
+	// keyNav();
 	pollRedis("false");
 	tokenInput();
 });
@@ -151,7 +151,7 @@ $(document).ajaxComplete(function(){
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
-	keyNav();
+	// keyNav();
 })
 
 

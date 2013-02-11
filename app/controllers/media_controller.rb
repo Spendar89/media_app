@@ -81,13 +81,13 @@ class MediaController < ApplicationController
     respond_to do |format|
       format.js do
         media = []
-        if params[:query] == ""
+        if params[:query].empty?
           media = Medium.all_redis
         else
           @current_filters = params[:query]
           media = Medium.search_results(@current_filters)
         end
-          @media = media.flatten.paginate(:page => params[:page], :per_page => 12)
+        @media = media.paginate(:page => params[:page], :per_page => 12)
       end
       format.html do
           @query = params[:query]
