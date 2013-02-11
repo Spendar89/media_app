@@ -27,11 +27,13 @@ class Medium < ActiveRecord::Base
       ids.each{|id| matched_ids << id unless matched_ids.include?(id)}
     end 
     puts "matched ids: #{matched_ids}"
-    matched_ids.map! do |id|
-        $redis.hgetall "media:#{id}" if self.has_tags?(id, tags_array)
+    filtered_matches =[]
+    matched_ids.each do |id|
+        match_hatch = $redis.hgetall "media:#{id}" if self.has_tags?(id, tags_array)
+        filtered_matches << match_hatch unless match_hatch.nil?
     end
     puts "new matched ids: #{matched_ids}"
-    return matched_ids.sort{ |x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }
+    return filtered_matches.sort{ |x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }
   end
   
 end
