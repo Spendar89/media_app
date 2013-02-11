@@ -104,8 +104,8 @@ class MediaController < ApplicationController
     @q = params[:q]
     @tags = Tag.all
     @json_array = []
-    @tags.each_with_index do |tag, i|
-        @json_array << {:id => i, :name => tag } if /#{@q}/.match(tag)
+    @tags.each do |tag|
+        @json_array << {:id => rand(1000000), :name => tag } if /#{@q}/.match(tag)
     end
     respond_to do |format|
       format.json { render :json => @json_array.to_json }
