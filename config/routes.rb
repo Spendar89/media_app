@@ -21,6 +21,7 @@ YoutubeApp::Application.routes.draw do
       match :preview
       get :search
       match :media_zoom
+      match :token_input
     end
   end
   

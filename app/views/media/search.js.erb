@@ -1,9 +1,12 @@
-<% unless @new_media.empty? %>
-	$('#masonry-container').prepend("<%=j render(:partial => 'poll_redis', :locals => {:media => @new_media})%>");
+<% unless @media.empty? %>
+	$('#masonry-container').html("<%=j render(:partial => 'search', :locals => {:media => @media})%>");
+	$('.paginate-div').html("<%= will_paginate @media %>");
+	var current_filters = "<%= @current_filters %>"
+	pollRedis(current_filters)
 	$('#masonry-container').masonry('reload');
-	pollRedis("false");
-		$('.poll-redis').each(function(){
-			$(this).removeClass('poll-redis');
+
+
+		$('.yt-video').each(function(){
 			var playerId = $(this).attr('id');
 		  	var player;
 		  	player = new YT.Player(playerId, {

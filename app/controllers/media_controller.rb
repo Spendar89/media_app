@@ -78,11 +78,39 @@ class MediaController < ApplicationController
   end
   
   def search
-    @query = params[:query]
-    @media = Medium.search_results(@query)
-    @users = User.where('name ILIKE ?', "%#{params[:query]}%")
-    @pages = Page.where('name ILIKE ?', "%#{params[:query]}%")
-    @categories = Category.where('name ILIKE ?', "%#{params[:query]}%")
+    respond_to do |format|
+      format.js do
+        media = []
+        if params[:query] == ""
+          media = Medium.all_redis
+        else
+          @current_filters = params[:query]
+          query_array = params[:query].split(",")
+          query_array.each { |query| media << Medium.search_results(query) }
+        end
+          @media = media.flatten.paginate(:page => params[:page], :per_page => 12)
+      end
+      format.html do
+          @query = params[:query]
+          @media = Medium.search_results(@query)
+          @users = User.where('name ILIKE ?', "%#{params[:query]}%")
+          @pages = Page.where('name ILIKE ?', "%#{params[:query]}%")
+          @categories = Category.where('name ILIKE ?', "%#{params[:query]}%")
+      end
+    end
+  end
+        
+  
+  def token_input
+    @q = params[:q]
+    @tags = Tag.all
+    @json_array = []
+    @tags.each_with_index do |tag, i|
+        @json_array << {:id => i, :name => tag } if /#{@q}/.match(tag)
+    end
+    respond_to do |format|
+      format.json { render :json => @json_array.to_json }
+    end
   end
   
   def flush_db
@@ -98,10 +126,18 @@ class MediaController < ApplicationController
   end
   
   def poll_redis
+    @current_filters = params[:current_filters]
     most_recent_id = params[:most_recent_id]
     most_recent_rank = $redis.zrank "media:by_upload", most_recent_id
     added_ids = $redis.zrange "media:by_upload", most_recent_rank + 1, -1
-    @new_media = added_ids[0...3].map{ |id| $redis.hgetall "media:#{id}" }
+    @new_media = added_ids.map{ |id| $redis.hgetall "media:#{id}" }
+    unless @current_filters == "false"
+      @new_media.map! do |media_hash|
+        intersect_array =  media_hash["tags"].split(",") & @current_filters.split(",")
+        media_hash unless intersect_array.empty?
+      end
+    end
+    @new_media = @new_media[0..2]
   end
   
 end

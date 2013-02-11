@@ -12,6 +12,7 @@
 //
 //= require jquery_ujs
 //= require masonry/jquery.masonry
+//= require jquery.tokeninput
 //= require masonry/jquery.imagesloaded.min
 //= require masonry/jquery.infinitescroll.min
 //= require masonry/modernizr-transitions

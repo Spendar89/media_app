@@ -13,12 +13,13 @@ function scrollLoad(){
 	}
 }
 
-function pollRedis(){
-	if($('#masonry-container').hasClass('polling-enabled')){
-		setTimeout(function(){
-			$.get("/media/poll_redis?most_recent_id=" + $('.media_parent').first().attr('video_id'));
-		}, 10000);
-	};
+function pollRedis(current_filters){
+		if($('#masonry-container').hasClass('polling-enabled')){
+			setTimeout(function(){
+				$.get("/media/poll_redis?current_filters=" + current_filters + "&most_recent_id=" + $('.media_parent').first().attr('video_id'));
+			}, 10000);
+		};
+	}
 }
 
 function disableThumbs(){
@@ -101,7 +102,35 @@ function deleteVideo(video_id){
 	$('div[video_id='+video_id).remove();
 }
 
-
+function tokenInput() {
+	$("#tag-search").tokenInput("/media/token_input", {
+		// preventDuplicates: true,
+		hintText: false,
+		searchingText: false,
+		tokenFormatter: function(item){ 
+					return "<li style='display: none'>" + "#"+item.name + "</li>"
+					}, 
+	     onAdd: function (item) {
+			$('#selected-tags').append("<span id='"+item.id+"' class='round label secondary end' style='margin-right: 1%'>" + 
+										"#"+item.name + "<a href='#' onclick='$(\"#tag-search\").tokenInput(\"remove\", {id:"+ 
+										item.id+"}); $(\"#"+item.id+"\").remove();' class='token-input-delete-token-facebook'>×</span>"+
+										"</span>");
+		    array = $.map($(this).tokenInput("get"), function(n){
+		      return (n.name );
+		    });
+	         $.get("/media/search.js?query="+array);
+	     },
+		onReady: function(){
+			$('#token-input-tag-search').attr('placeholder', 'Filter By Tag');
+		},
+		onDelete: function (item) {
+		    array = $.map($(this).tokenInput("get"), function(n){
+		      return (n.name );
+		    });
+	         $.get("/media/search.js?query="+array);
+	     }
+	});
+}
 
 
 $(document).ready(function(){
@@ -114,9 +143,8 @@ $(document).ready(function(){
 	mediaZoom();
 	notLoggedIn();
 	keyNav();
-	pollRedis();
-
-	
+	pollRedis("false");
+	tokenInput();
 });
 
 $(document).ajaxComplete(function(){

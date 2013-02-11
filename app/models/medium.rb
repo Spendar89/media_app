@@ -12,16 +12,18 @@ class Medium < ActiveRecord::Base
   end
   
   def self.search_results(query)
-    matches = $redis.keys "*#{query}*"
+    matches = $redis.keys "tag:#{query}"
     unless matches.nil?
       @media_array = []
       matches.each do |match|
         media_ids = $redis.smembers match
         media_ids.each { |media_id| @media_array << media_id unless @media_array.include?(media_id) }
       end
-      @media_array.map{ |id| $redis.hgetall "media:#{id}" }  
+      @media_array.map{ |id| $redis.hgetall "media:#{id}" }.sort{ |x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }  
     end
   end
+  
+  
   
   
 end

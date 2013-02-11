@@ -15,7 +15,7 @@
   $('.pagination').remove();
 <% end %>
 
-$(document).ajaxComplete(function(){
+
 	$('.poll-redis').each(function(){
 		$(this).removeClass('poll-redis');
 		var playerId = $(this).attr('id');
@@ -64,5 +64,3 @@ $(document).ajaxComplete(function(){
 				}	
 		}
 	}
-	
-});

@@ -7,10 +7,21 @@
 				</div>
 			</div>
 		<% end %>
-		<%= will_paginate @media %>
-	<div class="media_div ten columns">
-		<h2 class="glyph general one columns end" style="color: #D66540; font-size: 20pt; margin-top: 6px; margin-left: 0px">l</h2>
-		<h3 class="two columns end" style="margin-left: -4%">Live Feed</h3>
+		<div class="paginate-div">
+			<%= will_paginate @media %>
+		</div>
+	<div class="media_div ten columns">	
+			<div class="index-header-div">
+				<h2 class="glyph general one columns end" style="color: #D66540; font-size: 20pt; margin-top: 6px; margin-left: 0px">l</h2>
+				<h3 class="two columns end" style="margin-left: -4%">Live Feed</h3>
+				<div class="nine columns end filter-search-div" style="margin-top: 15px">
+					<div class="four columns">
+						<input type="text" id="tag-search"/>
+					</div>
+					<div class="eight columns" id="selected-tags">
+					</div>
+				</div>
+			</div>
 		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix polling-enabled" data-page_id="index" data-query="<%= @recent_pages.nil? ? @tag : false %>">
 			<% for medium in @media %>
 				<% unless medium["type"].nil? %>
