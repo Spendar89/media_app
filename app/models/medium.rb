@@ -25,7 +25,11 @@ class Medium < ActiveRecord::Base
   end
   
   def self.find_all(ids_array)
-    ids_array.map{ |id| $redis.hgetall "media:#{id}" }.sort{ |x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }
+    ids_array.map{ |id| $redis.hgetall "media:#{id}" }
+  end
+  
+  def self.sort_by_date(media_array)
+    media_array.sort{|x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }
   end
   
   def self.seconds(minutes, seconds)
