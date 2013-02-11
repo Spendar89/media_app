@@ -79,9 +79,8 @@ class MediaController < ApplicationController
   def poll_redis
     most_recent_id = params[:most_recent_id]
     most_recent_rank = $redis.zrank "media:by_upload", most_recent_id
-    category_id = Category.find_by_name(params[:category]).id
     added_ids = $redis.zrange "media:by_upload", most_recent_rank + 1, -1
-    added_ids.map!{|id| id if Medium.has_category?(id, category_id)} if params[:category]
+    added_ids.map!{|id| id if Medium.has_category?(id, Category.find_by_name(params[:category]).id)} if params[:category]
     added_ids = Medium.filtered_by_tags(added_ids, params[:tags]) if params[:tags]
     @new_media = Medium.find_all(added_ids)[0..2]
   end
