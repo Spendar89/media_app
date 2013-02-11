@@ -78,24 +78,21 @@ class MediaController < ApplicationController
   end
   
   def search
-    respond_to do |format|
-      format.js do
-        if params[:query].length < 1
-          @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
-        else
-          @current_filters = params[:query]
-          @media = Medium.search_results(@current_filters).paginate(:page => params[:page], :per_page => 12)
-        end
-      end
-      format.html do
-          @query = params[:query]
-          @media = Medium.search_results(@query)
-          @users = User.where('name ILIKE ?', "%#{params[:query]}%")
-          @pages = Page.where('name ILIKE ?', "%#{params[:query]}%")
-          @categories = Category.where('name ILIKE ?', "%#{params[:query]}%")
-      end
+    @current_filters = params[:query]
+    if @current_filters.empty?
+      @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
+    else
+      @media = Medium.search_results(@current_filters).paginate(:page => params[:page], :per_page => 12)
     end
   end
+  
+  # def search
+  #    @query = params[:query]
+  #     @media = Medium.search_results(@query)
+  #     @users = User.where('name ILIKE ?', "%#{params[:query]}%")
+  #     @pages = Page.where('name ILIKE ?', "%#{params[:query]}%")
+  #     @categories = Category.where('name ILIKE ?', "%#{params[:query]}%")
+  # end
         
   
   def token_input

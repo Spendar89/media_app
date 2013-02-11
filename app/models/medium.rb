@@ -30,7 +30,7 @@ class Medium < ActiveRecord::Base
     matched_ids.map! do |id|
         $redis.hgetall "media:#{id}" if self.each_has_tag?(tags_array, id)
     end
-    puts "new matched ids: #{matches_ids}"
+    puts "new matched ids: #{matched_ids}"
     matched_ids.sort{ |x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }
   end
   
