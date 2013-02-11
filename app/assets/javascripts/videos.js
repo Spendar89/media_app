@@ -115,6 +115,13 @@ function deleteVideo(video_id){
 	$('div[video_id='+video_id).remove();
 }
 
+function triggerFilter(tag){
+	var idValue = "T_"+Math.floor(Math.random()*1000000);
+	$('#tag-search').tokenInput("add", {id: idValue, name: tag});	
+}
+
+
+
 
 function tokenInput() {
 	$("#tag-search").tokenInput("/media/token_input", {

@@ -48,7 +48,7 @@
 		<% unless @trending_tags.nil? %>
 			<div class="twelve columns">
 				<% @trending_tags.each do |tag| %>
-		      		<div class="subheader" style="font-size: 15pt"><%= link_to "##{tag} ","/tags/#{tag}"%></div>
+		      		<div class="subheader prevent-default" style="font-size: 15pt"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" %></div>
 				<% end %>
 			</div>
 		<% end %>		
