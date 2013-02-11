@@ -38,6 +38,10 @@ class Medium < ActiveRecord::Base
     $redis.smembers "category:#{category_id}"
   end
   
+  def self.has_category?(id, category_id)
+    $redis.sismember "category:#{category_id}"
+  end
+  
   def self.filtered_by_tags(ids_array, tags_array)
     ids_array.map do |id|
       media_hash = $redis.hgetall "media:#{id}"

@@ -14,10 +14,22 @@ function scrollLoad(){
 	}
 }
 
-function pollRedis(current_filters){
+function tokenParams(){
+	var params = ""
+    $('#tag-search').tokenInput("get"), function(n){
+	  if (n.id[0] == "T"){
+	  	params += ("&tags[]=" + n.name)
+	  }else if (n.id[0] == "C"){
+		params += ("&category=" + n.name)
+	  }
+    });
+	return params
+}
+
+function pollRedis(){
 		if($('#masonry-container').hasClass('polling-enabled')){
 			setTimeout(function(){
-				$.get("/media/poll_redis?current_filters=" + current_filters + "&most_recent_id=" + $('.media_parent').first().attr('video_id'));
+				$.get("/media/poll_redis?most_recent_id=" + $('.media_parent').first().attr('video_id') + tokenParams());
 			}, 10000);
 		};
 }

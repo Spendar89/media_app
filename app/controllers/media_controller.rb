@@ -76,6 +76,15 @@ class MediaController < ApplicationController
     @trending_tags = Tag.ranked[0..9]
   end
   
+  def poll_redis
+    most_recent_id = params[:most_recent_id]
+    most_recent_rank = $redis.zrank "media:by_upload", most_recent_id
+    category_id = Category.find_by_name(params[:category]).id
+    added_ids = $redis.zrange "media:by_upload", most_recent_rank + 1, -1
+    added_ids.map!{|id| id if Medium.has_category?(id, category_id)} if params[:category]
+    added_ids = Medium.filtered_by_tags(added_ids, params[:tags]) if params[:tags]
+    @new_media = Medium.find_all(added_ids)[0..2]
+  end
   
   def search
      @query = params[:query]
@@ -113,19 +122,5 @@ class MediaController < ApplicationController
     @comments.map!{|id| Comment.find(id)}
   end
   
-  def poll_redis
-    @current_filters = params[:current_filters]
-    most_recent_id = params[:most_recent_id]
-    most_recent_rank = $redis.zrank "media:by_upload", most_recent_id
-    added_ids = $redis.zrange "media:by_upload", most_recent_rank + 1, -1
-    @new_media = added_ids.map{ |id| $redis.hgetall "media:#{id}" }
-    unless @current_filters == "false"
-      @new_media.map! do |media_hash|
-        intersect_array =  media_hash["tags"].split(",") & @current_filters.split("|")
-        media_hash unless intersect_array.empty?
-      end
-    end
-    @new_media = @new_media[0..2]
-  end
-  
+
 end
