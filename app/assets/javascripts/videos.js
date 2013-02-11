@@ -103,7 +103,7 @@ function deleteVideo(video_id){
 
 function tokenInput() {
 	$("#tag-search").tokenInput("/media/token_input", {
-		// preventDuplicates: true,
+		preventDuplicates: true,
 		hintText: false,
 		searchingText: false,
 		tokenFormatter: function(item){ 

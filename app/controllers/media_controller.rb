@@ -85,8 +85,7 @@ class MediaController < ApplicationController
           media = Medium.all_redis
         else
           @current_filters = params[:query]
-          query_array = params[:query].split(",")
-          query_array.each { |query| media << Medium.search_results(query) }
+          media = Medium.search_results(@current_filters)
         end
           @media = media.flatten.paginate(:page => params[:page], :per_page => 12)
       end

@@ -12,8 +12,13 @@ class Medium < ActiveRecord::Base
   end
   
   def self.search_results(query)
-    matches = $redis.keys "tag:#{query}"
-    unless matches.nil?
+    matches = []
+    query.split(",").each do |query|
+      ids = $redis.keys "tag:#{query}"
+      matches << ids
+    end
+    matches = matches.flatten.uniq
+    unless matches.empty?
       @media_array = []
       matches.each do |match|
         media_ids = $redis.smembers match
