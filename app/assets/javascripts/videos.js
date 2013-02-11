@@ -166,7 +166,7 @@ function tokenInput() {
 $(document).ready(function(){
 	$('#masonry-container').masonry({
 		itemSelector: '.box',
-		isAnimated: !Modernizr.csstransitions
+		isAnimated: false
 	});
 	scrollLoad();
 	disableThumbs();
