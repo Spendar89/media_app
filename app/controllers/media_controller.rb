@@ -126,7 +126,7 @@ class MediaController < ApplicationController
     @new_media = added_ids.map{ |id| $redis.hgetall "media:#{id}" }
     unless @current_filters == "false"
       @new_media.map! do |media_hash|
-        intersect_array =  media_hash["tags"].split(",") & @current_filters.split(",")
+        intersect_array =  media_hash["tags"].split(",") & @current_filters.split("|")
         media_hash unless intersect_array.empty?
       end
     end
