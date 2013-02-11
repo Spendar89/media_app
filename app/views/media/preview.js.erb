@@ -5,7 +5,8 @@
 							  :url => @url,
 							  :seconds => @seconds,
 							  :page_id => @page_id,
-							  :category_id => @category_id })%>");
+							  :category_id => @category_id,
+							  :tags => @tags })%>");
 <% elsif @url_error %>
 	$('.url-error').fadeIn();
 	setTimeout(function(){
