@@ -12,7 +12,7 @@
 		</div>
 	<div class="media_div ten columns">	
 			<div class="index-header-div">
-				<h2 class="glyph general one columns end" style="color: #D66540; font-size: 20pt; margin-top: 6px; margin-left: 0px">l</h2>
+				<h2 class="glyph general one columns end" style="color: #FF5457; font-size: 20pt; margin-top: 6px; margin-left: 0px">l</h2>
 				<h3 class="two columns end" style="margin-left: -4%">Live Feed</h3>
 				<div class="nine columns end filter-search-div" style="margin-top: 15px">
 					<div class="four columns">
@@ -36,7 +36,7 @@
 	</div>
 	<div class="row two columns end">
 		<div class="row" style="min-height: 600px; box-shadow: inset 5px 0 5px -5px #676767;">
-			<h4 class="glyph social two columns" style="color: #D66540; font-size: 18pt; line-height: 15pt">a</h4><h5 class="ten columns">Recommended</h5>
+			<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt; line-height: 15pt">a</h4><h5 class="ten columns">Recommended</h5>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
 		      		<h6 class="subheader twelve columns"><%= i+1 %>. <%= link_to page[:name], page_path(page), :method => "get" %></h6>
@@ -44,7 +44,7 @@
 		<% else %>
 			<h5 class="subheader twelve columns">Rate More Content to Receive Page Recommendations!</h5>
 		<% end %>
-			<h4 class="glyph general two columns" style="color: #D66540; font-size: 18pt; line-height: 5pt">o</h4><h5 class="ten columns">Trending</h5>
+			<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; line-height: 5pt">o</h4><h5 class="ten columns">Trending</h5>
 		<% unless @trending_tags.nil? %>
 			<div class="twelve columns">
 				<% @trending_tags.each do |tag| %>

@@ -19,7 +19,6 @@ function pollRedis(current_filters){
 				$.get("/media/poll_redis?current_filters=" + current_filters + "&most_recent_id=" + $('.media_parent').first().attr('video_id'));
 			}, 10000);
 		};
-	}
 }
 
 function disableThumbs(){
@@ -111,8 +110,8 @@ function tokenInput() {
 					return "<li style='display: none'>" + "#"+item.name + "</li>"
 					}, 
 	     onAdd: function (item) {
-			$('#selected-tags').append("<span id='"+item.id+"' class='round label secondary end' style='margin-right: 1%'>" + 
-										"#"+item.name + "<a href='#' onclick='$(\"#tag-search\").tokenInput(\"remove\", {id:"+ 
+			$('#selected-tags').append("<span id='"+item.id+"' class='round label secondary end' style='color: #545052; margin-right: 1%; background: #EDDC64'>" + 
+										"#"+item.name + "<a style='color: #545052' href='#' onclick='$(\"#tag-search\").tokenInput(\"remove\", {id:"+ 
 										item.id+"}); $(\"#"+item.id+"\").remove();' class='token-input-delete-token-facebook'>×</span>"+
 										"</span>");
 		    array = $.map($(this).tokenInput("get"), function(n){
