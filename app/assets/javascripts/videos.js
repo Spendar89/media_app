@@ -116,7 +116,7 @@ function tokenInput() {
 										"</span>");
 			var params = ""
 		    array = $.map($(this).tokenInput("get"), function(n){
-		      name = (n.name );
+		      name = n.name;
 			  params += (name + "|")
 		    });
 			
@@ -128,7 +128,7 @@ function tokenInput() {
 		onDelete: function (item) {
 			var params = ""
 		    array = $.map($(this).tokenInput("get"), function(n){
-		      return (n.name );
+		      name = n.name;
 			  params += (name + "|")
 		    });
 	         $.get("/media/search.js?page=1&query="+params);
