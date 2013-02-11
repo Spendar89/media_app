@@ -78,7 +78,7 @@ class MediaController < ApplicationController
   end
   
   def search
-    @current_filters = params[:query]
+    @current_filters = params[:query][0...-1]
     if @current_filters.empty?
       @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
     else

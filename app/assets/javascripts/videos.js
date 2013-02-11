@@ -114,10 +114,13 @@ function tokenInput() {
 										"#"+item.name + "<a style='color: #545052' href='#' onclick='$(\"#tag-search\").tokenInput(\"remove\", {id:"+ 
 										item.id+"}); $(\"#"+item.id+"\").remove();' class='token-input-delete-token-facebook'>×</span>"+
 										"</span>");
+			var params = ""
 		    array = $.map($(this).tokenInput("get"), function(n){
-		      return (n.name );
+		      name = (n.name );
+			  params += (name + "|")
 		    });
-	         $.get("/media/search.js?query="+array);
+			
+	         $.get("/media/search.js?query="+params);
 	     },
 		onReady: function(){
 			$('#token-input-tag-search').attr('placeholder', 'Filter By Tag');

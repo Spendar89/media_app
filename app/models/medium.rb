@@ -21,7 +21,7 @@ class Medium < ActiveRecord::Base
   
   def self.search_results(query)
     matched_ids = []
-    tags_array = query.split(",")
+    tags_array = query.split("|")
     tags_array.each do |tag|
       ids = $redis.smembers "tag:#{tag}"
       ids.each{|id| matched_ids << id unless matched_ids.include?(id)}
