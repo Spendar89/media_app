@@ -16,7 +16,8 @@ function scrollLoad(){
 
 function tokenParams(){
 	var params = ""
-    $('#tag-search').tokenInput("get"), function(n){
+    array = $('#tag-search').tokenInput("get");
+ 	$.each(array, function(i, n){
 	  if (n.id[0] == "T"){
 	  	params += ("&tags[]=" + n.name)
 	  }else if (n.id[0] == "C"){
@@ -147,30 +148,30 @@ function tokenInput() {
 				$("#tag-search").tokenInput("remove", { id: item.id });
 				$(this).parents().first().remove();
 			});
-			var params = ""
-		    array = $.map($(this).tokenInput("get"), function(n){
-			  if (n.id[0] == "T"){
-			  	params += ("&tags[]=" + n.name)
-			  }else if (n.id[0] == "C"){
-				params += ("&category=" + n.name)
-			  }
-		    });
+			// var params = ""
+			// 		    array = $.map($(this).tokenInput("get"), function(n){
+			// 			  if (n.id[0] == "T"){
+			// 			  	params += ("&tags[]=" + n.name)
+			// 			  }else if (n.id[0] == "C"){
+			// 				params += ("&category=" + n.name)
+			// 			  }
+			// 		    });
 			
-	         $.get("/media.js?filtered=true&page=1"+params);
+	         $.get("/media.js?filtered=true&page=1"+ tokenParams());
 	     },
 		onReady: function(){
 			$('#token-input-tag-search').attr('placeholder', 'Filter By Category or Tag');
 		},
 		onDelete: function (item) {
-			var params = ""
-		    array = $.map($(this).tokenInput("get"), function(n){
-			  if (n.id[0] == "T"){
-			  	params += ("&tags[]=" + n.name)
-			  }else if (n.id[0] == "C"){
-				params += ("&category=" + n.name)
-			  }
-		    });
-	         $.get("/media.js?filtered=true&page=1"+params);
+			// var params = ""
+			// 	    array = $.map($(this).tokenInput("get"), function(n){
+			// 		  if (n.id[0] == "T"){
+			// 		  	params += ("&tags[]=" + n.name)
+			// 		  }else if (n.id[0] == "C"){
+			// 			params += ("&category=" + n.name)
+			// 		  }
+			// 	    });
+	         $.get("/media.js?filtered=true&page=1"+ tokenParams());
 	     }
 	});
 }
