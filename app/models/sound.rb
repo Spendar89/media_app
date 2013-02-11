@@ -28,7 +28,9 @@ class Sound
                                                             '/pages/#{@page_id}', :method => 'get'%></p></aside>"
                                                             
     $redis.zadd "media:by_score", 0, @id
+    add_category
     add_tag unless @tags.nil?
+    
   end
   
 
@@ -38,6 +40,11 @@ class Sound
       $redis.sadd "tag:#{tag}", @id
       $redis.zincrby "tags:by_count", 1, tag
     end  
+  end
+  
+  def add_category
+    $redis.sadd "category:#{@category_id}", @id
+    $redis.zincrby "categories:by_count", 1, @category_id
   end
 
   private

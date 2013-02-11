@@ -26,7 +26,8 @@ class Video
       $redis.zadd "media:by_score", 0, @id
       $redis.sadd "media:youtube", @id
       $redis.zadd "user:#{current_user.id}:feed", @uploaded, "<aside><p class='feed-story'> <%= link_to '#{Time.now.strftime("%b %e, %l:%M %p")}: Added #{@title} to #{Page.find(@page_id).name}', 
-                                                             '/pages/#{@page_id}', :method => 'get'%></p></aside>"
+                                                         '/pages/#{@page_id}', :method => 'get'%></p></aside>"
+      add_category
       add_tag unless @tags.nil?
   end
   
@@ -37,6 +38,12 @@ class Video
       $redis.zincrby "tags:by_count", 1, tag
     end
   end
+  
+  def add_category
+    $redis.sadd "category:#{@category_id}", @id
+    $redis.zincrby "categories:by_count", 1, @category_id
+  end
+  
   
   def self.all_redis
     yt_ids = $redis.zrevrange "media:by_upload", 0, -1

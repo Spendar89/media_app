@@ -269,3 +269,16 @@ ul.flyout li a, .nav-bar li ul li a{
        -o-transition-property: left, right, top;
           transition-property: left, right, top;
 }
+
+.cat-filter{
+	font-size: 16pt !important;
+	background: #8BEE7E !important;
+	padding: 1%;
+
+}
+
+.tag-filter{
+	background: #EDDC64 !important;
+	font-size: 10pt !important;
+	padding: 1%;
+}

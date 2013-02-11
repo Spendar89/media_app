@@ -1,25 +1,25 @@
 <%= form_tag("/media", :method => :post, :remote => :true) do %>
 <div class="row">
 	<h4 class="subheader">Now Customize the Title and Description.</h4>
-		<%= hidden_field_tag :url, @url %>
-		<%= hidden_field_tag :seconds, @seconds %>
-		<%= hidden_field_tag :page_id, @page_id %>
-		<%= hidden_field_tag :category_id, @category_id %>
+		<%= hidden_field_tag :url, url %>
+		<%= hidden_field_tag :seconds, seconds %>
+		<%= hidden_field_tag :page_id, page_id %>
+		<%= hidden_field_tag :category_id, category_id %>
 	<div class="twelve columns">
 		<%= label_tag :title, "Title" %>
-		<%= text_field_tag :title, @preview_title %>
+		<%= text_field_tag :title, preview_title %>
 	</div>
 </div>
 <div class="row">
 	<div class="twelve columns">
 		<%= label_tag :description, "Description" %>
-		<%= text_field_tag :description, @preview_description %>
+		<%= text_field_tag :description, preview_description %>
 	</div>
 </div>
 <div class="row">
 	<div class="twelve columns">
 		<%= label_tag :tags, "Tags" %>
-		<%= text_field_tag :tags, @tags %>
+		<%= text_field_tag :tags, tags %>
 	</div>
 </div>
 <div class="row">

@@ -13,7 +13,7 @@ class MediaController < ApplicationController
         video.add_redis(current_user)
         @new_media = $redis.hgetall "media:#{video.id}"
       elsif /soundcloud/.match(params[:url])
-        sound = Sound.new(params[:url], seconds, @page_id, params[:category_id], tags_array, params[:title].gsub("'", ""), params[:description])
+        sound = Sound.new(params[:url], seconds, @page_id, @category_id, tags_array, params[:title].gsub("'", ""), params[:description])
         sound.add_redis(current_user)
         @new_media = $redis.hgetall "media:#{sound.id}"
       else
@@ -38,6 +38,7 @@ class MediaController < ApplicationController
       $redis.zrem "user:#{current_user.id}:media:by_upload", @id
       $redis.zrem "media:by_score", @id
       $redis.srem "media:youtube", @id
+      $redis.srem "category:#{category_id}", @id
     end
   end
   
@@ -45,8 +46,8 @@ class MediaController < ApplicationController
     @url = params[:url]
     @seconds = Medium.seconds(params[:start_minutes], params[:start_seconds])
     @page_id = params[:page_id]
-    category_id = Page.find(params[:page_id])[:category_id]
-    @tags = "#{Category.find(category_id)[:name]}"
+    @category_id = Page.find(params[:page_id])[:category_id]
+    @tags = ""
     if current_user.nil?
       @user_error = true
     else
@@ -66,40 +67,34 @@ class MediaController < ApplicationController
   end
   
   def index
-    @recent_pages = Page.all 
-    if params[:tag]
-      @tag = params[:tag]
-      @media = Tag.find_all(@tag).paginate(:page => params[:page], :per_page => 12)
-    else   
-      @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
-    end
-   @ranked_pages = current_user.ranked_pages.reverse[0..9] unless current_user.nil?
-   @trending_tags = Tag.ranked[0..9]
+    @recent_pages = Page.all
+    @filtered = true if params[:filtered]
+    params[:category] ? media_ids = Medium.filtered_by_category(Category.find_by_name(params[:category])) :  media_ids = Medium.all_ids
+    media_ids = Medium.filtered_by_tags(media_ids, params[:tags]) if params[:tags]
+    @media = Medium.find_all(media_ids).paginate(:page => params[:page], :per_page => 12)
+    @ranked_pages = current_user.ranked_pages.reverse[0..9] unless current_user.nil?
+    @trending_tags = Tag.ranked[0..9]
   end
+  
   
   def search
-    @current_filters = params[:query][0...-1]
-    if @current_filters.empty?
-      @media = Medium.all_redis.paginate(:page => params[:page], :per_page => 12)
-    else
-      @media = Medium.search_results(@current_filters).paginate(:page => params[:page], :per_page => 12)
-    end
+     @query = params[:query]
+      @media = Medium.search_results(@query)
+      @users = User.where('name ILIKE ?', "%#{params[:query]}%")
+      @pages = Page.where('name ILIKE ?', "%#{params[:query]}%")
+      @categories = Category.where('name ILIKE ?', "%#{params[:query]}%")
   end
-  
-  # def search
-  #    @query = params[:query]
-  #     @media = Medium.search_results(@query)
-  #     @users = User.where('name ILIKE ?', "%#{params[:query]}%")
-  #     @pages = Page.where('name ILIKE ?', "%#{params[:query]}%")
-  #     @categories = Category.where('name ILIKE ?', "%#{params[:query]}%")
-  # end
         
   def token_input
     @q = params[:q]
     @tags = Tag.all
+    @categories = Category.all
     @json_array = []
     @tags.each do |tag|
-        @json_array << {:id => rand(1000000), :name => tag } if /#{@q}/.match(tag)
+        @json_array << {:id => "T_#{rand(1000000)}", :name => tag } if /#{@q}/.match(tag)
+    end
+    @categories.each do |cat|
+       @json_array << {:id => "C_#{rand(1000000)}", :name => cat.name } if /#{@q}/.match(cat.name)
     end
     respond_to do |format|
       format.json { render :json => @json_array.to_json }

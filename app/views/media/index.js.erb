@@ -1,3 +1,7 @@
+<% if @filtered %>
+	$('#masonry-container').children().remove();
+<% end %>
+
 <% for medium in @media %>
 	<% unless medium["type"].nil? %>
 		<% if medium["type"] == "youtube" %>
@@ -15,7 +19,6 @@
   $('.pagination').remove();
 <% end %>
 
-pollRedis("<%= @current_filters %>");
 
 
 	$('.poll-redis').each(function(){
