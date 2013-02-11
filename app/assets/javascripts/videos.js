@@ -123,26 +123,24 @@ function tokenInput() {
 		searchingText: false,
 		resultsFormatter: function(item){
 			if (item.id[0] == "T"){
-				return "<li>" + "#" + item.name + "</li>"
+				return "<li style='margin-left: 2%'>" + "# " + item.name + "</li>"
 			}else if (item.id[0] == "C"){
-				return "<li>" + "Category: " + item.name + "</li>"
+				return "<li>" + "<span class='glyph general' style='font-size: 16pt; margin-left: 1%'>c </span>" + item.name + "</li>"
 			}
 		},
 		tokenFormatter: function(item){ 
 					return "<li style='display: none'>" + "#"+item.name + "</li>"
 					}, 
 	     onAdd: function (item) {
-			// if ($("a#"+item.id).length){
-			// 	return false
-			// }
-			$('#selected-tags').append("<span class='label secondary end filter-label' style='color: #545052; margin-right: 1%'></span>");
+			$('#masonry-container').children().remove();
+			$('#selected-tags').append("<span class='label secondary filter-label'></span>");
 			var label = $(".filter-label").last();
 			if(item.id[0] == "C"){
 				label.addClass("cat-filter");
-				label.html("Category: "+item.name + "<a id='"+item.id+"' style='margin-top: -5%' href='#' class='token-input-delete-token-facebook'>×</a>")
+				label.html("<span class='glyph general' style='font-size: 18pt; margin-left: 1%'>c </span>"+item.name + "<a id='"+item.id+"' href='#' class='token-input-delete-token-facebook'>×</a>")
 			}else{
 				label.addClass("tag-filter");
-				label.html("#"+item.name + "<a id='"+item.id+"' style='margin-top: -5%' href='#' class='token-input-delete-token-facebook'>×</a>");
+				label.html("#"+item.name + "<a id='"+item.id+"'href='#' class='token-input-delete-token-facebook'>×</a>");
 			}
 			$("a#"+item.id).click(function(){
 				$("#tag-search").tokenInput("remove", { id: item.id });

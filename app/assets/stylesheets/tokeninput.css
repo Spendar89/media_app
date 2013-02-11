@@ -1,7 +1,7 @@
 /* Example tokeninput style #1: Token vertical list*/
 ul.token-input-list {
     overflow: hidden; 
-    width: 200px;
+    width: 230px;
     cursor: text;
     font-size: 14pt;
     font-family: sans-serif;

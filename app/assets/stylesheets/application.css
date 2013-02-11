@@ -274,11 +274,14 @@ ul.flyout li a, .nav-bar li ul li a{
 	font-size: 16pt !important;
 	background: #8BEE7E !important;
 	padding: 1%;
+	margin: 1%;
 
 }
 
 .tag-filter{
 	background: #EDDC64 !important;
 	font-size: 10pt !important;
+	line-height: 32pt;
 	padding: 1%;
+	margin: 2%;
 }
