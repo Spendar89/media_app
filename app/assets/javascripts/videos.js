@@ -2,6 +2,7 @@ function scrollLoad(){
 	if ($('.pagination').length){
 		$(window).scroll(function() {
 			url = $('.pagination .next_page').attr('href')
+			alert(url);
 	   		if(url && $(window).scrollTop() > $(document).height() - $(window).height()){
 				$('.loader').fadeIn();
 				$('.pagination').text("Fetching more products...");
