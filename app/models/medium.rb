@@ -26,6 +26,7 @@ class Medium < ActiveRecord::Base
       ids = $redis.smembers "tag:#{tag}"
       ids.each{|id| matched_ids << id unless matched_ids.include?(id)}
     end
+    puts "matched ids: #{matched_ids}"
     matched_ids.map! do |id|
         $redis.hgetall "media:#{id}" if self.each_has_tag?(tags_array, id)
     end
