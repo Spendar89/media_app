@@ -177,7 +177,6 @@ a:hover{
 	box-shadow: 0 0 3px grey;
 	height: 60px;
 	border-right: none;
-	overflow: hidden
 }
 
 .box-link{
@@ -298,10 +297,11 @@ ul.flyout li a, .nav-bar li ul li a{
 	background: #E4E4E4;
 	min-height: 600px; 
 	margin-left: -5%; 
-	margin-top: -9%; 
 	overflow: hidden; 
 	padding: 4%;
-	z-index: 5;
+	position: relative;
+	top: -16px;
+	border-right: 1pt solid #ccc;
 }
 
 .vertical-rule{
@@ -310,5 +310,5 @@ ul.flyout li a, .nav-bar li ul li a{
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #E4E4E4;
 	margin-left: -5%;
-	margin-top: -2.5%; 
+	margin-top: -2.7%; 
 }
