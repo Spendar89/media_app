@@ -13,12 +13,12 @@
 	<div class="media_div ten columns" style="margin-top: 1%">	
 			<div class="index-header-div">
 				<h2 class="glyph general one columns end" style="color: #FF5457; font-size: 20pt; margin-top: 6px; margin-left: 0px">l</h2>
-				<h3 class="three columns end" style="margin-left: -4%">Live Feed</h3>
-				<div class="eight columns end filter-search-div" style="margin-top: 15px">
+				<h3 class="two columns" style="margin-left: -4%">Live Feed</h3>
+				<div class="nine columns end filter-search-div" style="margin-top: 15px">
 					<div class="four columns">
 						<input type="text" id="tag-search"/>
 					</div>
-					<div class="eight columns" id="selected-tags">
+					<div class="eight columns end" id="selected-tags">
 					</div>
 				</div>
 			</div>
@@ -40,13 +40,13 @@
 			<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
 
-			<div class="subheader row side-panel" style="font-size: 14pt; margin: 1%"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get", :style => "color: #5E5E5E" %></div>
+			<div class="subheader row side-panel" style="font-size: 14pt; margin: 0%"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get", :style => "color: #5E5E5E" %></div>
 			<div class="twelve columns">
 				<hr class="twelve columns horizontal-rule">
 			</div>
 			<% end %>
 			<% else %>
-			<div class="subheader row side-panel" style="margin: 1%; font-size: 13pt;">Rate More Content to Receive Page Recommendations!</div>
+			<div class="subheader row side-panel" style="margin: 0%; font-size: 13pt;">Rate More Content to Receive Page Recommendations!</div>
 			<div class="twelve columns">
 				<hr class="twelve columns horizontal-rule">
 			</div>
