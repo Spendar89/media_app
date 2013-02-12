@@ -36,8 +36,10 @@
 	</div>
 	<div class="row two columns end">
 		<div class="twelve columns side-panel-div">
-			<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-left: -10%">a</h4>
-			<h5 class="ten columns end" style="margin-top: 3pt; color: #545052;">Recommended</h5>
+			<div class="row" style="padding-left: 3%; margin-top: -5%">
+				<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt;">a</h4>
+				<h5 class="ten columns end" style=" color: #545052;">Recommended</h5>
+			</div>
 			<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
 
@@ -60,8 +62,8 @@
 			<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-top: 3pt; margin-left: -10%">o</h4><h5 class="ten columns" style="color: #545052; margin-top: 1pt">Trending</h5>
 		<% unless @trending_tags.nil? %>
 			<div class="row" style="padding-left: 5%">
-				<% @trending_tags.each do |tag| %>
-		      		<div class="subheader" style="float: left; margin-left: 5%; margin-bottom: 5%; font-size: 15pt"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class=>"side-panel", :style => "color: #5E5E5E"%></div>
+				<% @trending_tags.each_with_index do |tag, i| %>
+		      		<div class="subheader" style="float: left; margin: 5%; font-size: 15pt"><%= link_to "#{',' unless i == 0}##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class=>"side-panel", :style => "color: #5E5E5E"%></div>
 					
 				<% end %>
 			</div>
