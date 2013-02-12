@@ -281,7 +281,7 @@ ul.flyout li a, .nav-bar li ul li a{
 }
 
 .tag-filter{
-	background: #EDDC64 !important;
+	background: #EDE548 !important;
 	font-size: 10pt !important;
 	line-height: 32pt;
 	padding: 1%;
@@ -296,13 +296,14 @@ ul.flyout li a, .nav-bar li ul li a{
 	margin-left: -15%;
 	margin-bottom: 3%;
 	margin-top: 3%;
+
 }
 .side-panel-div{
-	background: #E4E4E4;
+	background: #FFF;
 	min-height: 300px; 
 	padding: 5%;
 	position: relative;
-	box-shadow: 0 0 3px grey;
+	box-shadow: 0 0 5px grey;
 	margin-top: 10%;
 	min-width: 100%;
 	margin-left: -5%;
