@@ -39,7 +39,7 @@
 			<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt; line-height: 15pt">a</h4><h5 class="ten columns">Recommended</h5>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
-		      		<h6 class="subheader twelve columns side-panel" style="font-weight: bold"><%= i+1 %>. <%= link_to page[:name], page_path(page), :method => "get" %></h6>
+		      		<div class="subheader twelve columns side-panel" style="font-weight: bold; font-size: 15pt"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get" %></div>
 			<% end %>
 		<% else %>
 			<h5 class="subheader twelve columns side-panel" style="font-weight: bold">Rate More Content to Receive Page Recommendations!</h5>
