@@ -63,7 +63,7 @@
 		<% unless @trending_tags.nil? %>
 			<div class="row" style="padding-left: 5%">
 				<% @trending_tags.each_with_index do |tag, i| %>
-		      		<div class="subheader" style="float: left; margin: 5%; font-size: 15pt"><%= link_to "#{',' unless i == 0}##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class=>"side-panel", :style => "color: #5B8DBC"%></div>
+		      		<div class="subheader" style="float: left; margin: 5%; font-size: 15pt"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class=>"side-panel", :style => "color: #5B8DBC"%></div>
 					
 				<% end %>
 			</div>
