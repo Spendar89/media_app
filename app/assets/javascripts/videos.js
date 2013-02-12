@@ -66,27 +66,23 @@ function notLoggedIn(){
 function keyNav(){
 	var first = true
 	var counter = -1
-	$(document.documentElement).keyup(function (event) {
+	$(document.documentElemgent).keyup(function (event) {
 		var keyPressed = event.keyCode;
-		
 		if (keyPressed == 39 || keyPressed == 37 || keyPressed == 38 || keyPressed == 40 ){
 			
 			if(counter < -1){
 				counter = -1
 			};
-			
 			var array = []
 			
 			$('.media_parent').each(function(){
 				array.push($(this));
 			});
-			
 			function SortByUploaded(a, b){
 				var aUploaded = a.data('uploaded');
 				var bUploaded = b.data('uploaded'); 
 				return ((aUploaded < bUploaded) ? -1 : ((aUploaded > bUploaded) ? 1 : 0));
 			}
-			
 			var boxes = array.sort(SortByUploaded).reverse();
 			if(first){
 				counter +=1
@@ -102,7 +98,6 @@ function keyNav(){
 			}else if (keyPressed == 40){
 				counter += numColumns()
 			}
-			
 			$('.selected').trigger('mouseout').removeClass('selected');
 			$(boxes[counter]).trigger('mouseover').addClass('selected');
 		};	
@@ -117,19 +112,6 @@ function numColumns(){
 		cols = 4
 	}
 	return cols
-	// if (conWidth >= 1750){
-	// 		Math.floor(conWidth/220)
-	// 	}else if (conWidth >= 1460 && conWidth < 1750){
-	// 		return 5
-	// 	}else if (conWidth >= 1170 && conWidth < 1460){
-	// 		return  4
-	// 	}else if(conWidth < 1170 && conWidth >= 880){
-	// 		return  3
-	// 	}else if (conWidth < 880 && conWidth > 590){
-	// 		return 2
-	// 	}else{
-	// 		return 1
-	// 	}	
 }
 
 function deleteVideo(video_id){
