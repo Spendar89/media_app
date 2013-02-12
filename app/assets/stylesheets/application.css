@@ -175,7 +175,7 @@ a:hover{
 .nav-bar{
 	background:#FFF;
 	box-shadow: 0 0 3px grey;
-	height: 60px;
+	height: 50pt;
 	border-right: none;
 }
 
@@ -208,8 +208,7 @@ a:hover{
 
 .nav-bar>li>a:first-child{
 	font-size: 15pt;
-	line-height: 50pt;
-	padding-top: 10px;
+	line-height: 80pt;
 }
 
 .nav-bar>li>a:hover{
@@ -222,17 +221,18 @@ ul.flyout li a, .nav-bar li ul li a{
 }
 
 .flyout{
-	margin-top: 30%;
+	margin-top: 20%;
+	margin-left: 10%;
 }
 
 .nav-form {
 	-webkit-appearance:none;
-	margin-top:  6%;
+	margin-top:  22pt;
 }
 
 #logo{
 	font-size: 45pt;
-	line-height: 35pt;
+	line-height: 65pt;
 }
 
 #logo:hover{
@@ -302,8 +302,8 @@ ul.flyout li a, .nav-bar li ul li a{
 	overflow: hidden; 
 	padding: 4%;
 	position: relative;
-	margin-top: -18%;
 	border-right: 1pt solid #ccc;
+	margin-top: 1%;
 }
 
 .vertical-rule{
@@ -312,5 +312,4 @@ ul.flyout li a, .nav-bar li ul li a{
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #E4E4E4;
 	margin-left: -5%;
-	margin-top: -3.4%; 
 }
