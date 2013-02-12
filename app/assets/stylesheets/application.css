@@ -297,11 +297,11 @@ ul.flyout li a, .nav-bar li ul li a{
 }
 .side-panel-div{
 	background: #E4E4E4;
-	min-height: 400px; 
+	min-height: 300px; 
 	padding: 5%;
 	position: relative;
 	box-shadow: 0 0 3px grey;
-	margin-top: 5%;
+	margin-top: 10%;
 	min-width: 100%;
 	margin-left: -5%;
 }
