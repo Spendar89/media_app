@@ -34,25 +34,26 @@
 			<% end %>	
 		</div>
 	</div>
-	<div class="row two columns end">
-		<div class="row" style="min-height: 600px; box-shadow: inset 5px 0 5px -5px #676767;">
-			<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt; line-height: 15pt">a</h4><h5 class="ten columns">Recommended</h5>
+	<div class="two columns end">
+		<div class="vertical-rule"></div>
+		<div class="twelve columns side-panel-div">
+			<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-left: -10%">a</h4><h5 class="ten columns" style="margin-top: 3pt; color: #545052;">Recommended</h5>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
 		      		<div class="subheader twelve columns side-panel" style="font-weight: bold; font-size: 13pt"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get" %></div>
 			<% end %>
 		<% else %>
-			<h5 class="subheader twelve columns side-panel" style="font-weight: bold">Rate More Content to Receive Page Recommendations!</h5>
+			<div class="subheader twelve columns side-panel" style="font-size: 13pt; padding: 1%;">Rate More Content to Receive Page Recommendations!</div>
 			
 		<% end %>
 			<div class="twelve columns">
 				<hr class="twelve columns horizontal-rule">
 			</div>
-			<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; line-height: 5pt">o</h4><h5 class="ten columns">Trending</h5>
+			<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-top: -5pt; margin-left: -10%">o</h4><h5 class="ten columns" style="color: #545052; margin-top: -7pt">Trending</h5>
 		<% unless @trending_tags.nil? %>
 			<div class="twelve columns">
 				<% @trending_tags.each do |tag| %>
-		      		<div class="subheader" style="font-size: 15pt; font-weight: bold"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class=>"side-panel"%></div>
+		      		<div class="subheader" style="font-size: 15pt; margin-left: -10%"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class=>"side-panel"%></div>
 					
 				<% end %>
 			</div>
