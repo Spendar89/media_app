@@ -177,6 +177,7 @@ $(document).ready(function(){
 	// keyNav();
 	pollRedis("false");
 	tokenInput();
+	$('.vertical-rule').css('height', $('.side-panel-div').height());
 });
 
 $(document).ajaxComplete(function(){
