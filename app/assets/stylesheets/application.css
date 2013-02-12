@@ -202,7 +202,8 @@ a:hover{
 
 .nav-bar>li>a{
 	color: #5B8DBC;
-	font-weight: bold;		
+	font-weight: bold;	
+	height: 100%;	
 }
 
 .nav-bar>li>a:first-child{
@@ -301,7 +302,7 @@ ul.flyout li a, .nav-bar li ul li a{
 	overflow: hidden; 
 	padding: 4%;
 	position: relative;
-	top: -16px;
+	margin-top: -18%;
 	border-right: 1pt solid #ccc;
 }
 
@@ -311,5 +312,5 @@ ul.flyout li a, .nav-bar li ul li a{
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #E4E4E4;
 	margin-left: -5%;
-	margin-top: -2.7%; 
+	margin-top: -3.4%; 
 }
