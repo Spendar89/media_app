@@ -191,12 +191,13 @@ a:hover{
 .nav-bar>li{
 	border: none;
 	box-shadow: none;
+	height: 100%;
 }
 
 .nav-bar>li:hover{
 	background: #FFF;
 	box-shadow: none;
-	height: 60px;
+	height: 100%;
 }
 
 .nav-bar>li>a{

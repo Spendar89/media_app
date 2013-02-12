@@ -21,7 +21,7 @@
 		<% end %>
 	</li>
 	<% if current_user %>
-	<li class="has-flyout" style="float: right">
+	<li class="has-flyout" style="float: right; border-right: none;">
 		<a href="#">Signed in as <%= current_user.name %></a>
 		<a href="#" class="flyout-toggle"><span> </span></a>
 		<ul class="flyout">
@@ -30,10 +30,10 @@
 		</ul>
 	</li>
 	<% else %>
-		<li style="float: right; border-right: none">
-			<%= link_to "/auth/facebook" do %>
-				<%= image_tag "facebook_login.png", :width => "180", :style=>"margin-top: 7%" %>
-			<% end%>
-		</li>
+	<li style="float: right; border-right: none">
+		<%= link_to "/auth/facebook" do %>
+			<%= image_tag "facebook_login.png", :width => "180", :style=>"margin-top: 7%" %>
+		<% end%>
+	</li>
 	<% end %>
 </ul>
