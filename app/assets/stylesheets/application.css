@@ -64,7 +64,7 @@ h3, h2, h1, h4{
   box-shadow: 0 0 3px grey;
   margin-bottom: 10px;
   cursor: pointer;
-  border: 4px solid #ddd;
+  border: 3px solid #B2B2B2;
 }
 
 .box:hover{
@@ -284,4 +284,13 @@ ul.flyout li a, .nav-bar li ul li a{
 	line-height: 32pt;
 	padding: 1%;
 	margin: 2%;
+}
+
+.horizontal-rule{
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #fff;
+	clear: both;
+	min-width: 105%;
+	margin-left: -5%;
+	
 }

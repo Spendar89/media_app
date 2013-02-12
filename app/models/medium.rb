@@ -16,7 +16,7 @@ class Medium < ActiveRecord::Base
       $redis.srem "tags", first_tag
       $redis.srem "tag:#{first_tag}", id
       $redis.sadd "category:#{category_id}", id
-      $redis.zincrby "categories:by_count", 1, category_id
+      $redis.zincrby "categories:by_count", -1, category_id
     end
   end
   

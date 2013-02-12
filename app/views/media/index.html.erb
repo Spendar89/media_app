@@ -43,13 +43,19 @@
 			<% end %>
 		<% else %>
 			<h5 class="subheader twelve columns">Rate More Content to Receive Page Recommendations!</h5>
+			
 		<% end %>
+			<div class="twelve columns">
+				<hr class="twelve columns horizontal-rule">
+			</div>
 			<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; line-height: 5pt">o</h4><h5 class="ten columns">Trending</h5>
 		<% unless @trending_tags.nil? %>
 			<div class="twelve columns">
 				<% @trending_tags.each do |tag| %>
-		      		<div class="subheader prevent-default" style="font-size: 15pt"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" %></div>
+		      		<div class="subheader" style="font-size: 15pt"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" %></div>
+					
 				<% end %>
+				<hr class="twelve columns horizontal-rule">
 			</div>
 		<% end %>		
 		</div>
