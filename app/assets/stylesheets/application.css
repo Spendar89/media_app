@@ -299,8 +299,7 @@ ul.flyout li a, .nav-bar li ul li a{
 	background: #E4E4E4;
 	min-height: 600px; 
 	margin-left: -5%; 
-	overflow: hidden; 
-	padding: 4%;
+	padding: 5%;
 	position: relative;
 	border-right: 1pt solid #ccc;
 	margin-top: 1%;
