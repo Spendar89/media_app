@@ -6,59 +6,75 @@
 })();
 
 function onYouTubeIframeAPIReady() {
-	$('.yt-video').each(function(){
-		var playerId = $(this).attr('id');
-		var player;
-		player = new YT.Player(playerId, {
-			events: {
-				'onReady': createYTEvent(playerId),
-				'onStateChange': onPlayerStateChange(playerId),
-				'onError': onPlayerError
-			}
-		});
+	$('.yt_parent').each(function(){
+		var newPlayer = new YouTubePlayer($(this));
+		newPlayer.ready();
 	});
 }
 
-function createYTEvent(playerId){ 
-	return function (event) {
-		var parent_div = $('#'+playerId).parents('.yt_parent');
-		var player = event.target;
+function ajaxYouTubeLoad() {
+	$('.poll-redis').each(function(){
+		$(this).removeClass('poll-redis');
+		var newPlayer = new YouTubePlayer($(this));
+		newPlayer.ready();
+	});
+}
+
+var YouTubePlayer = function(parentDiv){
+	
+	this.parentDiv = parentDiv;
+	this.id = parentDiv.children('.video-row').children('.yt-video-div').children('.yt-video').attr('id');
+	var playerId = this.id;
+	
+	this.ready = function(){
+		new YT.Player(playerId, {
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange,
+				'onError': onPlayerError
+			}
+		});
+	};
+	
+	var loadVideo = function(player){
 		player.setVolume(0);
-		parent_div.addClass('loading');	
+		parentDiv.addClass('loading');	
 		player.playVideo();
-		parent_div.hover(function(){
+	}
+	
+	var onPlayerHover = function(player){
+		parentDiv.hover(function(){
 				$('.selected').trigger('mouseout').removeClass('selected');
-				player.seekTo(parent_div.data("start"), 'false');	
+				player.seekTo(parentDiv.data("start"), 'false');	
 				player.playVideo();
 				player.setVolume(50);
 		},
 			function(){
 				player.pauseVideo();
 		});
-		}
 	}
 	
-function onPlayerError(event){
-	event.target.pauseVideo();
-}
-
-function  onPlayerStateChange(playerId){
-		return function (event) {
-			var parent_div = $('#'+playerId).parents('.yt_parent');	
-			var player = event.target
-			if (event.data == YT.PlayerState.PLAYING && parent_div.hasClass('loading')){
-				player.pauseVideo();
-				parent_div.removeClass('loading');
-			}
-			else if (event.data == YT.PlayerState.PAUSED){
-				parent_div.find('.overlay').fadeOut();	
-			}	
+	var onPlayerReady = function(event){ 
+		var player = event.target;
+		loadVideo(player);
+		onPlayerHover(player);	
 	}
-}
-
-
-
-
+	
+	var onPlayerError =	function(event){
+		event.target.pauseVideo();
+	}
+		
+	var onPlayerStateChange = function(event){
+		var player = event.target
+		if (event.data == YT.PlayerState.PLAYING && parentDiv.hasClass('loading')){
+			player.pauseVideo();
+			parentDiv.removeClass('loading');
+		}
+		else if (event.data == YT.PlayerState.PAUSED){
+			parentDiv.find('.overlay').fadeOut();	
+		}
+	}		
+};
 
 
 

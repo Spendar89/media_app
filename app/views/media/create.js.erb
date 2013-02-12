@@ -1,40 +1,16 @@
 <% if @error.nil? %>
 	$('#add_media_div').trigger('reveal:close');
-	$('.media_div').prepend("<%=j render(:partial => 'create', :locals => {:medium => @new_media})%>");
+	$('.media_div').prepend("<%=j render(:partial => 'create', :locals => {:medium => 
+		                     @new_media})%>");
 	$('#masonry-container').masonry('reload');
-	$('.add-media-partial-div').html("<%=j  render(:partial => 'pages/add_media_form', :locals => { :page_id => @page_id, :category_id => @category_id }) %>");
+	$('.add-media-partial-div').html("<%=j  render(:partial => 'pages/add_media_form', 
+									  :locals => { :page_id => @page_id, :category_id => 
+									  @category_id }) %>");
 	<% if @new_media['type'] == "youtube" %>
-			var playerId = $('.yt-video').first().attr('id');
-			var player;
-			player = new YT.Player(playerId, {
-			   events: { 'onReady': createYTEvent(playerId) }	
-			});
-			function createYTEvent(playerId){ 
-				return function (event) {
-					var parent_div = $('#'+playerId).parents('.yt_parent');	
-					var player = event.target // Set player reference
-					player.mute();
-					player.playVideo();
-					player.setPlaybackQuality('small');
-					setTimeout(function(){
-						player.pauseVideo();
-					}, 2000);
-					setTimeout(function(){
-						parent_div.find('.overlay').fadeOut();
-					}, 3000);	
-					$(parent_div).mouseover(function(){
-						$('.selected').trigger('mouseout').removeClass('selected');
-						player.seekTo(parent_div.data("start"), 'false');
-						player.unMute();	
-						player.playVideo();	
-					}).mouseout(function(){
-						player.pauseVideo();
-					});
-					
-
-				}
-			}
+		var parentId = $('.yt_parent').first().attr('id');
+		var newPlayer = new YouTubePlayer(parentId);
+		newPlayer.ready();
 	<% end %>
 <% else %>
 	alert("<%= @error %>");
-<%end%>
+<% end %>
