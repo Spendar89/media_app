@@ -309,6 +309,10 @@ ul.flyout li a, .nav-bar li ul li a{
 	margin-left: -25%;
 }
 
+a.side-panel:hover{
+	color: #090A42 !important;
+}
+
 .vertical-rule{
 	position: absolute;
 	height: 600px;
