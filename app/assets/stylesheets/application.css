@@ -208,7 +208,7 @@ a:hover{
 
 .nav-bar>li>a:first-child{
 	font-size: 15pt;
-	line-height: 80pt;
+	line-height: 75pt;
 }
 
 .nav-bar>li>a:hover{
@@ -221,7 +221,7 @@ ul.flyout li a, .nav-bar li ul li a{
 }
 
 .flyout{
-	margin-top: 20%;
+	margin-top: 40%;
 	margin-left: 10%;
 }
 
@@ -232,7 +232,7 @@ ul.flyout li a, .nav-bar li ul li a{
 
 #logo{
 	font-size: 45pt;
-	line-height: 65pt;
+	line-height: 60pt;
 }
 
 #logo:hover{
