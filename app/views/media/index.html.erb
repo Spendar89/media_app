@@ -39,10 +39,10 @@
 			<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt; line-height: 15pt">a</h4><h5 class="ten columns">Recommended</h5>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
-		      		<h6 class="subheader twelve columns"><%= i+1 %>. <%= link_to page[:name], page_path(page), :method => "get" %></h6>
+		      		<h6 class="subheader twelve columns side-panel" style="font-weight: bold"><%= i+1 %>. <%= link_to page[:name], page_path(page), :method => "get" %></h6>
 			<% end %>
 		<% else %>
-			<h5 class="subheader twelve columns">Rate More Content to Receive Page Recommendations!</h5>
+			<h5 class="subheader twelve columns side-panel" style="font-weight: bold">Rate More Content to Receive Page Recommendations!</h5>
 			
 		<% end %>
 			<div class="twelve columns">
@@ -52,10 +52,9 @@
 		<% unless @trending_tags.nil? %>
 			<div class="twelve columns">
 				<% @trending_tags.each do |tag| %>
-		      		<div class="subheader" style="font-size: 15pt"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" %></div>
+		      		<div class="subheader" style="font-size: 15pt; font-weight: bold"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class=>"side-panel"%></div>
 					
 				<% end %>
-				<hr class="twelve columns horizontal-rule">
 			</div>
 		<% end %>		
 		</div>
