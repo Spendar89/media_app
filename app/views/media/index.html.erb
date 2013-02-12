@@ -41,8 +41,8 @@
 			<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
 
-			<div class="subheader row side-panel" style="font-size: 14pt; margin: 0%"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get", :style => "color: #5E5E5E" %></div>
-			<div class="twelve columns">
+			<div class="subheader row side-panel" style="font-size: 12pt; margin: 0%"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get", :style => "color: #5E5E5E" %></div>
+			<div class="twelve columns" style="margin-top: -1%; margin-bottom: -1%">
 				<hr class="twelve columns horizontal-rule">
 			</div>
 			<% end %>
