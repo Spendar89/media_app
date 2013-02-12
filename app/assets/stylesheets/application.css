@@ -294,8 +294,8 @@ ul.flyout li a, .nav-bar li ul li a{
 	clear: both;
 	min-width: 130%;
 	margin-left: -15%;
-	margin-bottom: 0%;
-	margin-top: 0%;
+	margin-bottom: 3%;
+	margin-top: 3%;
 }
 .side-panel-div{
 	background: #E4E4E4;
