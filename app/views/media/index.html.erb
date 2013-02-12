@@ -13,8 +13,8 @@
 	<div class="media_div ten columns" style="margin-top: 1%">	
 			<div class="index-header-div">
 				<h2 class="glyph general one columns end" style="color: #FF5457; font-size: 20pt; margin-top: 6px; margin-left: 0px">l</h2>
-				<h3 class="two columns end" style="margin-left: -4%">Live Feed</h3>
-				<div class="nine columns end filter-search-div" style="margin-top: 15px">
+				<h3 class="three columns end" style="margin-left: -4%">Live Feed</h3>
+				<div class="eight columns end filter-search-div" style="margin-top: 15px">
 					<div class="four columns">
 						<input type="text" id="tag-search"/>
 					</div>
@@ -34,9 +34,9 @@
 			<% end %>	
 		</div>
 	</div>
-	<div class="two columns end">
+	<div class="row two columns end">
 		<div class="vertical-rule"></div>
-		<div class="twelve columns side-panel-div">
+		<div class="twelve columns side-panel-div" style="width: 109%">
 			<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-left: -10%">a</h4><h5 class="ten columns" style="margin-top: 3pt; color: #545052;">Recommended</h5>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
