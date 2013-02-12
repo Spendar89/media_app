@@ -63,10 +63,31 @@ function notLoggedIn(){
 	});
 }
 
+
+
+function isScrolledIntoView(elem)
+{
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+
+    var elemTop = $(elem).offset().top;
+    var elemBottom = elemTop + $(elem).height();
+
+    return ((docViewTop < elemTop) && (docViewBottom > elemBottom))
+}
+
 function keyNav(){
 	var first = true
 	var counter = -1
-	$(document.documentElemgent).keyup(function (event) {
+	
+	document.onkeydown = function(e) {
+	    var k = e.keyCode;
+	    if(counter <= -1 || (k >= 37 && k <= 40 && isScrolledIntoView($('.selected')))) {
+	        return false;
+	    }
+	}
+	
+	$(document.documentElement).keyup(function (event) {
 		var keyPressed = event.keyCode;
 		if (keyPressed == 39 || keyPressed == 37 || keyPressed == 38 || keyPressed == 40 ){
 			

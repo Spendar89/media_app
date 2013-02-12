@@ -35,7 +35,7 @@ var YouTubePlayer = function(parentDiv){
 			}
 		});
 	};
-
+	
 	var loadVideo = function(player){
 		player.setVolume(0);
 		parentDiv.addClass('loading');	
