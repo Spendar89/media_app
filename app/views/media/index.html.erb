@@ -40,7 +40,7 @@
 			<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-left: -10%">a</h4><h5 class="ten columns" style="margin-top: 3pt; color: #545052;">Recommended</h5>
 		<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
-		      		<div class="subheader twelve columns side-panel" style="font-size: 13pt"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get" %></div>
+		      		<div class="subheader twelve columns side-panel" style="font-size: 13pt"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get", :style => "color: #5E5E5E" %></div>
 			<% end %>
 		<% else %>
 			<div class="subheader twelve columns side-panel" style="font-size: 13pt; padding: 1%;">Rate More Content to Receive Page Recommendations!</div>
@@ -53,7 +53,7 @@
 		<% unless @trending_tags.nil? %>
 			<div class="twelve columns">
 				<% @trending_tags.each do |tag| %>
-		      		<div class="subheader" style="font-size: 15pt; margin-left: -10%"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class=>"side-panel"%></div>
+		      		<div class="subheader" style="font-size: 15pt; margin-left: -10%"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class=>"side-panel", :style => "color: #5E5E5E"%></div>
 					
 				<% end %>
 			</div>
