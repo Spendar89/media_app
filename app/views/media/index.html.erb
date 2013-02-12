@@ -43,16 +43,16 @@
 			<% unless @ranked_pages.nil? %>
 			<% @ranked_pages.each_with_index do |page, i| %>
 
-			<div class="subheader row side-panel" style="font-size: 12pt; margin: 0%"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get", :style => "color: #5B8DBC" %></div>
-			<div class="twelve columns" style="margin-top: 1pt">
-				<hr class="twelve columns horizontal-rule">
-			</div>
+			<div class="subheader row side-panel" style="font-size: 14pt; margin: 0%"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get", :style => "color: #5B8DBC" %></div>
+			<!-- <div class="twelve columns" style="margin-top: 1pt">
+							<hr class="twelve columns horizontal-rule">
+						</div> -->
 			<% end %>
 			<% else %>
-			<div class="subheader row side-panel" style="margin: 0%; font-size: 13pt; color: #5B8DBC">Rate More Content to Receive Page Recommendations!</div>
-			<div class="twelve columns">
-				<hr class="twelve columns horizontal-rule">
-			</div>
+			<div class="subheader row side-panel" style="margin: 0%; font-size: 14pt; color: #5B8DBC">Rate More Content to Receive Page Recommendations!</div>
+			<!-- <div class="twelve columns">
+							<hr class="twelve columns horizontal-rule">
+						</div> -->
 			<% end %>
 		</div>
 	</div>
