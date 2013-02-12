@@ -21,11 +21,11 @@ function ajaxYouTubeLoad() {
 }
 
 var YouTubePlayer = function(parentDiv){
-	
+
 	this.parentDiv = parentDiv;
 	this.id = parentDiv.children('.video-row').children('.yt-video-div').children('.yt-video').attr('id');
 	var playerId = this.id;
-	
+
 	this.ready = function(){
 		new YT.Player(playerId, {
 			events: {
@@ -35,35 +35,35 @@ var YouTubePlayer = function(parentDiv){
 			}
 		});
 	};
-	
+
 	var loadVideo = function(player){
 		player.setVolume(0);
 		parentDiv.addClass('loading');	
 		player.playVideo();
 	}
-	
+
 	var onPlayerHover = function(player){
 		parentDiv.hover(function(){
-				$('.selected').trigger('mouseout').removeClass('selected');
-				player.seekTo(parentDiv.data("start"), 'false');	
-				player.playVideo();
-				player.setVolume(50);
+			$('.selected').trigger('mouseout').removeClass('selected');
+			player.seekTo(parentDiv.data("start"), 'false');	
+			player.playVideo();
+			player.setVolume(50);
 		},
-			function(){
-				player.pauseVideo();
+		function(){
+			player.pauseVideo();
 		});
 	}
-	
+
 	var onPlayerReady = function(event){ 
 		var player = event.target;
 		loadVideo(player);
 		onPlayerHover(player);	
 	}
-	
+
 	var onPlayerError =	function(event){
 		event.target.pauseVideo();
 	}
-		
+
 	var onPlayerStateChange = function(event){
 		var player = event.target
 		if (event.data == YT.PlayerState.PLAYING && parentDiv.hasClass('loading')){

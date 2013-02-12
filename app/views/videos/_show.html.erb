@@ -1,6 +1,6 @@
 <% poll_redis %>
 <div class="row media_row">
-	<div class="yt_parent box col3 media_parent" video_id= "<%= video['id'] %>" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 1px; background: white; width: 220px">
+	<div class="yt_parent box col3 media_parent <%= 'poll-redis' if poll_redis %>" video_id= "<%= video['id'] %>" data-uploaded="<%= video['uploaded']%>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; border-radius: 1px; background: white; width: 220px">
 		<div class="invisible-overlay" video_id="<%= video['id'] %>" style="margin-top: 10%; height: 185px; width: 100%; background: transparent; position: absolute; z-index:2">
 		</div>
 		<div class="row video-row">
@@ -8,7 +8,7 @@
 			</div>
 			<%= render :partial => "media/rating_div", :locals => {:medium => video} %>
 			<div class="twelve columns yt-video-div">
-				<iframe id="<%= video['id'] %>" class="yt-video <%= 'poll-redis' if poll_redis %> <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%= video['id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=0&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0" frameborder="0" allowscriptaccess="always"></iframe>
+				<iframe id="<%= video['id'] %>" class="yt-video <%= video['aspect_ratio'] unless video['aspect_ratio'].nil? %>" src="http://www.youtube.com/embed/<%= video['id']%>?enablejsapi=1&start=<%= video['start'] %>&controls=0&autoplay=0&modestbranding=1&rel=0&showinfo=0&html5=1&vq=small&hd=0" frameborder="0" allowscriptaccess="always"></iframe>
 			</div>
 		</div>
 		<%= render :partial => "media/media_info", :locals => {:medium => video} %>
