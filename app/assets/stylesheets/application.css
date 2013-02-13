@@ -102,6 +102,7 @@ h3, h2, h1, h4{
 
 .sc_overlay{
 	position: absolute;
+	margin-left: 7%;
 	height: 100px;
 	margin-top: 22px;
 	width: 100%;
