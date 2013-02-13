@@ -40,7 +40,7 @@ h3, h2, h1, h4{
 
 #outer{
 	background: url('cream_dust.png');
-	min-height: 1000px;
+	height: 100%;
 }
 
 #login_div{
@@ -48,7 +48,7 @@ h3, h2, h1, h4{
 }
 #masonry-container {
   background: transparent;
-  padding: 5px;
+  padding: 0px;
   margin-bottom: 20px;
   clear: both;
   -webkit-border-radius: 5px;
@@ -61,10 +61,11 @@ h3, h2, h1, h4{
 .clearfix { zoom: 1; }
 
 .box {
-  box-shadow: 0 0 3px grey;
+  border-radius: 2px;
+  box-shadow: 0 0px 2px rgba(0,0,0,0.4);
+  -webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.4);
   margin-bottom: 10px;
   cursor: pointer;
-  border: 3px solid #B2B2B2;
 }
 
 .box:hover{
@@ -80,8 +81,7 @@ h3, h2, h1, h4{
 
 
 .yt-video{
-	width: 200px;
-	margin-left: 1%;
+	width: 100%;
 	z-index: -10000;
 }
 
@@ -89,8 +89,8 @@ h3, h2, h1, h4{
 
 .overlay{
 	position:absolute;
-	margin-top: 31px;
-	width: 97%;
+	margin-top: 30px;
+	width: 100%;
 	height: 155px;
 	margin-left: 7%;
 	background: url('video-loader.gif');
@@ -127,7 +127,7 @@ h3, h2, h1, h4{
 }
 
 .user-info{
-	margin: -1%;
+	width: 100%;
 	height: 100%;
 	background: #E5E5E5;
 	padding: 2%;
@@ -303,7 +303,8 @@ ul.flyout li a, .nav-bar li ul li a{
 	min-height: 300px; 
 	padding: 5%;
 	position: relative;
-	box-shadow: 0 0 5px grey;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.2);
 	margin-top: 10%;
 	min-width: 100%;
 	margin-left: -25%;
