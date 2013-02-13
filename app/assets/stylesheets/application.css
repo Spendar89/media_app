@@ -232,13 +232,12 @@ ul.flyout li a, .nav-bar li ul li a{
 }
 
 #logo-img{
-	width: auto;
-	height: 130%;
+	width: 150px;
+	height: 110px;
 	margin-top: -10%;
 }
 
 #logo{
-	overflow: hidden;
 }
 
 #logo:hover{
