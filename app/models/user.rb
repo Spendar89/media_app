@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :provider, :uid
+  attr_accessible :name, :provider, :uid, :followed_id
   validates_uniqueness_of :name, :case_sensitive => false
   has_many :pages
   has_many :comments
+  has_many :follow_relationships, :foreign_key => "follower_id"
+  has_many :following_pages, :through => :follow_relationships, :source => :followed
   
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -17,6 +19,10 @@ class User < ActiveRecord::Base
   
   def media_ids
     $redis.zrevrange "user:#{self.id}:media:by_upload", 0, -1
+  end
+  
+  def follow_page(page_id)
+    self.follow_relationships.create(:followed_id => page_id)
   end
   
   def media

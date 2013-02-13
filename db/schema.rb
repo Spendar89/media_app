@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131213803) do
+ActiveRecord::Schema.define(:version => 20130213210738) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(:version => 20130131213803) do
     t.datetime "date_posted"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "follow_relationships", :force => true do |t|
+    t.integer  "followed_id"
+    t.integer  "follower_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "followed_pages", :force => true do |t|
+    t.integer  "followed_page_id"
+    t.integer  "follower_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "games", :force => true do |t|
@@ -49,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20130131213803) do
     t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "description"
   end
 
   create_table "searches", :force => true do |t|

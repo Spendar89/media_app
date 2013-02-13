@@ -3,6 +3,8 @@
 	<%= form_tag("/pages", :method => "post", :class => "custom") do %>
 		<%= label_tag :name, "Page Name" %>
 		<%= text_field_tag :name %><br/>
+		<%= label_tag :description, "Description" %><br/>
+		<%= text_field_tag :description %>
 		<%= label_tag :category_name, "Category" %>
 		<%= select(nil, "category_id", Category.all.collect {|cat| [ cat.name, cat.id ] }, { :include_blank => true }) %>
 		<%= submit_tag("Create Page", :class => "button secondary") %>
