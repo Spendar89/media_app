@@ -6,8 +6,8 @@ YoutubeApp::Application.routes.draw do
   resources :users do
     member do
       get :show
-      post :thumbs_up
-      post :thumbs_down
+      match :thumbs_up
+      match :thumbs_down
       match :add_comment
     end
   end

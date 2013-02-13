@@ -1,8 +1,8 @@
 
-	<div style="font-size: 40pt; font-weight: bold; color: #5B8DBC">Welcome to Hoverlane!</div>
+	<div style="font-size: 40pt; font-weight: bold; color: #5B8DBC;"><%= image_tag "hovely_logo_heart.png" , :style => "height: 300px; margin-top: -50px; margin-left: -40px"%></div>
 
 
-<h3 class="subheader">Huvly is the fastest, most efficient way to interact with mass media.  Select a page by theme, and hover over a media box to play its content.  Rate media to receive personalized recommendations and discover new videos and music.</h3>
+<h3 class="subheader" style="margin-top: -50px">Hovely is the fastest, most efficient way to interact with mass media.  Select a page by theme, and hover over a media box to play its content.  Rate media to receive personalized recommendations and discover new videos and music.</h3>
 <h6>
 	<%= link_to "/auth/facebook", :onclick => "$('#welcome-modal').fadeOut('fast'); $('#outer').removeClass('overlayed')" do %>
 	<%= image_tag "facebook_login.png", :width => "300" %>

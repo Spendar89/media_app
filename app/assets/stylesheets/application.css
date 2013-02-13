@@ -81,7 +81,8 @@ h3, h2, h1, h4{
 
 
 .yt-video{
-	width: 100%;
+	width: 96%;
+	margin-left: 2%;
 	z-index: -10000;
 }
 
@@ -89,7 +90,7 @@ h3, h2, h1, h4{
 
 .overlay{
 	position:absolute;
-	margin-top: 30px;
+	margin-top: 22px;
 	width: 100%;
 	height: 155px;
 	margin-left: 7%;
@@ -207,7 +208,7 @@ a:hover{
 }
 
 .nav-bar>li>a:first-child{
-	font-size: 15pt;
+	font-size: 12pt;
 	line-height: 75pt;
 }
 
@@ -230,9 +231,14 @@ ul.flyout li a, .nav-bar li ul li a{
 	margin-top:  22pt;
 }
 
+#logo-img{
+	width: auto;
+	height: 130%;
+	margin-top: -10%;
+}
+
 #logo{
-	font-size: 45pt;
-	line-height: 60pt;
+	overflow: hidden;
 }
 
 #logo:hover{

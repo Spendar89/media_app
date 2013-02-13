@@ -4,20 +4,20 @@
 			<% if current_user.voted_up?(medium['id']) || !current_user.already_voted?(medium['id']) %>
 				<div class="one columns thumbs-up-div">
 					<%= link_to thumbs_up_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_up", :class => "#{'voted_up' if current_user.voted_up?(medium['id'])}" do %>
-						<span class="glyph social" style="font-size: 15pt; margin-left: -10px">a</span>
+						<span class="glyph social" style="font-size: 12pt; margin-left: -10px;">a</span>
 					<% end %>
 				</div>
 			<% end %>
 			<% if current_user.voted_down?(medium['id']) || !current_user.already_voted?(medium['id']) %>
 				<div class="one columns end thumbs-down-div">
 					<%= link_to thumbs_down_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_down", :class => "#{'voted_down' if current_user.voted_down?(medium['id'])}" do %>
-						<span class="glyph social" style="font-size: 15pt">b</span>
+						<span class="glyph social" style="font-size: 12pt">b</span>
 					<% end %>
 				</div>
 			<% end %>
 		<% else%>
-			<div class="one columns thumbs-up-div">
-				<a href="#" class="not-logged-in"><span class="glyph social" style="font-size: 15pt">a</span></a>
+			<div class="one columns thumbs-up-div" style="margin-bottom: 3%; margin-top: 5%">
+				<a href="#" class="not-logged-in"><span class="glyph social" style="font-size: 15pt;">a</span></a>
 			</div>
 			<div class="one columns end thumbs-down-div">
 				<a href="#" class="not-logged-in"><span class="glyph social" style="font-size: 15pt; margin-left: -10px">b</span></a>
@@ -26,7 +26,6 @@
 	</div>
 	<div class="five columns score-div" style="margin-top: -6%;">
 		<h6 style="color: grey; float: right">
-		<%= (medium['score'].to_f*100).to_i %>%
 		<% unless current_user.nil? %>
 			<% if current_user.id == medium['user_id'].to_i || current_user.uid.to_i == 1092240216 %>
 				<%= link_to "/media/#{medium['id']}", :method => :delete, :class => "delete-button", :remote => :true, :confirm => "Are You Sure You Want to Remove This Item?"  do %>
@@ -37,3 +36,4 @@
 		</h6>
 	</div>
 </div>
+

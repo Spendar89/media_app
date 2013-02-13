@@ -51,6 +51,11 @@ var YouTubePlayer = function(parentDiv){
 		},
 		function(){
 			player.pauseVideo();
+			var expiredTime = (player.getCurrentTime() - parentDiv.data("start"));
+			var currentUser = parentDiv.data("current_user")
+			if(expiredTime > 20 && currentUser.length){
+				$.get("/users/" + currentUser + "/thumbs_down?media_id=" + playerId);
+			}
 		});
 	}
 
