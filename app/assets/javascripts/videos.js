@@ -121,7 +121,7 @@ function keyNav(){
 				counter += numColumns()
 			}
 			$('.selected').trigger('mouseout').removeClass('selected');
-			$(boxes[counter]).trigger('mouseover').addClass('selected').scrollintoview();
+			$(boxes[counter]).trigger('mouseover').addClass('selected')
 		};	
 	});
 }
