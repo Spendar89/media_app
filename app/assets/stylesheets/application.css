@@ -90,9 +90,9 @@ h3, h2, h1, h4{
 
 .overlay{
 	position:absolute;
-	margin-top: 22px;
+	margin-top: 25px;
 	width: 100%;
-	height: 180px;
+	height: 170px;
 	margin-left: 7%;
 	background: url('video-loader.gif');
 	background-position: center;

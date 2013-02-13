@@ -5,7 +5,7 @@
 			</div>
 			<%= render :partial => "media/rating_div", :locals => {:medium => sound} %>
 			<div class="twelve columns">	
-				<object height="85" width="87%" data-start="<%= sound['start'] %>" id="<%= sound['id'] %>" class="sc-player"   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+				<object height="75" width="98%" data-start="<%= sound['start'] %>" id="<%= sound['id'] %>" class="sc-player"   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
 					<param name="movie" value="http://player.soundcloud.com/player.swf?url=<%= sound['url']%>&enable_api=true&auto_play=true&single_active=false&object_id=<%= sound['id'] %>"></param>
 					<param name="allowscriptaccess" value="always"></param>
 					<embed allowscriptaccess="always" height="90" src="http://player.soundcloud.com/player.swf?url=<%= sound['url']%>&sharing=false&buying=false&liking=false&download=false&show_artwork=false&show_comments=false&show_playcount=false&show_user=false&enable_api=true&auto_play=true&single_active=false&object_id=<%= sound['id'] %>" type="application/x-shockwave-flash" width="87%" name="<%= sound['id'] %>"></embed>

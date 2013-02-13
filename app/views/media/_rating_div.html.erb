@@ -4,7 +4,7 @@
 			<% if current_user.voted_up?(medium['id']) || !current_user.already_voted?(medium['id']) %>
 				<div class="one columns thumbs-up-div" style="margin-bottom: 3%; margin-top: 5%">
 					<%= link_to thumbs_up_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_up", :class => "#{'voted_up' if current_user.voted_up?(medium['id'])}" do %>
-						<span class="glyph social" style="font-size: 15pt; margin-left: -10px;">a</span>
+						<span class="glyph social" style="font-size: 15pt;">a</span>
 					<% end %>
 				</div>
 			<% end %>
