@@ -9,7 +9,7 @@ $(document).ready(function() {
 	  event.target.api_seekTo($("#"+mediaId).data("start"));
 	  setTimeout(function(){
 	    event.target.api_pause();
-		$("#"+mediaId).parents('.sc_parent').children('.sc_overlay').fadeOut();
+		$("#"+mediaId).parents('.sc_parent').children('.row').first().children('.sc_overlay').fadeOut();
 	  }, 1);
 	  
 	  $("#"+mediaId).parents('.sc_parent').hover(function() {

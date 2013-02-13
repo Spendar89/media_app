@@ -1,9 +1,9 @@
 <div class="row media_row">
-	<div class="sc_parent box col3 media_parent" video_id= "<%= sound['id'] %>" data-uploaded="<%= sound['uploaded']%>" style="background: white; border-radius: 1px; width: 210px">
+	<div class="sc_parent box col3 media_parent" video_id= "<%= sound['id'] %>" data-uploaded="<%= sound['uploaded']%>" style="margin-bottom: 25px; background: white; padding: 0px; border-radius: 4px; width: 210px">
 		<div class="row">
 			<div class="sc_overlay">
 			</div>
-				<%= render :partial => "media/rating_div", :locals => {:medium => sound} %>
+			<%= render :partial => "media/rating_div", :locals => {:medium => sound} %>
 			<div class="twelve columns">	
 				<object height="85" width="87%" data-start="<%= sound['start'] %>" id="<%= sound['id'] %>" class="sc-player"   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
 					<param name="movie" value="http://player.soundcloud.com/player.swf?url=<%= sound['url']%>&enable_api=true&auto_play=true&single_active=false&object_id=<%= sound['id'] %>"></param>
@@ -13,6 +13,7 @@
 			</div>
 		</div>
 		<%= render :partial => "media/media_info", :locals => {:medium => sound} %>
-</div>
-<div id="<%= sound['id']%>-zoom-modal" class="reveal-modal xlarge" style="min-width: 600px">
+	</div>
+	<div id="<%= sound['id']%>-zoom-modal" class="reveal-modal xlarge" style="min-width: 600px">
+	</div>
 </div>

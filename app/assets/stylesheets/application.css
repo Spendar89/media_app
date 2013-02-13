@@ -102,9 +102,8 @@ h3, h2, h1, h4{
 
 .sc_overlay{
 	position: absolute;
-	height: 85px;
+	height: 100px;
 	margin-top: 22px;
-	margin-left: 7%;
 	width: 100%;
 	background: url('video-loader.gif');
 	background-position: center;
