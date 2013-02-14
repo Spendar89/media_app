@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
     $redis.zrevrange "user:#{self.id}:media:by_upload", 0, -1
   end
   
-  def follow_page(page_id)
-    self.follow_relationships.create(:followed_id => page_id)
+  def follow_page(page)
+    self.follow_relationships.create(:followed_id => page.id)
   end
   
   def following?(page)
