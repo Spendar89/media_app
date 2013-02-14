@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   end
   
   def follow
-     page = Page.find(params[:page])
+     page = Page.find(params[:id])
      current_user.follow_page(page)
   end
   
