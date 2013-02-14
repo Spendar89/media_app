@@ -152,9 +152,9 @@ function tokenInput() {
 		searchingText: false,
 		resultsFormatter: function(item){
 			if (item.id[0] == "T"){
-				return "<li style='margin-left: 2%'>" + "# " + item.name + "</li>"
+				return "<li style='margin-left: 2%'>" + "<span style='margin-right: 3%; font-size: 12pt; font-weight: bold'>#</span> " + item.name + "</li>"
 			}else if (item.id[0] == "C"){
-				return "<li>" + "<span class='glyph general' style='font-size: 16pt; margin-left: 1%'>c </span>" + item.name + "</li>"
+				return "<li>" + "<span class='glyph general' style='font-size: 12pt; margin-left: 1%'>c </span>" + item.name + "</li>"
 			}
 		},
 		tokenFormatter: function(item){ 
@@ -162,11 +162,11 @@ function tokenInput() {
 					}, 
 	     onAdd: function (item) {
 			$('#masonry-container').children().remove();
-			$('#selected-tags').append("<span class='label secondary filter-label'></span>");
+			$('#selected-tags').append("<span class='label secondary filter-label' style='float: left; margin: 5px'></span>");
 			var label = $(".filter-label").last();
 			if(item.id[0] == "C"){
 				label.addClass("cat-filter");
-				label.html("<span class='glyph general' style='font-size: 18pt; margin-left: 1%'>c </span>"+item.name + "<a id='"+item.id+"' href='#' class='token-input-delete-token-facebook'>×</a>")
+				label.html("<span class='glyph general' style='font-size: 14pt; margin-left: 1%'>c </span>"+item.name + "<a id='"+item.id+"' href='#' class='token-input-delete-token-facebook'>×</a>")
 			}else{
 				label.addClass("tag-filter");
 				label.html("#"+item.name + "<a id='"+item.id+"'href='#' class='token-input-delete-token-facebook'>×</a>");
@@ -178,7 +178,7 @@ function tokenInput() {
 	         $.get("/media.js?filtered=true&page=1"+ tokenParams());
 	     },
 		onReady: function(){
-			$('#token-input-tag-search').attr('placeholder', 'Filter By Category or Tag');
+			$('#token-input-tag-search').attr('placeholder', 'Enter Category or Tag');
 		},
 		onDelete: function (item) {
 			 $('#masonry-container').children().remove();

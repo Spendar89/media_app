@@ -1,9 +1,8 @@
 /* Example tokeninput style #1: Token vertical list*/
 ul.token-input-list {
     overflow: hidden; 
-    width: 230px;
+    width: 100%;
     cursor: text;
-    font-size: 14pt;
     font-family: sans-serif;
     z-index: 999;
     margin: 0px;
@@ -23,8 +22,9 @@ ul.token-input-list li {
 ul.token-input-list li input {
     border: 0;
     width: 350px;
+	height: 25px;
     background-color: transparent;
-	font-size: 14pt;
+	font-size: 10pt;
 	color: #545052;
 }
 
@@ -98,7 +98,7 @@ div.token-input-dropdown p {
     margin: 0;
     padding: 5px;
     color: #777;
-	font-size: 16pt;
+	font-size: 10pt;
 }
 
 div.token-input-dropdown ul {
@@ -110,7 +110,7 @@ div.token-input-dropdown ul li {
     background-color: #fff;
     padding: 3px;
     list-style-type: none;
-	font-size: 16pt;
+	font-size: 10pt;
 }
 
 div.token-input-dropdown ul li.token-input-dropdown-item {

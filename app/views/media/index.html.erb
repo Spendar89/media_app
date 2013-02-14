@@ -10,17 +10,14 @@
 		<div class="paginate-div">
 			<%= will_paginate @media %>
 		</div>
-	<div class="media_div nine columns" style="margin-top: 1%">	
+	<div class="media_div nine columns" style="margin-top: 2%; min-height: 1000px">	
 			<div class="index-header-div">
-				<h2 class="glyph general one columns end" style="color: #FF5457; font-size: 20pt; margin-top: 6px; margin-left: 0px">l</h2>
-				<h3 class="three columns" style="margin-left: -4%">Live Feed</h3>
-				<div class="eight columns end filter-search-div" style="margin-top: 15px">
-					<div class="five columns">
-						<input type="text" id="tag-search"/>
-					</div>
-					<div class="seven columns" id="selected-tags">
-					</div>
+				<div class="four columns header-panel" style="padding: 0%; margin-bottom: 2%">
+					<h2 class="glyph general two columns" style="color: #FF5457; font-size: 20pt; margin-top: 6px; margin-left: 0px">l</h2>
+					<h3 class="ten columns end">Live Feed</h3>
+					<h5 class="twelve columns subheader" style="line-height: 14pt; margin-top: -2%">The most recent content, updated in real time</h5>
 				</div>
+
 			</div>
 		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix polling-enabled" data-page_id="index" data-query="<%= @recent_pages.nil? ? @tag : false %>">
 			<% for medium in @media %>
@@ -34,6 +31,25 @@
 			<% end %>	
 		</div>
 	</div>
+
+	<div class= "row three columns end">
+		<div class="twelve columns side-panel-div" style="min-height: 100px">
+			<div class="row" style="padding-left: 3%; margin-top: -5%">
+				<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; margin-top: 6px; margin-left: 0px">d</h4>
+				<h5 class="ten columns end" style=" color: #545052; margin-bottom: 10%">Filter Stream</h5>
+			</div>
+			<div class="row">
+				<div class="twelve columns filter-search-div" style="margin-bottom: 5%">
+					<input type="text" id="tag-search"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="twelve columns" id="selected-tags">
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="row three columns end">
 		<div class="twelve columns side-panel-div">
 			<div class="row" style="padding-left: 3%; margin-top: -5%">
