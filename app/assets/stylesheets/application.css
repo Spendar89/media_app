@@ -41,6 +41,7 @@ h3, h2, h1, h4{
 #outer{
 	background: url('cream_dust.png');
 	height: 100%;
+	min-height: 1000px;
 }
 
 #login_div{
@@ -91,9 +92,9 @@ h3, h2, h1, h4{
 .overlay{
 	position:absolute;
 	margin-top: 25px;
-	width: 100%;
+	width: 99%;
 	height: 170px;
-	margin-left: 7%;
+	margin-left: 8%;
 	background: url('video-loader.gif');
 	background-position: center;
 	background-size: 100%;
@@ -308,6 +309,7 @@ ul.flyout li a, .nav-bar li ul li a{
 	margin-top: 3%;
 
 }
+
 .side-panel-div{
 	background: #FFF;
 	min-height: 300px; 
@@ -320,6 +322,17 @@ ul.flyout li a, .nav-bar li ul li a{
 	margin-left: 14%;
 }
 
+.header-panel{
+	background: #FFF;
+	padding: 1%;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.2);
+}
+
+.header-row > div{
+	margin-right: 5%;
+}
+
 a.side-panel:hover{
 	color: #090A42 !important;
 }
@@ -330,4 +343,90 @@ a.side-panel:hover{
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #E4E4E4;
 	margin-left: -5%;
+}
+
+.small-button{
+	background: #FF5457;
+	border-radius: 4px;
+	width: auto;
+	border: 1px solid #852B2C;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: bold;
+	margin: 0;
+	padding: 0.5% 0.25% 0.5%;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	-webkit-transition: background-color 0.15s ease-in-out;
+	-moz-transition: background-color 0.15s ease-in-out;
+	-o-transition: background-color 0.15s ease-in-out;
+	transition: background-color 0.15s ease-in-out;
+}
+
+.following{
+	box-shadow: none !important;
+	cursor: default !important;
+}
+
+.following:hover{
+	background: #FF5457 !important;
+}
+
+.following:active{
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.green-button{
+	background: #6F9978;
+	border: 1pt solid #49644F;
+}
+
+.green-button:hover{
+	background: #59795D !important;
+}
+.small-button:hover{
+	background: #CC3F42;
+}
+
+.small-button:active {
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
+}
+.small-button>a{
+	color: #FFF;
+	font-size: 10pt;
+}
+
+.page-icon{
+	margin-top: 2%;
+	color: #999;
+	font-size: 12pt;
+	line-height: 8pt;	
+}
+
+.page-side-panel-header{
+
+}
+
+.page-side-panel-row{
+	font-size: 12pt;	
+}
+
+
+.user-thumbnail{
+	height: 30pt;
+	width: 30pt;
+	float: left;
+	margin: 3%;
+	overflow: hidden;
+}
+
+.user-thumbnail img{
+	height: 50pt;
 }

@@ -1,40 +1,99 @@
 <div class="row">
-	<div class="ten columns">
-	<div class="eight columns" style="margin-top: -1%">
-		<div class="five columns" style="width:auto">
-			<h1><%= @page.name %></h1>
-			<% if  @page_score && @page_score > 60 %>
-				<h2 class="label success">Recommended</h2>
+	<div class="nine columns">
+		<div class="six columns header-panel" style="margin: 1.5%">
+			<div class="header-row twelve columns">
+				<div class="page-header" style="float: left; margin-right: 5%; font-size: 30pt; width: 100%"><%= @page.name %></div>
+				<% if  @page_score && @page_score > 60 %>
+				<!-- <h2 class="label success">Recommended</h2> -->
+				<% end %>
+				<div class="row subheader page-description twelve columns end" style="margin-top:2%">
+					This is a Description of an Awesome Page Bro.  This is a Description of an Awesome Page Man.
+				</div>
+					<% if current_user %>
+						<% if current_user.following?(@page) %>
+						<div class="following small-button two columns end" style="margin-top: 10pt;">
+							<a href="#">Following</a>
+						</div>
+						<% else %>
+						<div class="small-button two columns end" style="margin-top: 10pt;">
+							<%= link_to "Follow", follow_page_path(@page), :id => "follow-button", :remote => true %>
+						</div>
+						<% end%>
+					<% else %>
+					<div class="small-button two columns end" style="margin-top: 10pt;">
+							<a href="#">Follow</a>
+					</div>
+					<% end %>
+				
+				<div class="small-button green-button two columns end" style="margin-top: 10pt;"><a href="#" data-reveal-id="add_media_div" data-animation="fade">Add</a></div>
+
+			</div>
+
+
+
+		</div>
+
+		<%= will_paginate @media %>
+		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="<%= @page.id %>" style="margin-left: 1%; margin-top: 8%">
+			<% for medium in @media %>
+				<% unless medium["type"].nil? %>
+					<% if medium["type"] == "youtube" %>
+						<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
+					<% elsif medium["type"] == "soundcloud" %>
+						<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
+					<% end %>
+				<% end %>
 			<% end %>
 		</div>
-		<div class="seven columns end">
-			<h4 class="subheader" style="line-height: 60px">created by <%= User.find(@page.user_id).name %> </h4>
+	</div>
+	<div class="row three columns end">
+		<div class="twelve columns side-panel-div" style="margin-top: 5%; padding: 0%; padding-top: 5%; min-height: 100%">
+			<div class="page-side-panel-header twelve columns">
+				<div class="glyph general two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-top: 3pt; ">a</div>
+				<div class="ten columns" style="color: #545052; font-size: 18pt; margin-bottom: 10%">Page Info</div>
+			</div>
+
+			<div class="page-side-panel-row twelve columns">
+				<div class="page-icon glyph social two columns" style="font-size: 12pt;">x</div>
+				<div class="subheader ten columns side-panel-text" style="font-size: 12pt">
+					<%= User.find(@page.user_id).name %>
+				</div>
+			</div>
+
+			<div class="page-side-panel-row twelve columns">
+				<div class="page-icon glyph general two columns" style="font-size: 12pt; line-height: 2pt">c</div>
+				<div class="subheader ten columns side-panel-text" style="font-size: 12pt">
+					<%= Category.find(@page.category_id).name %>
+				</div>
+			</div>
+
+
+			<div class="page-side-panel-row twelve columns">
+				<div class="page-icon glyph general two columns" style="font-size: 12pt; line-height: 2pt">,</div>
+				<div class="subheader ten columns side-panel-text" style="font-size: 12pt">
+					<%= @media.length %>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
-	<%= will_paginate @media %>
-	<div id="masonry-container" class="masonry media_div infinite-scroll clearfix" data-page_id="<%= @page.id %>" style="margin-left: 1%; margin-top: 8%">
-	<% for medium in @media %>
-		<% unless medium["type"].nil? %>
-			<% if medium["type"] == "youtube" %>
-				<%= render :partial => "videos/show", :locals => {:video => medium, :poll_redis => false} %>
-			<% elsif medium["type"] == "soundcloud" %>
-				<%= render :partial => "sounds/show", :locals => {:sound => medium} %>
-			<% end %>
-		<% end %>
-	<% end %>
-	</div>
-</div>
-	<div class="row two columns end">
-		<div class="twelve columns" style="min-height: 600px; box-shadow: inset 5px 0 5px -5px #676767; margin-left: -10%">
-			<h4 class="button secondary" style="margin-top: 20px"><a href="#" data-reveal-id="add_media_div" data-animation="fade">Add a Song or Video</a></h4>
-			<h4 class="button secondary" style="margin-top: 20px"><a href="#" data-reveal-id="add_media_div" data-animation="fade">Follow Page</a></h4>
+	<div class="row three columns end">
+		<div class="twelve columns side-panel-div" style="margin-top: 5%; padding: 0%; padding-top: 5%; min-height: 100%">
+			<div class="page-side-panel-header twelve columns">
+				<div class="glyph general two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-top: 3pt; ">o</div>
+				<div class="ten columns" style="color: #545052; font-size: 18pt; margin-bottom: 5%"><%= @page.number_of_followers %> Following</div>
+			</div>
+			<div class="twelve columns thumbails">
+				<%= @page.followers.find_each do |user| %>
+					<div class="user-thumbnail">
+						<%= link_to user_path(user) do %>
+							<%= image_tag user.image %>
+						<% end %>
+					</div>
+				<% end%>
+			</div>
 		</div>
-	</div>
-</div>
-<div id="add_media_div" class="reveal-modal xlarge">
-  	<div class = "row add-media-partial-div">
-		<%= render :partial => 'add_media_form', :locals => {:page_id => @page.id, :category_id => @category_id} %>
 	</div>
 </div>
 

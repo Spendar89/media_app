@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
     self.follow_relationships.create(:followed_id => page_id)
   end
   
+  def following?(page)
+    self.following_pages.include?(page)
+  end
+  
   def media
     media_hashes= media_ids.map{|id| $redis.hgetall "media:#{id}" }
     media_hashes

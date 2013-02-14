@@ -34,6 +34,9 @@ YoutubeApp::Application.routes.draw do
     collection do
       get :index
     end
+    member do
+      match :follow
+    end
   end
 
 

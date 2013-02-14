@@ -17,6 +17,10 @@ class PagesController < ApplicationController
     redirect_to page_path(@page)
   end
   
+  def follow
+     current_user.follow_page(params[:page])
+  end
+  
   def show
     @page_score = current_user.reccomend_page_score(params[:id]) unless current_user.nil?
     @recent_pages = Page.all
