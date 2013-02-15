@@ -1,5 +1,5 @@
 <% poll_redis %>
-<div class="row media_row">
+<div class="row media_row" video_id="<%= video['id'] %>">
 	<div class="yt_parent box col3 media_parent <%= 'poll-redis' if poll_redis %>" video_id= "<%= video['id'] %>" data-uploaded="<%= video['uploaded']%>" data-current_user = "<%=current_user.id unless current_user.nil? %>" data-loading ="true" data-start="<%= video['start']%>" style="margin-bottom: 25px; background: white; padding: 0px; border-radius: 1px; width: 210px">
 		<div class="invisible-overlay" video_id="<%= video['id'] %>" style="margin-top: 10%; height: 175px; width: 100%; background: transparent; position: absolute; z-index:2">
 		</div>

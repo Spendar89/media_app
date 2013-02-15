@@ -64,7 +64,6 @@ function notLoggedIn(){
 }
 
 
-
 function isScrolledIntoView(elem)
 {
     var docViewTop = $(window).scrollTop();

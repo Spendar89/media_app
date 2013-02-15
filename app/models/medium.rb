@@ -4,22 +4,7 @@ class Medium < ActiveRecord::Base
     ids = $redis.zrevrange "media:by_upload", 0, -1
     ids.map! {|id| $redis.hgetall "media:#{id}"}
   end
-  
-  def self.fix_category_ids
-    self.all_ids.each do |id|
-      tags = $redis.hget "media:#{id}", "tags"
-      category_id = Category.find_by_name(tags.split(",")[0]).id
-      first_tag = tags.split(",")[0]
-      new_tags = tags.split(",")[1..-1].join(",")
-      $redis.hset "media:#{id}", "category_id", category_id
-      $redis.hset "media:#{id}", "tags", new_tags
-      $redis.srem "tags", first_tag
-      $redis.srem "tag:#{first_tag}", id
-      $redis.sadd "category:#{category_id}", id
-      $redis.zincrby "categories:by_count", -1, category_id
-    end
-  end
-  
+    
   def self.all_ids
     $redis.zrevrange "media:by_upload", 0, -1
   end
