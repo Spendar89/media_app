@@ -23,7 +23,6 @@ class PagesController < ApplicationController
   end
   
   def show
-    @page_score = current_user.reccomend_page_score(params[:id]) unless current_user.nil?
     @recent_pages = Page.all
     @page = Page.find(params[:id])
     @category_id = @page.category_id
