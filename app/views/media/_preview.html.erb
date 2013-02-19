@@ -1,6 +1,6 @@
 <%= form_tag("/media", :method => :post, :remote => :true) do %>
 <div class="row">
-	<h4 class="subheader">Now Customize the Title and Description.</h4>
+	<h4 class="subheader">Now Customize How You Want Your Content to Appear on the Page.</h4>
 		<%= hidden_field_tag :url, @url %>
 		<%= hidden_field_tag :seconds, @seconds %>
 		<%= hidden_field_tag :page_id, @page_id %>
@@ -17,8 +17,11 @@
 	</div>
 </div>
 <div class="row">
+	<div class="alert-box alert tags-error" style="display: none">
+	  Please specify at least three tags
+	</div>
 	<div class="twelve columns">
-		<%= label_tag :tags, "Tags" %>
+		<%= label_tag :tags, "Tags (at least 3, separated by commas)" %>
 		<%= text_field_tag :tags, @tags %>
 	</div>
 </div>

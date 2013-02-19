@@ -1,16 +1,21 @@
-<% if @error.nil? %>
+<% if @error.nil? && @tags_error.nil? %>
 	$('#add_media_div').trigger('reveal:close');
 	$('.media_div').prepend("<%=j render(:partial => 'create', :locals => {:medium => 
 		                     @new_media})%>");
 	$('#masonry-container').masonry('reload');
-	$('.add-media-partial-div').html("<%=j  render(:partial => 'pages/add_media_form', 
+	$('#add_media_div').html("<%=j  render(:partial => 'pages/add_media_form', 
 									  :locals => { :page_id => @page_id, :category_id => 
 									  @category_id }) %>");
 	<% if @new_media['type'] == "youtube" %>
-		var parentId = $('.yt_parent').first().attr('id');
-		var newPlayer = new YouTubePlayer(parentId);
+		var parentDiv = $('.yt_parent').first()
+		var newPlayer = new YouTubePlayer(parentDiv);
 		newPlayer.ready();
 	<% end %>
+<% elsif @tags_error %>
+	$('.tags-error').fadeIn();
+	setTimeout(function(){
+		$('.tags-error').fadeOut()
+	}, 3000);
 <% else %>
 	alert("<%= @error %>");
 <% end %>
