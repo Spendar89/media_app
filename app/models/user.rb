@@ -165,12 +165,32 @@ class User < ActiveRecord::Base
     $redis.sismember "user:#{self.id}:votes", media_id 
   end
   
+  def rated_videos
+     ids = $redis.smembers "user:#{self.id}:votes"
+     Medium.find_all(ids)
+  end
+  
   def voted_up?(media_id)
     $redis.sismember "user:#{self.id}:voted_up", media_id
   end
   
   def voted_down?(media_id)
     $redis.sismember "user:#{self.id}:voted_down", media_id
+  end
+  
+  def havent_voted
+    ids = Medium.all_ids.map{ |id| id unless already_voted?(id) }.compact
+    Medium.find_all(ids).compact
+  end
+  
+  def recommended_media
+    array = havent_voted.map do |medium|
+      if medium["tags"]
+        predicted_rating = Recommendation.new(self, medium).predict_rating
+        [medium["id"], predicted_rating] if predicted_rating
+      end
+    end
+    array.compact.sort{|x, y| x[1] <=> y[1] }
   end
   
 end
