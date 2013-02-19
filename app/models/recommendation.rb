@@ -57,8 +57,12 @@ class Recommendation
   end  
   
   def most_similar_rated_videos
-    eligable_videos = @user.rated_videos.map{|video| video unless video["tags"].empty?}.compact
-    sort_by_similarity(eligable_videos)
+    eligable_videos = @user.rated_videos.map do |video|
+      if video["tags"] 
+        video unless video["tags"].empty?
+      end
+    end
+    sort_by_similarity(eligable_videos.compact)
   end
   
   def predict_rating
