@@ -141,6 +141,7 @@ class User < ActiveRecord::Base
   
   def recommend_media_score(media_id)
     medium = Medium.find(media_id)
+    return nil unless medium["tags"]
     Recommendation.new(self, medium).predict_rating
   end
   
