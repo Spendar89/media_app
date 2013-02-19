@@ -139,15 +139,16 @@ class User < ActiveRecord::Base
     !checker.nil?
   end
   
-  def reccomend_media_score(media_id)
-    (category_score(media_id) + tag_score(media_id)).to_i
+  def recommend_media_score(media_id)
+    medium = Medium.find(media_id)
+    Recommendation.new(self, medium).predict_rating
   end
   
   def reccomend_page_score(page_id)
     page = Page.find(page_id)
     page_media = page.media
     return false if page.media.length < 2
-    page_media.map{ |medium| reccomend_media_score(medium['id']) }.inject(0){ |x,y| x + y }/page_media.length
+    page_media.map{ |medium| recommend_media_score(medium['id']) }.compact.inject(0){ |x,y| x + y }/page_media.length
   end
   
   def ranked_pages

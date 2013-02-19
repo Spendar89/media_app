@@ -41,7 +41,8 @@ class Recommendation
     tags_space.map{|c| tags_set.member?(c) ? 1 : 0}
   end
 
-  def sort_by_similarity(items, by_these_tags)
+  def sort_by_similarity(items)
+    by_these_tags = video_tags_array
     tags_space = by_these_tags + items.map{|x| x['tags'].split(",")}  
     tags_space.flatten!.sort!.uniq!
     this_point = tags_to_point(by_these_tags, tags_space)
@@ -53,11 +54,11 @@ class Recommendation
     }
     sorted = similarities.sort {|a,b| a[1] <=> b[1]}
     return sorted.map{|point,s| [point['id'] , s]}
-  end
+  end  
   
   def most_similar_rated_videos
     eligable_videos = @user.rated_videos.map{|video| video unless video["tags"].empty?}.compact
-    sort_by_similarity(eligable_videos, video_tags_array)
+    sort_by_similarity(eligable_videos)
   end
   
   def predict_rating
@@ -70,7 +71,7 @@ class Recommendation
       rating += (video_rating * similarity)
       sim_sum += similarity
     end
-    sim_sum < 1 ? false  : rating/sim_sum 
+    sim_sum < 1 ? nil  : rating/sim_sum 
   end
   
 end

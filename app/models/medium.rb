@@ -13,6 +13,10 @@ class Medium < ActiveRecord::Base
     ids_array.map{ |id| $redis.hgetall "media:#{id}" }.map{|video| video unless video.empty?}.compact
   end
   
+  def self.find(medium_id)
+    $redis.hgetall "media:#{medium_id}"
+  end
+  
   def self.sort_by_date(media_array)
     media_array.sort{|x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }
   end
