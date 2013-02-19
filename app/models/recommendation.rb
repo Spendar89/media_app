@@ -2,7 +2,7 @@ class Recommendation
   attr_accessor :user, :video, :user_keywords_array
   def initialize(user, video)
     @user = user
-    @video = video if video["id"].length == 11
+    @video = video
   end
   
   def video_tags_array
