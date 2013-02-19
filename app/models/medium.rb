@@ -10,7 +10,7 @@ class Medium < ActiveRecord::Base
   end
   
   def self.find_all(ids_array)
-    ids_array.map{ |id| $redis.hgetall "media:#{id}" }
+    ids_array.map{ |id| $redis.hgetall "media:#{id}" }.map{|video| video unless video.empty?}.compact
   end
   
   def self.sort_by_date(media_array)
