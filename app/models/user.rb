@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
     Recommendation.new(self, medium).predict_rating
   end
   
-  def reccomend_page_score(page_id)
+  def recommend_page_score(page_id)
     page = Page.find(page_id)
     page_media = page.media
     return false if page.media.length < 2
@@ -153,7 +153,7 @@ class User < ActiveRecord::Base
   
   def ranked_pages
     Page.all.sort_by! do |page| 
-      page_score = reccomend_page_score(page.id)
+      page_score = recommend_page_score(page.id)
       page_score ? page_score : 0 
     end
   end
@@ -168,7 +168,7 @@ class User < ActiveRecord::Base
   
   def rated_videos
      ids = $redis.smembers "user:#{self.id}:votes"
-     Medium.find_all(ids)
+     Medium.find_all(ids).compact
   end
   
   def voted_up?(media_id)
