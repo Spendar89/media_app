@@ -186,12 +186,17 @@ function tokenInput() {
 	});
 }
 
+function getRankedPages(){
+	$.get("/media/rank_pages.js");
+}
+
 
 $(document).ready(function(){
 	$('#masonry-container').masonry({
 		itemSelector: '.box',
 		isAnimated: false
 	});
+	getRankedPages();
 	scrollLoad();
 	disableThumbs();
 	mediaZoom();

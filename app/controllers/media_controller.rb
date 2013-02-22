@@ -73,8 +73,11 @@ class MediaController < ApplicationController
     params[:category] ? media_ids = Medium.filtered_by_category(Category.find_by_name(params[:category]).id) :  media_ids = Medium.all_ids
     media_ids = Medium.filtered_by_tags(media_ids, params[:tags]) if params[:tags]
     @media = Medium.find_all(media_ids).sort{|x,y| y["uploaded"].to_i <=> x["uploaded"].to_i }.paginate(:page => params[:page], :per_page => 12)
-    @ranked_pages = current_user.ranked_pages.reverse[0..9] unless current_user.nil?
     @trending_tags = Tag.ranked[0..9]
+  end
+  
+  def rank_pages
+    @ranked_pages = current_user.ranked_pages.reverse[0..9] unless current_user.nil?
   end
   
   def poll_redis

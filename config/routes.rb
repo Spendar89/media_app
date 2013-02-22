@@ -22,6 +22,7 @@ YoutubeApp::Application.routes.draw do
       get :search
       match :media_zoom
       match :token_input
+      match :rank_pages
     end
   end
   

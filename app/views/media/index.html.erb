@@ -50,26 +50,28 @@
 		</div>
 	</div>
 
-	<div class="row three columns end">
-		<div class="twelve columns side-panel-div">
-			<div class="row" style="padding-left: 3%; margin-top: -5%">
-				<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt;">a</h4>
-				<h5 class="ten columns end" style=" color: #545052;">Recommended</h5>
+	<div id="ranked-pages-div">
+		<div class="row three columns end">
+			<div class="twelve columns side-panel-div">
+				<div class="row" style="padding-left: 3%; margin-top: -5%">
+					<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt;">a</h4>
+					<h5 class="ten columns end" style=" color: #545052;">Recommended</h5>
+				</div>
+				<div id="fadingBarsG">
+					<div id="fadingBarsG_1" class="fadingBarsG">
+					</div>
+					<div id="fadingBarsG_2" class="fadingBarsG">
+					</div>
+					<div id="fadingBarsG_3" class="fadingBarsG">
+					</div>
+					<div id="fadingBarsG_4" class="fadingBarsG">
+					</div>
+					<div id="fadingBarsG_5" class="fadingBarsG">
+					</div>
+					<div id="fadingBarsG_6" class="fadingBarsG">
+					</div>
+				</div>
 			</div>
-			<% unless @ranked_pages.nil? %>
-			<% @ranked_pages.each_with_index do |page, i| %>
-
-			<div class="subheader row side-panel" style="font-size: 14pt; margin: 1%"><%= link_to "#{i+1}. #{page[:name]}", page_path(page), :method => "get", :style => "color: #5B8DBC", :class => "side-panel" %></div>
-			<!-- <div class="twelve columns" style="margin-top: 1pt">
-							<hr class="twelve columns horizontal-rule">
-						</div> -->
-			<% end %>
-			<% else %>
-			<div class="subheader row side-panel" style="margin: 0%; font-size: 14pt; color: #5B8DBC">Rate More Content to Receive Page Recommendations!</div>
-			<!-- <div class="twelve columns">
-							<hr class="twelve columns horizontal-rule">
-						</div> -->
-			<% end %>
 		</div>
 	</div>
 
