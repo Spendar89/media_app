@@ -24,7 +24,7 @@
 	<li class="has-flyout" style="float: right; border-right: none;">
 		<a href="#">Signed in as <%= current_user.name %></a>
 		<a href="#" class="flyout-toggle"><span> </span></a>
-		<ul class="flyout">
+		<ul class="flyout login-flyout">
 			<li><%= link_to "Sign Out", signout_path %></li>
 			<li><%= link_to "View Profile", user_path(current_user.id) %></li>
 		</ul>
