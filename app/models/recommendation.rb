@@ -46,14 +46,10 @@ class Recommendation
     tags_space = by_these_tags + items.map{ |x| x['tags'].split(",") if x["tags"] }  
     tags_space.compact.flatten!.sort!.uniq!
     this_point = tags_to_point(by_these_tags, tags_space)
-    other_points = items.map{|i| 
-      [i, tags_to_point(i['tags'].split(","), tags_space)]
-    }
-    similarities = other_points.map{|item, that_point|
-      [item, cosine_similarity(this_point, that_point)]
-    }
-    sorted = similarities.sort {|a,b| a[1] <=> b[1]}
-    return sorted.map{|point,s| [point['id'] , s]}
+    other_points = items.map{ |i| [i, tags_to_point(i['tags'].split(","), tags_space)] if i['tags'] }
+    similarities = other_points.compact.map{ |item, that_point| [item, cosine_similarity(this_point, that_point)] }
+    sorted = similarities.sort { |a,b| a[1] <=> b[1] }
+    return sorted.map{ |point,s| [point['id'] , s] }
   end  
   
   def most_similar_rated_videos
