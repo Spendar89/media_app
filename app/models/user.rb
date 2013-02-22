@@ -144,19 +144,20 @@ class User < ActiveRecord::Base
     Recommendation.new(self, medium).predict_rating
   end
   
-  def recommend_page_score(page_id)
-    page = Page.find(page_id)
+  def recommend_page_score(page)
     page_media = page.media
-    return false if page.media.length < 2
+    havent_voted_ids_array = havent_voted_ids
     page_media.map! do |medium|
-      recommend_media_score(medium) if havent_voted.include?(medium)
+      recommend_media_score(medium) if havent_voted_ids_array.include?(medium["id"])
     end
+    return false if page_media.compact.length < 5
     page_media.compact.inject(0){ |x,y| x + y }/page_media.length
   end
   
   def ranked_pages
-    Page.all.sort_by! do |page| 
-      page_score = recommend_page_score(page.id)
+    pages = Page.all.map{|page| page if page.media_ids.length > 5 }.compact
+    pages.sort_by! do |page| 
+      page_score = recommend_page_score(page)
       page_score ? page_score : 0 
     end
   end
@@ -182,8 +183,12 @@ class User < ActiveRecord::Base
     $redis.sismember "user:#{self.id}:voted_down", media_id
   end
   
+  def havent_voted_ids
+    Medium.all_ids.map{ |id| id unless already_voted?(id) }.compact
+  end
+  
   def havent_voted
-    ids = Medium.all_ids.map{ |id| id unless already_voted?(id) }.compact
+    ids = havent_voted_ids
     Medium.find_all(ids).compact
   end
   
