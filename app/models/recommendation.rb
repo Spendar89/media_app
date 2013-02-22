@@ -44,7 +44,7 @@ class Recommendation
   def sort_by_similarity(items)
     by_these_tags = video_tags_array
     tags_space = by_these_tags + items.map{ |x| x['tags'].split(",") if x["tags"] }  
-    tags_space.flatten!.sort!.uniq!
+    tags_space.compact.flatten!.sort!.uniq!
     this_point = tags_to_point(by_these_tags, tags_space)
     other_points = items.map{|i| 
       [i, tags_to_point(i['tags'].split(","), tags_space)]

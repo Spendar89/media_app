@@ -148,7 +148,10 @@ class User < ActiveRecord::Base
     page = Page.find(page_id)
     page_media = page.media
     return false if page.media.length < 2
-    page_media.map{ |medium| recommend_media_score(medium) }.compact.inject(0){ |x,y| x + y }/page_media.length
+    page_media.map! do |medium|
+      recommend_media_score(medium) if havent_voted.include?(medium)
+    end
+    page_media.compact.inject(0){ |x,y| x + y }/page_media.length
   end
   
   def ranked_pages
