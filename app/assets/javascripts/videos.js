@@ -196,7 +196,7 @@ $(document).ready(function(){
 		itemSelector: '.box',
 		isAnimated: false
 	});
-	getRankedPages();
+	setTimeout(function(){ getRankedPages() }, 2000)
 	scrollLoad();
 	disableThumbs();
 	mediaZoom();
