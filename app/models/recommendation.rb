@@ -43,7 +43,7 @@ class Recommendation
 
   def sort_by_similarity(items)
     by_these_tags = video_tags_array
-    tags_space = by_these_tags + items.map{|x| x['tags'].split(",")}  
+    tags_space = by_these_tags + items.map{ |x| x['tags'].split(",") if x["tags"] }  
     tags_space.flatten!.sort!.uniq!
     this_point = tags_to_point(by_these_tags, tags_space)
     other_points = items.map{|i| 
@@ -57,12 +57,7 @@ class Recommendation
   end  
   
   def most_similar_rated_videos
-    eligable_videos = @user.rated_videos.map do |video|
-      if video["tags"] 
-        video unless video["tags"].empty?
-      end
-    end
-    sort_by_similarity(eligable_videos.compact)
+    sort_by_similarity(@user.rated_videos)
   end
   
   def predict_rating
