@@ -27,6 +27,15 @@ class UsersController < ApplicationController
     $redis.zadd "media:#{@media_id}:comments:by_date", Time.now.to_i, @comment.id
   end
   
+  def update_news_feed
+    if current_user
+      current_story_medium_id = params[:medium_id] 
+      medium_id = current_user.most_recent_page_updated_feed[0]
+      @medium = Medium.find(medium_id) if medium_id != current_story_medium_id
+      puts @medium
+    end
+  end
+  
 
   
 end

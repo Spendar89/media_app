@@ -202,4 +202,11 @@ class User < ActiveRecord::Base
     array.compact.sort{|x, y| x[1] <=> y[1] }
   end
   
+  def most_recent_page_updated_feed
+    page_feed = self.following_pages.map do |page|
+      $redis.zrange "page:#{page.id}:feed", -1, -1, :withscores => true
+    end
+    page_feed.flatten!(1).sort!{ |x,y| y[1] <=> x[1] }[-1]
+  end
+  
 end

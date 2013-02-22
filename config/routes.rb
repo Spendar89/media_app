@@ -4,6 +4,9 @@ YoutubeApp::Application.routes.draw do
   
   
   resources :users do
+    collection do
+      match :update_news_feed
+    end
     member do
       get :show
       match :thumbs_up

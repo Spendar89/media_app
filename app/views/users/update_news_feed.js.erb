@@ -1,0 +1,4 @@
+<% if @medium %>
+	$("#news-feed-div").html("<%=j render :partial => 'news_feed', :locals => {:medium => @medium } %>")
+<% end %>
+updateNewsFeed();

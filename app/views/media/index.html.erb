@@ -11,14 +11,25 @@
 			<%= will_paginate @media %>
 		</div>
 	<div class="media_div nine columns" style="margin-top: 2%; min-height: 1000px">	
-			<div class="index-header-div">
-				<div class="four columns header-panel" style="padding: 0%; margin-bottom: 2%">
-					<h2 class="glyph general two columns" style="color: #FF5457; font-size: 20pt; margin-top: 6px; margin-left: 0px">l</h2>
-					<h3 class="ten columns end">Live Feed</h3>
+		
+			<div class="index-header-div row six columns" style="margin-left: -1%;">
+				<div class="eleven columns header-panel" style="padding: 0%; margin-bottom: 2%; background: white">
+					<h2 class="glyph general one columns" style="color: #FF5457; font-size: 20pt; margin-top: 7px; margin-left: 0px; margin-right: 2%">;</h2>
+					<h3 class="ten columns end">Live Stream</h3>
 					<h5 class="twelve columns subheader" style="line-height: 14pt; margin-top: -2%">The most recent content, updated in real time</h5>
 				</div>
-
 			</div>
+			
+			<div class="news-feed-div index-header-div row six columns" style="margin-left: 3.5%">
+				<div class="twelve columns columns header-panel" style="padding: 0%; margin-bottom: 2%; height: 100px; overflow: hidden">
+					<h2 class="glyph general one columns" style="color: #FF5457; font-size: 18pt; margin-top: 6px; margin-left: 0px">l</h2>
+					<h4 class="ten columns end" style="line-height: 18pt; margin-left: 2%; color: #545052">News Feed</h4>
+					<h6 id='news-feed-div' class="twelve columns subheader" style="line-height: 14pt; margin-top: 0%">
+						<h5 class="twelve columns subheader" style="margin-top: -5%">Stay up to date with the pages that you follow</h5>
+					</h6>
+				</div>
+			</div>
+			
 		<div id="masonry-container" class="masonry media_div infinite-scroll clearfix polling-enabled" data-page_id="index" data-query="<%= @recent_pages.nil? ? @tag : false %>">
 			<% for medium in @media %>
 				<% unless medium["type"].nil? %>

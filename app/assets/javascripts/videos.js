@@ -190,6 +190,12 @@ function getRankedPages(){
 	$.get("/media/rank_pages.js");
 }
 
+function updateNewsFeed(){
+	setTimeout(function(){
+		$.get("/users/update_news_feed.js?medium_id=" + $('.feed-story').attr('id'));
+	}, 10000);
+}
+
 
 $(document).ready(function(){
 	$('#masonry-container').masonry({
@@ -198,6 +204,7 @@ $(document).ready(function(){
 	});
 	setTimeout(function(){ getRankedPages() }, 2000)
 	scrollLoad();
+	updateNewsFeed();
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
