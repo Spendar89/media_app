@@ -1,5 +1,5 @@
 <aside>
-	<p class='feed-story' id="<%= medium['id']%>"> 
+	<p class='feed-story' news-feed-id="<%= medium['id']%>"> 
 		<%= link_to "/pages/#{medium['page_id']}", :method => 'get' do %>
 			<%= Time.at(medium['uploaded'].to_i).strftime('%b %e, %l:%M %p') %>: <%= User.find(medium['user']).name %> Added <%= medium['title'] %> to <%= Page.find(medium['page_id']).name %>
 		<% end %>

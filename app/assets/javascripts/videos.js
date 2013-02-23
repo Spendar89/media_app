@@ -192,7 +192,7 @@ function getRankedPages(){
 
 function updateNewsFeed(){
 	setTimeout(function(){
-		$.get("/users/update_news_feed.js?medium_id=" + $('.feed-story').attr('id'));
+		$.get("/users/update_news_feed.js?medium_id=" + $('.feed-story').attr('news-feed-id'));
 	}, 10000);
 }
 
@@ -209,7 +209,7 @@ $(document).ready(function(){
 	mediaZoom();
 	notLoggedIn();
 	// keyNav();
-	pollRedis("false");
+	pollRedis();
 	tokenInput();
 	$('.vertical-rule').css('height', $('.side-panel-div').height());
 });

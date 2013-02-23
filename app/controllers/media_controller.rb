@@ -7,7 +7,6 @@ class MediaController < ApplicationController
       @category_id = params[:category_id]
       tags_array = params[:tags].split(",").map!{|tag| tag.strip.downcase}
       @tags_error = true if tags_array.length < 3
-      puts "tags_array_test: #{tags_array}"
       seconds = params[:seconds]
       if /youtube/.match(params[:url])
         video = Video.new(params[:url], seconds, @page_id, @category_id, tags_array, params[:title].gsub("'", ""), params[:description])
