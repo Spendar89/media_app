@@ -29,8 +29,9 @@ class UsersController < ApplicationController
   
   def update_news_feed
     if current_user
-      current_story_medium_id = params[:medium_id] 
-      medium_id = current_user.most_recent_page_updated_feed[0]
+      current_story_medium_id = params[:medium_id]
+      most_recent_ids = current_user.most_recent_page_updated_feed
+      medium_id = most_recent_ids[0] if most_recent_ids
       @medium = Medium.find(medium_id) if medium_id != current_story_medium_id
       puts @medium
     end

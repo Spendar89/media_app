@@ -40,6 +40,8 @@ class MediaController < ApplicationController
       $redis.zrem "media:by_score", @id
       $redis.srem "media:youtube", @id
       $redis.srem "category:#{category_id}", @id
+      $redis.srem "user:#{current_user.id}:feed", @id
+      $redis.zadd "page:#{@page_id}:feed", @id
     end
   end
   
