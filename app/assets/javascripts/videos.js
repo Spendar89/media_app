@@ -181,6 +181,7 @@ function tokenInput() {
 		},
 		onDelete: function (item) {
 			 $('#masonry-container').children().remove();
+			 $('#masonry-container').prepend("<h1 style='margin-top: 10%; text-align: center'>Applying Filter...</h1>")
 	         $.get("/media.js?filtered=true&page=1"+ tokenParams());
 	     }
 	});
