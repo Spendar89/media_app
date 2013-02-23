@@ -161,6 +161,7 @@ function tokenInput() {
 					}, 
 	     onAdd: function (item) {
 			$('#masonry-container').children().remove();
+			$('#masonry-container').prepend("<h1 style='margin-top: 10%; text-align: center'>Applying Filter...</h1>");
 			$('#selected-tags').append("<span class='label secondary filter-label' style='float: left; margin: 5px'></span>");
 			var label = $(".filter-label").last();
 			if(item.id[0] == "C"){
@@ -181,7 +182,7 @@ function tokenInput() {
 		},
 		onDelete: function (item) {
 			 $('#masonry-container').children().remove();
-			 $('#masonry-container').prepend("<h1 style='margin-top: 10%; text-align: center'>Applying Filter...</h1>")
+			 $('#masonry-container').prepend("<h1 style='margin-top: 10%; text-align: center'>Applying Filter...</h1>");
 	         $.get("/media.js?filtered=true&page=1"+ tokenParams());
 	     }
 	});
@@ -205,7 +206,6 @@ $(document).ready(function(){
 	});
 	setTimeout(function(){ getRankedPages() }, 2000)
 	scrollLoad();
-	updateNewsFeed();
 	disableThumbs();
 	mediaZoom();
 	notLoggedIn();
@@ -213,6 +213,7 @@ $(document).ready(function(){
 	pollRedis();
 	tokenInput();
 	$('.vertical-rule').css('height', $('.side-panel-div').height());
+	updateNewsFeed();
 });
 
 $(document).ajaxComplete(function(){
