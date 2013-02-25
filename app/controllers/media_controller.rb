@@ -78,7 +78,10 @@ class MediaController < ApplicationController
   end
   
   def rank_pages
-    @ranked_pages = current_user.ranked_pages.reverse[0..9] unless current_user.nil?
+    if current_user
+      ranked_pages = current_user.ranked_pages
+      @ranked_pages = current_user.ranked_pages.reverse[0..9] if ranked_pages
+    end
   end
   
   def poll_redis

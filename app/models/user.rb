@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
   end
   
   def ranked_pages
+    return false if liked_ids.length < 5
     pages = Page.all.map{|page| page if page.media_ids.length > 5 }.compact
     pages.sort_by! do |page| 
       page_score = recommend_page_score(page)
@@ -81,6 +82,10 @@ class User < ActiveRecord::Base
   def liked
      ids = $redis.smembers "user:#{self.id}:likes"
      Medium.find_all(ids).compact
+  end
+  
+  def liked_ids
+    $redis.smembers "user:#{self.id}:likes"
   end
   
   def liked?(media_id)

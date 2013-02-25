@@ -13,11 +13,11 @@
 			</div>
 			<%= link_to " #{page[:name]}", page_path(page), :method => "get", :style => "line-height: 20pt; float: left; color: #5B8DBC", :class => "side-panel" %>
 		</div>
+		<% end %>
+		<% else %>
+		<div class="subheader row side-panel" style="margin: 0%; font-size: 14pt; color: #5B8DBC">
+			Rate More Content to Receive Page Recommendations!
+		</div>
+		<% end %>
 	</div>
-	<% end %>
-	<% else %>
-	<div class="subheader row side-panel" style="margin: 0%; font-size: 14pt; color: #5B8DBC">
-		Rate More Content to Receive Page Recommendations!
-	</div>
-	<% end %>
 </div>
