@@ -9,8 +9,7 @@ YoutubeApp::Application.routes.draw do
     end
     member do
       get :show
-      match :thumbs_up
-      match :thumbs_down
+      match :like
       match :add_comment
     end
   end

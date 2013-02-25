@@ -48,25 +48,23 @@ class Recommendation
     this_point = tags_to_point(by_these_tags, tags_space)
     other_points = items.map{ |i| [i, tags_to_point(i['tags'].split(","), tags_space)] if i['tags'] }
     similarities = other_points.compact.map{ |item, that_point| [item, cosine_similarity(this_point, that_point)] }
-    sorted = similarities.sort { |a,b| a[1] <=> b[1] }
+    sorted = similarities.sort { |a,b| b[1] <=>a[1] }
     return sorted.map{ |point,s| [point['id'] , s] }
   end  
   
-  def most_similar_rated_videos
-    sort_by_similarity(@user.rated_videos)
+  def most_similar_liked_media
+    sort_by_similarity(@user.liked)[0..4]
   end
   
   def predict_rating
-    rating = 0
     sim_sum = 0
-    most_similar_rated_videos.each do |array| 
+    most_similar_liked_media.each do |array|
       video_id = array[0]
       similarity = array[1]
-      @user.voted_up?(video_id) ? video_rating = 1.0 : video_rating = 0.0
-      rating += (video_rating * similarity)
       sim_sum += similarity
     end
-    sim_sum < 1 ? nil  : rating/sim_sum 
+    sim_sum = sim_sum/5
+    sim_sum < 0.1 ? nil  : sim_sum 
   end
   
 end

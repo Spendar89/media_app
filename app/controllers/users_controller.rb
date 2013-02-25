@@ -10,14 +10,9 @@ class UsersController < ApplicationController
     @feed = ["No Recent Activity"] if @feed.empty?
   end
   
-  def thumbs_up
+  def like
     @media_id = params[:media_id]
-    current_user.vote_up(@media_id)
-  end
-  
-  def thumbs_down
-    @media_id = params[:media_id]
-    current_user.vote_down(@media_id)
+    current_user.like(@media_id)
   end
   
   def add_comment

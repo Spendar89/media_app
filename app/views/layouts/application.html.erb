@@ -42,7 +42,7 @@
 	</div>
 	<% if current_user.nil? %>
 	<%= javascript_tag "$('#outer').addClass('overlayed')" %>
-		<div id="welcome-modal" class="reveal-modal xlarge" style="display: block; visibility: visible; border-radius: 8px; padding: 2%; background: ##E8E8E8">
+		<div id="welcome-modal" class="reveal-modal large" style="display: block; visibility: visible; border-radius: 8px; padding: 2%; background: ##E8E8E8">
 			<%= render :partial => 'media/welcome' %>
 			<a class="close-reveal-modal" onclick="$('#welcome-modal').fadeOut('fast'); $('#outer').removeClass('overlayed')">&#215;</a>
 		</div>

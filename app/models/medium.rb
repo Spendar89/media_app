@@ -54,6 +54,11 @@ class Medium < ActiveRecord::Base
     ids_array.map{ |id| $redis.hgetall "media:#{id}" }
   end
   
+  def self.tags(medium)
+    return [] if medium["tags"].empty?
+    medium["tags"].split(",")
+  end
+  
   def self.search_results(query)
     matched_ids = []
     tags_array = query.split("|")

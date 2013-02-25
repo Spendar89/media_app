@@ -1,26 +1,20 @@
 <div class="rating-div twelve columns">
 	<div class="seven columns" style="margin-left: -10%">
-		<% unless current_user.nil? %>
-			<% if current_user.voted_up?(medium['id']) || !current_user.already_voted?(medium['id']) %>
-				<div class="one columns thumbs-up-div" style="margin-bottom: 3%; margin-top: 5%">
-					<%= link_to thumbs_up_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_up", :class => "#{'voted_up' if current_user.voted_up?(medium['id'])}" do %>
-						<span class="glyph social" style="font-size: 15pt;">a</span>
-					<% end %>
+		<% if current_user %>
+			<% if current_user.liked?(medium['id']) %>
+				<div class="one columns like-div" style="margin-bottom: 3%; margin-top: 5%">
+					<a href="#" class="already-liked"><span class="glyph already-liked-text general like-text">b</span></a>
 				</div>
-			<% end %>
-			<% if current_user.voted_down?(medium['id']) || !current_user.already_voted?(medium['id']) %>
-				<div class="one columns end thumbs-down-div">
-					<%= link_to thumbs_down_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_thumbs_down", :class => "#{'voted_down' if current_user.voted_down?(medium['id'])}" do %>
-						<span class="glyph social" style="font-size: 15pt; margin-left: -10px">b</span>
-					<% end %>
-				</div>
+			<% else %>
+			<div class="one columns like-div" style="margin-bottom: 3%; margin-top: 5%">
+				<%= link_to like_user_path(current_user, :media_id => medium['id']), :method =>'post', :remote => true, :id =>"#{medium['id']}_liked" do %>
+					<span class="glyph general like-text">b</span>
+				<% end %>
+			</div>
 			<% end %>
 		<% else%>
-			<div class="one columns thumbs-up-div" style="margin-bottom: 3%; margin-top: 5%">
-				<a href="#" class="not-logged-in"><span class="glyph social" style="font-size: 15pt;">a</span></a>
-			</div>
-			<div class="one columns end thumbs-down-div">
-				<a href="#" class="not-logged-in"><span class="glyph social" style="font-size: 15pt; margin-left: -10px">b</span></a>
+			<div class="one columns like-div" style="margin-bottom: 3%; margin-top: 5%">
+				<a href="#" class="not-logged-in"><span class="glyph general like-text">b</span></a>
 			</div>
 		<% end %>
 	</div>

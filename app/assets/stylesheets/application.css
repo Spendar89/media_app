@@ -424,6 +424,26 @@ a.side-panel:hover{
 
 }
 
+.like-text{
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #545052;
+  font-size: 12pt;
+  line-height: 5pt;
+}
+
+.already-liked-text{
+	-webkit-text-fill-color: #EB4A4E;
+}
+
+.like-text:hover{
+  -webkit-text-fill-color: #EB4A4E; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #545052;
+  font-size: 12pt;
+  cursor: pointer;
+}
+
 .page-side-panel-row{
 	font-size: 12pt;	
 }
@@ -442,5 +462,16 @@ a.side-panel:hover{
 }
 
 .feed-story a{
-	font-size: 11pt;
+	font-size: 12pt;
+}
+
+.liked-by-div{
+	margin-top: 2%;
+	margin-left: -8%;
+}
+
+.liked-by-div a{
+	font-weight: bold;
+	line-height: 15pt;
+	font-size: 9pt;
 }

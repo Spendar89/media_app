@@ -202,7 +202,8 @@ function updateNewsFeed(){
 $(document).ready(function(){
 	$('#masonry-container').masonry({
 		itemSelector: '.box',
-		isAnimated: false
+		isAnimated: false,
+		columnWidth: 240
 	});
 	setTimeout(function(){ getRankedPages() }, 2000)
 	scrollLoad();

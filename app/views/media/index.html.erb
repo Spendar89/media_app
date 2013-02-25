@@ -10,7 +10,7 @@
 		<div class="paginate-div">
 			<%= will_paginate @media %>
 		</div>
-	<div class="media_div nine columns" style="margin-top: 2%; min-height: 1000px">	
+	<div class="row media_div ten columns" style="margin-top: 2%; min-height: 1000px">	
 		
 			<div class="index-header-div row six columns" style="margin-left: -1%;">
 				<div class="eleven columns header-panel" style="padding: 0%; margin-bottom: 2%; background: white">
@@ -20,13 +20,13 @@
 				</div>
 			</div>
 			
-			<div class="news-feed-div index-header-div six columns">
+			<div class="news-feed index-header-div six columns">
 				<div class="twelve columns columns header-panel" style="padding: 0%; margin-bottom: 2%; height: 100px; overflow: hidden">
 					<h2 class="glyph general one columns" style="color: #FF5457; font-size: 18pt; margin-top: 6px; margin-left: 0px">l</h2>
 					<h4 class="ten columns end" style="line-height: 18pt; margin-left: 2%; color: #545052">News Feed</h4>
-					<h6 id='news-feed-div' class="twelve columns subheader" style="line-height: 14pt; margin-top: 0%">
-						<h5 class="twelve columns subheader" style="margin-top: -5%">Stay up to date with the pages that you follow</h5>
-					</h6>
+					<div class='news-feed-div' class="twelve columns subheader">
+						<h5 class="twelve columns subheader" style="margin-top: -1%">Stay up to date with the pages that you follow</h5>
+					</div>
 				</div>
 			</div>
 			
@@ -42,59 +42,60 @@
 			<% end %>	
 		</div>
 	</div>
-
-	<div class= "row three columns end">
-		<div class="twelve columns side-panel-div" style="min-height: 100px">
-			<div class="row" style="padding-left: 3%; margin-top: -5%">
-				<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; margin-top: 6px; margin-left: 0px">d</h4>
-				<h5 class="ten columns end" style=" color: #545052; margin-bottom: 10%">Filter Stream</h5>
-			</div>
-			<div class="row">
-				<div class="twelve columns filter-search-div" style="margin-bottom: 5%">
-					<input type="text" id="tag-search"/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="twelve columns" id="selected-tags">
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="ranked-pages-div">
-		<div class="row three columns end">
-			<div class="twelve columns side-panel-div">
+	<div class="sidebar">
+		<div class= "row two columns end">
+			<div class="twelve columns side-panel-div" style="min-height: 100px">
 				<div class="row" style="padding-left: 3%; margin-top: -5%">
-					<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt;">a</h4>
-					<h5 class="ten columns end" style=" color: #545052;">Recommended</h5>
+					<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; margin-top: 6px; margin-left: 0px">d</h4>
+					<h5 class="ten columns end" style=" color: #545052; margin-bottom: 10%">Filter Stream</h5>
 				</div>
-				<div id="fadingBarsG" style="margin-top: 50px; margin-left: 15px">
-					<div id="fadingBarsG_1" class="fadingBarsG">
+				<div class="row">
+					<div class="twelve columns filter-search-div" style="margin-bottom: 5%">
+						<input type="text" id="tag-search"/>
 					</div>
-					<div id="fadingBarsG_2" class="fadingBarsG">
-					</div>
-					<div id="fadingBarsG_3" class="fadingBarsG">
-					</div>
-					<div id="fadingBarsG_4" class="fadingBarsG">
-					</div>
-					<div id="fadingBarsG_5" class="fadingBarsG">
+				</div>
+				<div class="row">
+					<div class="twelve columns" id="selected-tags">
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="row three columns end">
-		<div class="twelve columns side-panel-div">
-			<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-top: 3pt; margin-left: -10%">o</h4><h5 class="ten columns" style="color: #545052; margin-top: 1pt">Trending</h5>
-		<% unless @trending_tags.nil? %>
-			<div class="row" style="padding-left: 5%">
-				<% @trending_tags.each_with_index do |tag, i| %>
-		      		<div class="subheader" style="float: left; margin: 5%; font-size: 15pt"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class => "side-panel", :style => "color: #5B8DBC"%></div>
-					
-				<% end %>
+		<div id="ranked-pages-div">
+			<div class="row two columns end">
+				<div class="twelve columns side-panel-div">
+					<div class="row" style="padding-left: 3%; margin-top: -5%">
+						<h4 class="glyph social two columns" style="color: #FF5457; font-size: 18pt;">a</h4>
+						<h5 class="ten columns end" style=" color: #545052;">Recommended</h5>
+					</div>
+					<div id="fadingBarsG" style="margin-top: 50px; margin-left: 15px">
+						<div id="fadingBarsG_1" class="fadingBarsG">
+						</div>
+						<div id="fadingBarsG_2" class="fadingBarsG">
+						</div>
+						<div id="fadingBarsG_3" class="fadingBarsG">
+						</div>
+						<div id="fadingBarsG_4" class="fadingBarsG">
+						</div>
+						<div id="fadingBarsG_5" class="fadingBarsG">
+						</div>
+					</div>
+				</div>
 			</div>
-		<% end %>		
+		</div>
+
+		<div class="row two columns end">
+			<div class="twelve columns side-panel-div">
+				<h4 class="glyph general two columns" style="color: #FF5457; font-size: 18pt; line-height: 0pt; margin-top: 3pt; margin-left: -10%">o</h4><h5 class="ten columns" style="color: #545052; margin-top: 1pt">Trending</h5>
+				<% unless @trending_tags.nil? %>
+				<div class="row" style="padding-left: 5%">
+					<% @trending_tags.each_with_index do |tag, i| %>
+					<div class="subheader" style="float: left; margin: 5%; font-size: 15pt"><%= link_to "##{tag}", "#", :onclick => "triggerFilter(#{tag.to_json});" , :class => "side-panel", :style => "color: #5B8DBC"%></div>
+
+					<% end %>
+				</div>
+				<% end %>		
+			</div>
 		</div>
 	</div>
 </div>
