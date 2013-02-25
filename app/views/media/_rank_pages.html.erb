@@ -10,8 +10,9 @@
 		<div class="subheader row side-panel" style="font-size: 12pt; font-weight: bold; margin: 1%">
 			<div style="float: left; font-weight: bold; font-size: 14pt; margin-right: 5px; color: #545052">
 				<%= i+1  %>.
+			
+			<%= link_to " #{page[:name]}", page_path(page), :method => "get", :style => "line-height: 20pt; color: #5B8DBC", :class => "side-panel" %>
 			</div>
-			<%= link_to " #{page[:name]}", page_path(page), :method => "get", :style => "line-height: 20pt; float: left; color: #5B8DBC", :class => "side-panel" %>
 		</div>
 		<% end %>
 		<% else %>
