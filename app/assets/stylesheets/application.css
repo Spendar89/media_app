@@ -139,7 +139,7 @@ h3, h2, h1, h4{
 	background: #E5E5E5;
 	padding: 2%;
 	height: 100%;
-	color: #505050;	
+	color: grey;
 }
 
 .tag{
@@ -186,12 +186,17 @@ a:hover{
 	border-right: none;
 }
 
-.box-link{
-	color: #637699;
-	font-size: 8pt;
+.box-link a{
+	color: grey;
+	font-size: 9pt;
 }
 
-.box-link:hover{
+.box-link{
+	color: grey;
+	font-size: 9pt;
+}
+
+.box-link a:hover{
 	color:#131C35;
 }
 
@@ -465,13 +470,9 @@ a.side-panel:hover{
 	font-size: 11pt;
 }
 
-.liked-by-div{
-	margin-top: 2%;
-	margin-left: -8%;
-}
+
 
 .liked-by-div a{
-	font-weight: bold;
 	line-height: 15pt;
 	font-size: 9pt;
 }

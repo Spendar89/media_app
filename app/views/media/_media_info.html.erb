@@ -13,27 +13,26 @@
 	</div>
 </div>
 <div class="twelve columns user-info">
-	<div class="twelve columns" style="margin-left: -5%">
-		<div class="row one columns">
-			<% media_user = User.find(medium['user']) %>
-			<%  user_image = media_user.image unless media_user.nil? %>
-			<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 30px; margin-right: 1px"></a>
+		<div class="uploaded-by div">
+			<div class="row one columns uploaded-by-image">
+				<% media_user = User.find(medium['user']) %>
+				<%  user_image = media_user.image unless media_user.nil? %>
+				<a href="#"><img src="<%=user_image %>" style="border: none; width: auto; height: 30px;"></a>
+			</div>
+			<div class="eleven columns box-link">
+				<% page_name =  $redis.get "page:#{medium['page_id']}:name" %>
+				<%= link_to media_user.name, user_path(media_user)%> on <%= Time.at(medium['uploaded'].to_i).strftime("%b %e")  %> in <%=link_to page_name, "/pages/#{medium['page_id']}", :method => 'get' %>
+			</div>
 		</div>
-		<div class="eleven columns" style="font-size: 8pt">
-			<% page_name =  $redis.get "page:#{medium['page_id']}:name" %>
-			<%= link_to media_user.name, user_path(media_user) , :class=>"box-link"%> on <%= Time.at(medium['uploaded'].to_i).strftime("%b %e")  %> in <%=link_to page_name, "/pages/#{medium['page_id']}", :method => 'get', :class=>"box-link" %>
-		</div>
-	</div>
-	<div class="row twelve columns">
+
 		<% liked_by = $redis.smembers "media:#{medium["id"]}:liked_by" %>
 		<% unless liked_by.empty? %>
-			<div class ="liked-by-div">
-				<span class="glyph general" style="color: grey; float: left; margin-right: 2%; font-size: 10pt">b</span>
+			<div class ="liked-by-div box-link row twelve columns" style="margin-top: 2%">
+				<div class="glyph general" style="margin: 1%; margin-right: 11pt; float: left; color: grey; font-size: 10pt;">b</div>
 					<% liked_by.each_with_index do |user_id, i| %>
 						<% liked_user = User.find(user_id) %>
-						<%= link_to liked_user.name + "#{',' unless i == liked_by.length - 1}", user_path(media_user) %>
+						<%= link_to liked_user.name + "#{',' unless i == liked_by.length - 1}", user_path(media_user), :style => "margin-top: 1%;  float: left" %>
 					<% end %>
 			</div>
 		<% end %>	
-	</div>
 </div>

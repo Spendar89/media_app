@@ -1,9 +1,10 @@
 <ul class="nav-bar" style="margin-top: 0px">
+	<a href="#" class="flyout-toggle"><span> </span></a>
 	<li><a id="logo" href="/"><%= image_tag "hovely_logo_heart.png", :id => "logo-img" %></a></li>
 	<li><a href="#" data-reveal-id="page-form-modal">New Page</a></li>
 	<li class="has-flyout">
 		<a href="#">Categories</a>
-		<a href="#" class="flyout-toggle"><span> </span></a>
+		
 		<ul class="flyout">
 			<% Category.find_each do |cat| %>
 			<li><%= link_to cat[:name], "/pages/?category_id=#{cat[:id]}" , :style=> "padding: 3%"%></li>
@@ -23,7 +24,7 @@
 	<% if current_user %>
 	<li class="has-flyout" style="float: right; border-right: none;">
 		<a href="#">Signed in as <%= current_user.name %></a>
-		<a href="#" class="flyout-toggle"><span> </span></a>
+		
 		<ul class="flyout login-flyout">
 			<li><%= link_to "Sign Out", signout_path %></li>
 			<li><%= link_to "View Profile", user_path(current_user.id) %></li>
